@@ -6,6 +6,18 @@ module.exports = {
         navyDark: '#0a1d34', // An even darker shade for gradient stop
         orange: '#ffb01f', // Custom orange shade
       },
+      keyframes: {
+        colorCycle: {
+          '0%': { color: '#a855f7' }, // Purple
+          '25%': { color: '#14b8a6' }, // Teal
+          '50%': { color: '#84cc16' }, // Lime
+          '75%': { color: '#6366f1' }, // Indigo
+          '100%': { color: '#0ea5e9' }, // Cyan
+        },
+      },
+      animation: {
+        colorCycle: 'colorCycle 4s infinite',
+      },
     },
   },
   content: [

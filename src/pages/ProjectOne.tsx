@@ -30,28 +30,26 @@ const ProjectOne: React.FC = () => {
 
                 {/* Research Section */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-semibold mb-4 text-white">Research</h2>
+                    <h2 className="text-3xl font-semibold mb-4 text-white">Empathize & Define</h2>
                     <p className="text-lg text-white leading-relaxed mb-6">
-                        Our empathy work began with observations of family dynamics, where communication challenges were evident, especially in interactions across age groups and neurodivergent individuals. Through interviews and focus groups with Claremont College students and community members, we uncovered generational gaps in technology usage, language, and communication styles. Additionally, evolving terminologies around mental health and neurodiversity revealed barriers to understanding and connection.
-                    </p>
+                        Our empathy work began with observations of family dynamics, where communication challenges were evident, especially in interactions across age groups. Through interviews and focus groups with Claremont College students and community members, we uncovered generational gaps in technology usage, language, and communication styles. </p>
                     <p className="text-lg text-white leading-relaxed mb-6">
-                        Testing concepts like non-verbal communication systems and shared-interest activities helped us understand the importance of bridging these divides. For example, we tested an "Emotional Notification Light Check-In System" and a PowerPoint night for sharing special interests, fostering quick and effective communication across generations.
+                        We ran into an extreme user: a college student with a neurodivergent younger sibliing at home, who faced communication difficulties between the brother, the student, and their parents. Our user had challenges being a college student as they had so much pressure and responsibilities as being a communicator between parties at home.
                     </p>
+
                     <img src="/1Research.png" alt="Solution prototype" className="w-full h-auto rounded-lg shadow-lg mb-4" />
-                    <p className="text-sm text-white italic">Figure: Insights from empathy interviews and observations.</p>
+
                 </section>
 
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-semibold mb-4 text-white">Solution</h2>
+                    <h2 className="text-3xl font-semibold mb-4 text-white">Ideate</h2>
                     <p className="text-lg text-white leading-relaxed mb-6">
                         To bridge the generational and communication gaps, we designed innovative tools and activities aimed at fostering empathy and connection. One solution was an online platform where family members could create collaborative boards around shared interests, promoting engagement across physical and digital spaces. We also introduced neuro-inclusive games, encouraging participants to step out of their comfort zones and explore new ways of communicating non-verbally.
                     </p>
                     <p className="text-lg text-white leading-relaxed mb-6">
                         One notable idea, the "Emotional Notification Light Check-In System," uses color signals (red, yellow, green) to quickly convey emotional states, enabling families to maintain emotional awareness without traditional conversation. This system proved highly effective in simplifying communication for neurodivergent individuals and their families.
                     </p>
-
-                    <p className="text-sm text-white italic">Figure: Prototype of neuro-inclusive communication tools and games.</p>
                 </section>
 
                 <section className="mb-16">
@@ -60,10 +58,9 @@ const ProjectOne: React.FC = () => {
                         The implementation of these solutions demonstrated promising results. The Emotional Notification Light Check-In System improved family communication, simplifying the expression of emotions in complex dynamics. PowerPoint nights and shared special-interest activities fostered empathy and understanding among participants, creating stronger intergenerational bonds.
                     </p>
                     <p className="text-lg text-white leading-relaxed">
-                        Feedback from participants showed a 40% improvement in communication satisfaction, especially among neurodivergent users. Our tests also revealed that shared experiences, such as collaborative games, were pivotal in breaking down barriers across generations. These results highlight the potential of these tools and activities to create meaningful and lasting connections.
+                        Feedback from participants showed an improvement in communication satisfaction, especially among our original neurodivergent user. Our tests also revealed that shared experiences, such as collaborative games, were pivotal in breaking down barriers across generations. These results highlight the potential of these tools and activities to create meaningful and lasting connections.
                     </p>
-                    <img src="/path-to-outcome-image.jpg" alt="Outcome results" className="w-full h-auto rounded-lg shadow-lg mb-4" />
-                    <p className="text-sm text-white italic">Figure: Positive impact of tools and activities on intergenerational communication.</p>
+                    <img src="/DP3Team.png" alt="Outcome results" className="w-full h-auto rounded-lg shadow-lg mb-4" />
                 </section>
 
 
@@ -75,9 +72,7 @@ const ProjectOne: React.FC = () => {
                 </section>
 
             </div>
-
-
-
+            <h3 className="text-2xl text-white font-semibold mb-4">Project write-up</h3>
             {/* Embed PDF */}
             <embed
                 src="/Navigating Family Connections through Distance and Neurodiversity.pdf" // Path to the PDF file in the public folder
