@@ -83,7 +83,7 @@ const Home: React.FC = () => (
         to="/project-two"
         className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
       >
-        <img src="/tccs.png" alt="Project Two" className="w-full h-48 object-cover" />
+        <img src="/Tccs.png" alt="Project Two" className="w-full h-48 object-cover" />
         <div className="absolute inset-0 bg-cyan-400 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
           <p className="text-white text-lg px-4">Staff collaboration across campuses fosters a stronger community.</p>
         </div>
