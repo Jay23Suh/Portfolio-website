@@ -70,7 +70,7 @@ const Home: React.FC = () => (
         to="/project-one"
         className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
       >
-        <img src="/intergeneration.jpg" alt="Project One" className="w-full h-48 object-cover" />
+
         <div className="absolute inset-0 bg-pink-500 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
           <p className="text-white text-lg px-4">Intergenerational connections create meaningful relationships.</p>
         </div>
@@ -83,7 +83,7 @@ const Home: React.FC = () => (
         to="/project-two"
         className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
       >
-        <img src="/tccs.jpeg" alt="Project Two" className="w-full h-48 object-cover" />
+
         <div className="absolute inset-0 bg-cyan-400 bg-opacity-70 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
           <p className="text-white text-lg px-4">Staff collaboration across campuses fosters a stronger community.</p>
         </div>
