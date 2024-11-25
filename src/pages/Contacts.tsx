@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
                         I am curious about the dynamic world of entrepreneurship and its vibrant ecosystem. Throughout the process of the visionary dreams of startup founders, the wisdom and guidance of seasoned advisors and consultants, and the discerning judgment of venture capitalists who guard the threshold, I am captivated by the opportunity to apply human-centered design, embracing a people-centric perspective to drive meaningful innovation.
                     </p>
                     <p className="text-lg text-white leading-relaxed">
-                        Outside of "work", I love playing and watching soccer, listening to Coldplay, playing poker, and enjoying my time as a young person.
+                        Outside of "work", I love playing and watching soccer, listening to Coldplay, playing poker, and enjoying my time as a college student.
                     </p>
                     <p className="text-lg text-white mt-6">
                         I'm always excited to meet someone new to learn from! {' '}
@@ -50,18 +50,18 @@ const Contact: React.FC = () => {
                     <img
                         src="/IMG_5825 2.JPG"
                         alt="Gallery Image 2"
-                        className="w-72 h-64 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
+                        className="w-96 h-64 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
                     />
                     <img
                         src="/CES.png"
                         alt="Gallery Image 4"
                         className="w-64 h-96 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
+                    />    <img
+                        src="/P-ai.JPG"
+                        alt="Gallery Image 4"
+                        className="w-128 h-96 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
                     />
-                    <img
-                        src="/IMG_4279.JPG"
-                        alt="Gallery Image 1"
-                        className="w-72 h-72 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
-                    />
+
 
                     <img
                         src="/sasoccer.png"
@@ -75,9 +75,19 @@ const Contact: React.FC = () => {
                         className="w-128 h-64 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
                     />
                     <img
+                        src="/Shanghai.png"
+                        alt="Gallery Image 4"
+                        className="w-128 h-96 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
+                    />
+                    <img
                         src="/SASoccer.jpeg"
                         alt="Gallery Image 4"
                         className="w-128 h-96 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
+                    />
+                    <img
+                        src="/IMG_4279.JPG"
+                        alt="Gallery Image 1"
+                        className="w-72 h-72 object-cover rounded-lg shadow-lg mx-auto" // Smaller width and height
                     />
                 </div>
             </div>

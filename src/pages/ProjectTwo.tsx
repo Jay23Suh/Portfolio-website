@@ -78,16 +78,7 @@ const ProjectTwo: React.FC = () => {
 
       </div>
       {/* Video Section */}
-      <div className="mb-8">
-        <h3 className="text-2xl text-white font-semibold mb-4">Project Video</h3>
-        <video
-          controls
-          src="/HCD DP2Edit 5.mp4" // Path to the video file in the public folder
-          className="w-full h-auto rounded-lg shadow-lg"
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+
       {/* Embed PDF */}
       <h3 className="text-2xl text-white font-semibold mb-4">Project write-up</h3>
       <iframe
