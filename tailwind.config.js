@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        patrick: ['"Patrick Hand SC"', 'cursive'], // Patrick Hand SC
+        edu: ['"Edu AU VIC WA NT Arrows"', 'cursive'], // Edu Arrows Font
+      },
       colors: {
         navy: '#22598f', // Adjust this if you want a custom shade of navy
         navyDark: '#0a1d34', // An even darker shade for gradient stop
@@ -23,4 +27,5 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
   ],
+  plugins: [],
 };

@@ -2,3 +2,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
+.patrick-hand-sc {
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@layer utilities {
+    .animate-gradient {
+        animation: gradient-flow 4s infinite linear;
+
+    }
+}
