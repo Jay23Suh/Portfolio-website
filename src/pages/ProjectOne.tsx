@@ -64,6 +64,22 @@ const ProjectOne: React.FC = () => {
             <section className="mb-16 max-w-4xl mx-auto">
                 <h2 className="text-4xl font-semibold mb-4 text-[#001d36]">Ideate</h2>
                 <p className="text-lg text-[#001d36] leading-relaxed mb-6">
+                    Before coming up with lists of ideas that could potentially help our user, we structured our thoughts into provoking questions:
+                </p>
+
+                {/* Bullet Points */}
+                <ul className="list-disc list-inside space-y-2 text-lg text-[#001d36] leading-relaxed mb-6">
+                    <li>How might we facilitate communication non-verbally to bridge generations?</li>
+                    <li>How might we mitigate the role of an advocate while still keeping them involved in caregiving?</li>
+                    <li>How might we work to center the user in our ideation rather than solely their parents and neurodivergent sibling?</li>
+                    <li>How might we bridge the physical gap between college and home?</li>
+                </ul>
+
+                <p className="text-lg text-[#001d36] leading-relaxed mb-6">
+                    Using these as a framework, we further applied ideating strategies such as flipping assumptions, benefit baiting, and even generating ideas that seemed purposefully outlandish.
+                </p>
+
+                <p className="text-lg text-[#001d36] leading-relaxed mb-6">
                     To bridge the generational and communication gaps, we designed innovative tools and activities aimed at fostering empathy and connection. One solution was an online platform where family members could create collaborative boards around shared interests, promoting engagement across physical and digital spaces. We also introduced neuro-inclusive games, encouraging participants to step out of their comfort zones and explore new ways of communicating non-verbally.
                 </p>
                 <p className="text-lg text-[#001d36] leading-relaxed mb-6">
