@@ -152,12 +152,7 @@ const ProjectTwo: React.FC = () => {
           collaboration and mutual respect.
         </p>
 
-      </section>
-
-
-      {/* Outcome Section */}
-      <section className="mb-16 max-w-4xl mx-auto">
-        <h2 className="text-4xl font-semibold mb-4">Outcome</h2>
+        {/* Outcome Section */}
         <p className="text-lg leading-relaxed mb-6">
           The Time Capsule Wardrobe was tested with staff members and peers to evaluate
           its impact on onboarding experiences. Participants appreciated the concept’s
@@ -173,6 +168,22 @@ const ProjectTwo: React.FC = () => {
           workplace culture and build community among staff.
         </p>
       </section>
+
+      <div className="flex justify-center my-8">
+        <div className="overflow-hidden rounded-lg " style={{ width: '560px', height: '315px' }}>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/RGcbxd3cHEM"
+            title="Project 2 Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+
+
+
 
       {/* Conclusion Section */}
       <section className="mb-16 text-center max-w-4xl mx-auto">
