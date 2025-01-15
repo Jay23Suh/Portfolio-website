@@ -5,8 +5,7 @@ import './tailwind.css';
 import App from './App';
 import './output.css';
 import './tailwind.css';
-import '@fontsource/patrick-hand';
-import '@fontsource/patrick-hand-sc';
+
 
 
 

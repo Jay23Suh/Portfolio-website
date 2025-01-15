@@ -3,6 +3,7 @@ module.exports = {
     extend: {
       fontFamily: {
         patrick: ['"Patrick Hand SC"', 'cursive'], // Patrick Hand SC
+        beezee: ['"ABeeZee"', 'sans-serif'],
         edu: ['"Edu AU VIC WA NT Arrows"', 'cursive'], // Edu Arrows Font
       },
       colors: {
