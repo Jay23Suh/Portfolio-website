@@ -177,6 +177,15 @@ const Edulis: React.FC = () => {
                     >
                         Check out our full proposal here
                     </a>
+                    <a
+                        href="https://www.figma.com/board/gluXneJJgsVXrRFWblPNtk/Monkeys?node-id=528-1959&t=36tiFQYh0jEJymml-0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600  hover:text-blue-800"
+                    >
+                        Check out our Figma board here
+                    </a>
+
                 </p>
                 <div className="flex flex-col space-y-6">
                     <img src="/EdulisSkit.JPG" className="w-full h-auto rounded-lg" />
