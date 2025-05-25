@@ -12,10 +12,10 @@ const Contact: React.FC = () => {
                 <div className="md:w-1/2">
                     <h2 className="text-6xl font-bold text-[#001d36] mb-6">Hello there!</h2>
                     <p className="text-lg font-beezee text-[#001d36]e leading-relaxed mb-6">
-                        I'm Jay! I'm originally from South Korea but grew up in a city called Santa Rosa, CA from 2011. Now, I'm a junior at Pomona College studying math and cognitive science, with a concentration in human-centered design.
+                        I'm Jay! I'm originally from South Korea but grew up in a city called Santa Rosa, CA from 2011. Now, I'm a rising senior at Pomona College studying math and cognitive science, with a concentration in human-centered design.
                     </p>
                     <p className="text-lg font-beezee text-[#001d36] leading-relaxed mb-6">
-                        I am curious about the dynamic world of entrepreneurship and its vibrant ecosystem. Through the dreams of founders, the guidance of seasoned advisors and consultants, and the wisdom of venture capitalists, I am excited by the opportunity to apply human-centered design, embracing a people-centric perspective to drive meaningful innovation.
+                        I am curious about the dynamic world of entrepreneurship and its vibrant ecosystem. Through the dreams of founders, the guidance of advisors and consultants, and the judgment of venture capitalists, I am excited by the opportunity to apply human-centered design, embracing a people-centric perspective to drive meaningful innovation.
                     </p>
                     <p className="text-lg text-[#001d36] font-beezee leading-relaxed">
                         Outside of "work", I love playing and watching soccer, listening to Coldplay, playing poker, and enjoying my time as a college student.

@@ -34,22 +34,22 @@ const Sparkathon: React.FC = () => {
             <div className="mt-16">
                 <div className="lex justify-center mt-8 grid grid-cols-2  gap-6">
                     <img
-                        src="/DSC00842 (1).jpg" // Replace with actual image path
+                        src="/DSC00842 (1).jpg"
                         alt="judges"
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <img
-                        src="/DSC00839.jpg" // Replace with actual image path
+                        src="/DSC00839.jpg"
                         alt="pitch"
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <img
-                        src="/DSC00656.jpg" // Replace with actual image path
+                        src="/DSC00656.jpg"
                         alt="me"
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <img
-                        src="/DSC00874.jpg" // Replace with actual image path
+                        src="/DSC00874.jpg"
                         alt="me"
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Edulis from './pages/Edulis';
 import ProjectOne from './pages/ProjectOne';
 import ProjectTwo from './pages/ProjectTwo';
 import ProjectSaverSports from './pages/ProjectSaverSports';
@@ -32,6 +33,7 @@ const App: React.FC = () => {
         <main className="flex-grow w-full">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Edulis" element={<Edulis />} />
             <Route path="/project-one" element={<ProjectOne />} />
             <Route path="/project-two" element={<ProjectTwo />} />
             <Route path="/contact" element={<Contact />} />
@@ -108,6 +110,19 @@ const Home: React.FC = () => (
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <Link
+        to="/Edulis"
+        className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
+      >
+        <img src="/Edulislogo.png" alt="Edulis Labs" className="mx-auto w-3/4 h-48 object-cover" />
+        <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+          <p className="text-[#FCFCFC] text-xl px-4">A GTM strategy for a startup challenging norms.</p>
+        </div>
+        <div className="p-6">
+          <h4 className="text-xl text-[#001d36] font-semibold mb-2">Edulis Labs</h4>
+        </div>
+      </Link>
+
       <Link
         to="/project-one"
         className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
