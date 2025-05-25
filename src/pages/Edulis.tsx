@@ -168,7 +168,7 @@ const Edulis: React.FC = () => {
                     Our Launch Playbook offers a tactical roadmap for Edulis to pilot and scale the Revolutionized Rep Program across LA, supported by clear brand messaging, social media integration, and feedback loops. It’s a solution rooted in humility, education, and the real behaviors of stylists who care deeply about their craft.
 
                 </p>
-                <p className="text-lg font-beezee text-[#001d36] leading-relaxed mb-6">
+                <p className="text-lg text-center font-beezee text-[#001d36] leading-relaxed mb-6">
                     <a
                         href="https://www.canva.com/design/DAGlyZ2D74s/YvrPG3fq1yGMsrmW_do1mA/edit?utm_content=DAGlyZ2D74s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
                         target="_blank"
@@ -177,6 +177,8 @@ const Edulis: React.FC = () => {
                     >
                         Check out our full proposal here
                     </a>
+                </p>
+                <p className="text-lg text-center font-beezee text-[#001d36] leading-relaxed mb-6">
                     <a
                         href="https://www.figma.com/board/gluXneJJgsVXrRFWblPNtk/Monkeys?node-id=528-1959&t=36tiFQYh0jEJymml-0"
                         target="_blank"
@@ -185,7 +187,6 @@ const Edulis: React.FC = () => {
                     >
                         Check out our Figma board here
                     </a>
-
                 </p>
                 <div className="flex flex-col space-y-6">
                     <img src="/EdulisSkit.JPG" className="w-full h-auto rounded-lg" />
