@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Edulis: React.FC = () => {
+
+const MR: React.FC = () => {
     return (
         <div className="container mx-auto px-4 py-12">
 
             {/* Title Section */}
             <section className="mb-12 text-center max-w-4xl mx-auto">
-                <h1 className="text-5xl font-bold mb-4 text-[#001d36]">Edulis Labs Go-to-Market Strategy</h1>
-                <p className="text-2xl text-[#001d36]">Developing a human-centered strategy to launch a revolutionizing technology</p>
+                <h1 className="text-5xl font-bold mb-4 text-[#001d36]">True Ventures Fellowship with Madison Reed</h1>
+                <p className="text-2xl text-[#001d36]">Learning about VC, Data & Analytics at Madison Reed </p>
             </section>
 
             {/* Overview Section */}
@@ -210,4 +211,5 @@ const Edulis: React.FC = () => {
     );
 };
 
-export default Edulis;
+export default MR;
+

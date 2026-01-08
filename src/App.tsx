@@ -6,6 +6,7 @@ import ProjectTwo from './pages/ProjectTwo';
 import ProjectSaverSports from './pages/ProjectSaverSports';
 import Contact from './pages/Contacts';
 import Sparkathon from './pages/Sparkathon';
+import MR from './pages/MR';
 import './index.tsx';
 
 
@@ -53,37 +54,15 @@ const App: React.FC = () => {
 };
 
 
-
-
-// Main content for the home page
 const Home: React.FC = () => (
   <section className="container mx-auto px-8 py-16 text-center bg-opacity-70 rounded-lg  backdrop-blur-md">
 
-    <h1 className="text-5xl font-bold">
-      Hi, I'm Jay!
-
-    </h1>
-    <h1 className="text-7xl text-[#001d36] font-bold mb-20">
-      As a{' '}
-      <span className="inline-block transition duration-300 transform hover:scale-100 hover:-translate-y-0.5 hover:text-teal-500 ">
-        founder </span>{' '}
-      and a{' '}
-      <span className="inline-block transition duration-300 transform hover:scale-100 hover:-translate-y-0.5 hover:text-purple-800">
-        venture capitalist
-      </span>
-      , I bring a {' '}
-      <span
+    <h1 className="text-5xl font-bold"> Hi, I'm Jay! </h1>
+    <h1 className="text-7xl text-[#001d36] font-bold mb-20">I bring a {' '} <span
         className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-lime-500 animate-gradient relative inline-block before:content-[''] "
         style={{
           backgroundSize: "200% 200%",
-        }}
-      >
-        human-centered
-      </span>{' '}
-
-
-      approach to find and tackle real problems.
-    </h1>
+        }}>human-centered </span>{' '} approach to find and tackle real problems. </h1>
 
     <h2 className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6">
       <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-purple-600 mx-2">
@@ -102,14 +81,12 @@ const Home: React.FC = () => (
         Projects
       </span>
     </h2>
-
-
-
+        {/* arrow */}
     <div className="flex justify-center mt-8 mb-10">
       <img src="/arrow-fat-down.svg" alt="Logo" className="w-20 h-20" />
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
       <Link
         to="/Edulis"
         className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
@@ -172,14 +149,88 @@ const Home: React.FC = () => (
           <img src="/Sparkathon.png" alt="Project Three" className="w-full h-48 object-cover" />
         </div>
         <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-          <p className="text-[#FCFCFC] text-xl px-4">Human-centered design, community pitch competition.</p>
+          <p className="text-[#FCFCFC] text-xl px-4">A Human-centered design, community pitch competition hosted by Pomona Ventures.</p>
         </div>
         <div className="p-6">
           <h4 className="text-xl text-[#001d36] font-semibold mb-2">Sparkathon</h4>
         </div>
       </Link>
     </div>
+        {/* Other work */}
+        <h2 className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6">
+      <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-sky-600 mx-2">
+        Other 
+      </span>
+      <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-rose-600 mx-2">
+        bits 
+      </span>
+      <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-slate-500 mx-2">
+        of
+      </span>
+      <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-fuchsia-500 mx-2">
+        FUN
+      </span>
+      <span className="inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-1 hover:text-yellow-300 mx-2">
+        work
+      </span>
+    </h2>
+        <div className="flex justify-center mt-8 mb-10">
+      <img src="/arrow-fat-down.svg" alt="Logo" className="w-20 h-20" />
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> 
+            <a 
+          href="https://verita-ai.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
+        >
+        <img src="/Verita.png" alt="Verita AI" className="mx-auto w-auto h-48 object-cover" />
+        <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+          <p className="text-[#FCFCFC] text-xl px-4">Special Projects Lead (Operations) at a multimodal data startup</p>
+        </div>
+        <div className="p-6">
+          <h4 className="text-xl text-[#001d36] font-semibold mb-2">Verita AI</h4>
+        </div>
+      </a>
+
+           <a 
+          href="https://trueventures.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
+        >
+        <img src="/TVLogo2.jpg" alt="True Ventures & Madison Reed" className="mx-auto w-3/4 h-48 object-cover" />
+        <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+          <p className="text-[#FCFCFC] text-xl px-4">Data Science with Madison Reed as part of True Ventues Fellowship</p>
+        </div>
+        <div className="p-6">
+          <h4 className="text-xl text-[#001d36] font-semibold mb-2">Madison Reed & True Ventures</h4>
+        </div>
+      </a>
+        <a 
+          href="https://crater.vc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
+        >
+          {/* Card Image */}
+          <img src="/crater.jpeg" alt="True Ventures & Madison Reed" className="mx-auto w-auto h-48 object-cover" />
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity z-10">
+            <p className="text-[#FCFCFC] text-xl px-4 text-center">
+              Investing in SoCal's biggest dreamers at early stages
+            </p>
+          </div>
+          {/* Card Title (Visible when not hovering) */}
+          <div className="p-6">
+            <h4 className="text-xl text-[#001d36] font-semibold mb-2">Crescent Fund & Crater Ventures</h4>
+          </div>
+        </a>
+      
+    </div>
   </section>
 );
+
 
 export default App;

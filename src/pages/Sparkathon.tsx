@@ -15,7 +15,15 @@ const Sparkathon: React.FC = () => {
 
             <div className="p-8 rounded-lg text-[#001d36] shadow-m text-center">
                 <p className="text-lg font-beezee leading-relaxed mb-4">
-                    I, along with everyone at Pomona Ventures (the largest entrepreneurship club at the Claremont Colleges), have a commitment to encourage entrepreneurship, and Sparkathon is a perfect way to ignite the spark of innovation in individuals and communities, fostering an environment where ideas can flourish and impactful solutions can emerge.
+                    I, along with everyone atI, along with everyone at{' '}
+                    <a 
+                    href="https://www.pomonaventures.website" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="underline hover:text-cyan-600 font-bold"
+                    >
+                    Pomona Ventures
+                    </a>{' '} (the largest entrepreneurship club at the Claremont Colleges), have a commitment to encourage entrepreneurship, and Sparkathon is a perfect way to ignite the spark of innovation in individuals and communities, fostering an environment where ideas can flourish and impactful solutions can emerge.
 
                 </p>
                 <p className="text-lg font-beezee leading-relaxed mb-4">
@@ -28,7 +36,17 @@ const Sparkathon: React.FC = () => {
                 <p className="text-lg  font-beezee leading-relaxed mb-4">
                     Organizing the event, I was fortunate to have incredible people around me who helped on the financing, logistics, and marketing intiatives. Together, we were able to plan one of the best Sparkathons ever, raisinig several thousands of dollars, including $2.25k for the winners of Sparkathon and having over 125 participants and 24 teams compete!
                 </p>
+              
+                    <a 
+                    href="https://www.sparkathon.org" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="underline hover:text-cyan-600 font-bold"
+                    >
+                    Click here to lean more!
+                    </a>{' '}
             </div>
+
 
             {/* Gallery Section */}
             <div className="mt-16">
