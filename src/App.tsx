@@ -155,6 +155,9 @@ const Home: React.FC = () => (
           <h4 className="text-xl text-[#001d36] font-semibold mb-2">Sparkathon</h4>
         </div>
       </Link>
+      <div className="text-6xl  mt-24 hover:text-green-500 inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-10">
+        Keep scrolling!
+      </div>
     </div>
         {/* Other work */}
         <h2 className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6">
