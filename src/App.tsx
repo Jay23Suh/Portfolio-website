@@ -8,6 +8,7 @@ import Contact from './pages/Contacts';
 import Sparkathon from './pages/Sparkathon';
 import MR from './pages/MR';
 import './index.tsx';
+import FraryTale from './pages/FraryTale'
 
 
 const App: React.FC = () => {
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/ProjectSaverSports" element={<ProjectSaverSports />} />
             <Route path="/Sparkathon" element={<Sparkathon />} />
+            <Route path="/FraryTale" element={<FraryTale />} />
           </Routes>
         </main>
 
@@ -182,6 +184,18 @@ const Home: React.FC = () => (
     </div>
     
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> 
+      <Link
+        to="/FraryTale"
+        className="relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105 backdrop-blur-md border border-white/60"
+      >
+        <img src="/FraryTale_resized_16_9.png" alt="Verita AI" className="mx-auto w-auto h-48 object-cover" />
+        <div className="absolute inset-0 bg-lime-800 bg-opacity-95 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+          <p className="text-[#FCFCFC] text-xl px-4">Documenting journeys with Claremont Entrepreneurs for the community</p>
+        </div>
+        <div className="p-6">
+          <h4 className="text-xl text-[#001d36] font-semibold mb-2">Frary Tale</h4>
+        </div>
+      </Link>
             <a 
           href="https://verita-ai.com"
           target="_blank"
