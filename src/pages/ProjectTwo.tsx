@@ -67,12 +67,14 @@ const ProjectTwo: React.FC = () => {
           <img
             src="/IMG_2270.jpeg"
             className=" h-auto rounded-lg"
+            alt=""
           />
         </div>
         <div className="flex flex-col space-y-6">
           <img
             src="/IMG_2287.jpeg"
             className=" h-auto rounded-lg"
+            alt=""
           />
         </div>
 
@@ -81,6 +83,7 @@ const ProjectTwo: React.FC = () => {
         <img
           src="/IMG_7815.jpg"
           className=" h-auto rounded-lg"
+          alt=""
         />
       </div>
 
@@ -110,6 +113,7 @@ const ProjectTwo: React.FC = () => {
           <img
             src="/DP2TimeCapsule.png"
             className=" h-auto rounded-lg"
+            alt=""
           />
         </div>
         <div>

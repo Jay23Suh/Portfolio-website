@@ -55,8 +55,8 @@ const Edulis: React.FC = () => {
 
                 {/* Right Content (Images) */}
                 <div className="flex flex-col space-y-8 ">
-                    <img src="/EdulisLogo.png" className="w-full h-auto rounded-lg" />
-                    <img src="/EdulisTeam.JPG" className="w-full h-auto rounded-lg" />
+                    <img src="/EdulisLogo.png" className="w-full h-auto rounded-lg" alt="" />
+                    <img src="/EdulisTeam.JPG" className="w-full h-auto rounded-lg" alt=""/>
 
                 </div>
 
@@ -69,9 +69,9 @@ const Edulis: React.FC = () => {
                 </p>
                 <section className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto items-start">
                     <div className="flex flex-col">
-                        <img src="/EdulisComp.png" className="w-full h-auto rounded-lg" />
+                        <img src="/EdulisComp.png" className="w-full h-auto rounded-lg" alt=""/>
                     </div>
-                    <div className="flex flex-col"><img src="/EdulisComp2.png" className="w-full h-auto rounded-lg" /></div>
+                    <div className="flex flex-col"><img src="/EdulisComp2.png" className="w-full h-auto rounded-lg" alt=""/></div>
                 </section>
                 <p className="text-lg font-beezee text-[#001d36] leading-relaxed mb-6">
                     After our initial scan of what the industry looked like, it was time for us to talk to all personnel within the hair ecosystem, which included end-users,
@@ -113,7 +113,7 @@ const Edulis: React.FC = () => {
             </section>
 
             <div className="flex flex-col mb-6">
-                <img src="/EdulisIdeas.png" className="w-full h-auto rounded-lg" />
+                <img src="/EdulisIdeas.png" className="w-full h-auto rounded-lg" alt=""/>
             </div>
 
             {/* Ideate Section */}
@@ -132,7 +132,7 @@ const Edulis: React.FC = () => {
                 </p>
 
                 <div className="flex flex-col space-y-6">
-                    <img src="/EdulisTesting.png" className="w-full h-auto rounded-lg" />
+                    <img src="/EdulisTesting.png" className="w-full h-auto rounded-lg" alt=""/>
                 </div>
             </section>
 
@@ -150,7 +150,7 @@ const Edulis: React.FC = () => {
                     come before adoption, and belief is built through credible, peer-led learning.
                 </p>
                 <div className="flex flex-col mb-6">
-                    <img src="/Edulis persona.png" className="w-full h-auto rounded-lg" />
+                    <img src="/Edulis persona.png" className="w-full h-auto rounded-lg" alt="" />
                 </div>
                 <p className="text-lg font-beezee text-[#001d36] leading-relaxed mb-6">
                     We developed three early brand concepts under the theme of continuous education for stylists each exploring different channels:
@@ -188,7 +188,7 @@ const Edulis: React.FC = () => {
                     </a>
                 </p>
                 <div className="flex flex-col space-y-6">
-                    <img src="/EdulisSkit.JPG" className="w-full h-auto rounded-lg" />
+                    <img src="/EdulisSkit.JPG" className="w-full h-auto rounded-lg" alt=""/>
                 </div>
             </section>
 
