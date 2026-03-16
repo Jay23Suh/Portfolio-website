@@ -45,12 +45,12 @@ const ProjectOne: React.FC = () => {
                     <img
                         src="/1Research.png"
                         className="w-full h-auto rounded-lg"
-                        alt=""
+                        alt="Research phase documentation"
                     />
                     <img
                         src="/DP3Mural.png"
                         className="w-full h-auto rounded-lg"
-                        alt=""
+                        alt="Design process mural"
                     />
                 </div>
             </section>
@@ -59,7 +59,7 @@ const ProjectOne: React.FC = () => {
                 <img
                     src="/DP3MindMap.png"
                     className="w-full h-auto rounded-lg"
-                    alt=""
+                    alt="Mind map of design ideas"
                 />
             </div>
 
@@ -92,7 +92,7 @@ const ProjectOne: React.FC = () => {
                     <img
                         src="/DP3Testing.png"
                         className="w-full h-auto rounded-lg"
-                        alt=""
+                        alt="Prototype testing session"
                     />
                 </div>
             </section>

@@ -67,14 +67,14 @@ const ProjectTwo: React.FC = () => {
           <img
             src="/IMG_2270.jpeg"
             className=" h-auto rounded-lg"
-            alt=""
+            alt="Staff community research photo"
           />
         </div>
         <div className="flex flex-col space-y-6">
           <img
             src="/IMG_2287.jpeg"
             className=" h-auto rounded-lg"
-            alt=""
+            alt="Staff community research photo"
           />
         </div>
 
@@ -83,7 +83,7 @@ const ProjectTwo: React.FC = () => {
         <img
           src="/IMG_7815.jpg"
           className=" h-auto rounded-lg"
-          alt=""
+          alt="Research findings documentation"
         />
       </div>
 
@@ -113,7 +113,7 @@ const ProjectTwo: React.FC = () => {
           <img
             src="/DP2TimeCapsule.png"
             className=" h-auto rounded-lg"
-            alt=""
+            alt="Time Capsule Wardrobe concept design"
           />
         </div>
         <div>

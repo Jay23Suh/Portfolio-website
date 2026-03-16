@@ -40,8 +40,6 @@ const Contact: React.FC = () => {
                 </div>
             </div>
 
-            <div className="my-36"></div>
-
 
             {/* <div className="mt-16">
                 <h3 className="text-3xl font-bold text-white mb-8 text-center">Gallery</h3>
