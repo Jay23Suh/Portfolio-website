@@ -106,8 +106,8 @@ const Home: React.FC = () => {
   return (
     <section className="container mx-auto px-8 py-16 text-center bg-opacity-70 rounded-lg backdrop-blur-md">
 
-      <h1 className="text-3xl md:text-5xl font-bold"> Hi, I'm Jay! </h1>
-      <h1 className="text-4xl md:text-7xl text-[#001d36] font-bold mb-20">I bring a {' '} <span
+      <h1 className="text-5xl md:text-5xl font-bold"> Hi, I'm Jay! </h1>
+      <h1 className="text-7xl md:text-7xl text-[#001d36] font-bold mb-20">I bring a {' '} <span
           className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-lime-500 animate-gradient relative inline-block before:content-[''] ">human-centered </span>{' '} approach to find and tackle real problems. </h1>
 
       <h2 className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6">
