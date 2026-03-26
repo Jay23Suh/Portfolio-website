@@ -38,6 +38,7 @@
 /* ── Custom cursor ─────────────────────────────────────── */
 html, body {
     cursor: none;
+    background-color: #FCFCFC;
 }
 
 a, button, [role="button"] {
@@ -53,9 +54,20 @@ a, button, [role="button"] {
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.15s, height 0.15s, background 0.3s;
+    transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.2s, transform 0.2s;
 }
 
+.cursor-dot-hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.cursor-dot-click {
+    transform: translate(-50%, -50%) scale(0.4);
+    background: #14b8a6;
+}
+
+/* Ring: size/color via CSS transitions; position via rAF (no transition on left/top) */
 .cursor-ring {
     position: fixed;
     width: 36px;
@@ -65,26 +77,45 @@ a, button, [role="button"] {
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: left 0.08s ease-out, top 0.08s ease-out,
-                width 0.2s ease, height 0.2s ease, border-color 0.3s;
+    transition: width 0.25s ease, height 0.25s ease,
+                border-color 0.25s ease, background 0.25s ease;
 }
 
+/* Hover over generic links */
 .cursor-ring-hover {
     width: 56px;
     height: 56px;
-    border-color: rgba(20, 184, 166, 0.6);
+    border-color: rgba(20, 184, 166, 0.7);
 }
 
-/* ── Scroll reveal ─────────────────────────────────────── */
-.reveal-on-scroll {
+/* Hover over project cards */
+.cursor-ring-card {
+    width: 72px;
+    height: 72px;
+    border-color: rgba(132, 204, 22, 0.6);
+    background: rgba(132, 204, 22, 0.04);
+}
+
+/* Click pulse burst */
+.cursor-pulse {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(168, 85, 247, 0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%) scale(1);
     opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal-on-scroll.revealed {
-    opacity: 1;
-    transform: translateY(0);
+.cursor-pulse-active {
+    animation: cursor-pulse-anim 0.55s ease-out forwards;
+}
+
+@keyframes cursor-pulse-anim {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.75; }
+    100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
 }
 
 /* ── Card tilt ─────────────────────────────────────────── */
