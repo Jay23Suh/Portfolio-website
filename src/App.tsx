@@ -83,13 +83,6 @@ interface CardProps {
 }
 
 const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title, accent, wrapped, index }) => {
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i: number) => ({
-      opacity: 1, y: 0,
-      transition: { duration: 0.55, delay: i * 0.1, ease: 'easeOut' },
-    }),
-  };
 
   const inner = (
     <>
@@ -140,12 +133,11 @@ const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title
 
   return (
     <motion.div
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -6, transition: { type: 'spring', stiffness: 350, damping: 22 } }}
       viewport={{ once: true, amount: 0.1 }}
-      variants={cardVariants}
+      transition={{ duration: 0.55, delay: index * 0.1, ease: 'easeOut' }}
     >
       {to ? (
         <Link to={to} className={sharedClass}>{inner}</Link>
