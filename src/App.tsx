@@ -8,6 +8,7 @@ import ProjectSaverSports from './pages/ProjectSaverSports';
 import Contact from './pages/Contacts';
 import Sparkathon from './pages/Sparkathon';
 import FraryTale from './pages/FraryTale';
+import Ground from './pages/Ground';
 import Cursor from './components/Cursor';
 
 
@@ -184,6 +185,7 @@ const App: React.FC = () => {
             <Route path="/ProjectSaverSports" element={<ProjectSaverSports />} />
             <Route path="/Sparkathon" element={<Sparkathon />} />
             <Route path="/FraryTale" element={<FraryTale />} />
+            <Route path="/Ground" element={<Ground />} />
           </Routes>
         </main>
 
@@ -246,8 +248,6 @@ const Home: React.FC = () => {
   const taglineWords = [
     { word: 'Human-Centered', color: 'hover:text-purple-600' },
     { word: 'Design', color: 'hover:text-teal-600' },
-    { word: '+', color: 'hover:text-lime-500' },
-    { word: 'Personal', color: 'hover:text-indigo-500' },
     { word: 'Projects', color: 'hover:text-cyan-300' },
   ];
 
@@ -256,6 +256,7 @@ const Home: React.FC = () => {
     { word: 'bits', color: 'hover:text-rose-600' },
     { word: 'of', color: 'hover:text-slate-500' },
     { word: 'FUN', color: 'hover:text-fuchsia-500' },
+    { word: '(professional)', color: 'hover:text-emerald-500' },
     { word: 'work', color: 'hover:text-yellow-300' },
   ];
 
@@ -269,6 +270,7 @@ const Home: React.FC = () => {
 
   const otherCards = [
     { to: '/FraryTale',                                    img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale',                   accent: '#f43f5e' },
+    { to: '/Ground',                                       img: '/Ground.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.',               title: 'Ground',                       accent: '#4ade80' },
     { href: 'https://verita-ai.com',                       img: '/Verita.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Special Projects Lead (Operations) at a multimodal data startup',    title: 'Verita AI',                    accent: '#f59e0b' },
     { href: 'https://trueventures.com',                    img: '/TVLogo2.jpg',                imgClass: 'mx-auto w-3/4 h-48 object-cover', desc: 'Data Science with Madison Reed as part of True Ventures Fellowship', title: 'Madison Reed & True Ventures', accent: '#8b5cf6' },
     { href: 'https://crater.vc/',                          img: '/crater.jpeg',                imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Investing in SoCal\'s biggest dreamers at early stages',            title: 'Crescent Fund & Crater Ventures', accent: '#10b981' },
