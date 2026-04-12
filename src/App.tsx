@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
 import Edulis from './pages/Edulis';
 import ProjectOne from './pages/ProjectOne';
@@ -9,7 +9,10 @@ import Contact from './pages/Contacts';
 import Sparkathon from './pages/Sparkathon';
 import FraryTale from './pages/FraryTale';
 import Ground from './pages/Ground';
+import GrillMe from './pages/GrillMe';
 import Cursor from './components/Cursor';
+import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
+import { Typewriter } from './components/ui/typewriter';
 
 
 // ── Scroll progress bar ────────────────────────────────────
@@ -26,8 +29,8 @@ const ScrollProgress: React.FC = () => {
 
 // ── Aurora background ──────────────────────────────────────
 const AuroraBackground: React.FC = () => (
-  <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-    <div className="aurora-layer" />
+  <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.22 }}>
+    <BackgroundGradientAnimation />
   </div>
 );
 
@@ -111,6 +114,27 @@ const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title
 };
 
 
+// ── Fun Stuff scroll nav link (needs router context) ──────
+const FunStuffNav: React.FC = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const scroll = () => document.getElementById('fun-stuff')?.scrollIntoView({ behavior: 'smooth' });
+    if (pathname === '/') {
+      scroll();
+    } else {
+      navigate('/');
+      setTimeout(scroll, 150);
+    }
+  };
+  return (
+    <button onClick={handleClick} className="text-xl font-beezee hover:text-lime-400 mx-2 cursor-pointer">
+      Fun Stuff
+    </button>
+  );
+};
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -131,6 +155,7 @@ const App: React.FC = () => {
             </Link>
             <nav className="flex space-x-4">
               <Link to="/" className="text-xl font-beezee hover:text-lime-400 mx-2">Projects</Link>
+              <FunStuffNav />
               <Link to="/contact" className="text-xl font-beezee hover:text-lime-500">About me</Link>
             </nav>
           </div>
@@ -147,6 +172,7 @@ const App: React.FC = () => {
             <Route path="/Sparkathon" element={<Sparkathon />} />
             <Route path="/FraryTale" element={<FraryTale />} />
             <Route path="/Ground" element={<Ground />} />
+            <Route path="/grill-me" element={<GrillMe />} />
           </Routes>
         </main>
 
@@ -216,9 +242,6 @@ const Home: React.FC = () => {
     { word: 'Other', color: 'hover:text-sky-600' },
     { word: 'bits', color: 'hover:text-rose-600' },
     { word: 'of', color: 'hover:text-slate-500' },
-    { word: 'FUN', color: 'hover:text-fuchsia-500' },
-    { word: '(professional)', color: 'hover:text-emerald-500' },
-    { word: 'work', color: 'hover:text-yellow-300' },
   ];
 
   const mainCards = [
@@ -327,7 +350,7 @@ const Home: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* ── "Other bits of FUN work" heading ── */}
+      {/* ── "Other bits of [typewriter]" heading ── */}
       <motion.h2
         className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6"
         initial="hidden"
@@ -342,6 +365,16 @@ const Home: React.FC = () => {
             </MaskedWord>
           </span>
         ))}
+        <span className="mx-2 text-yellow-500">
+          <Typewriter
+            text={['fun work', 'professional work']}
+            speed={60}
+            deleteSpeed={35}
+            waitTime={2200}
+            cursorChar="|"
+            cursorClassName="ml-0.5 text-yellow-500"
+          />
+        </span>
       </motion.h2>
 
       <motion.div
@@ -357,6 +390,35 @@ const Home: React.FC = () => {
         {otherCards.map((card, i) => (
           <ProjectCard key={card.href ?? card.to} {...card} index={i} />
         ))}
+      </div>
+
+      {/* ── Fun Stuff gallery ── */}
+      <div id="fun-stuff" className="scroll-mt-24 mb-16">
+        <motion.h2
+          className="text-4xl text-[#001d36] font-beezee font-extrabold mb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+        >
+          {[
+            { word: 'Fun',   color: 'hover:text-fuchsia-500' },
+            { word: 'Stuff', color: 'hover:text-teal-500' },
+          ].map(({ word, color }) => (
+            <span key={word} className="mx-2">
+              <MaskedWord className={`transition duration-300 transform hover:scale-110 hover:-translate-y-1 ${color}`}>
+                {word}
+              </MaskedWord>
+            </span>
+          ))}
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {[
+            { to: '/grill-me', img: '/Pparachutes.png', imgClass: 'h-48 object-cover', title: 'Coldplay', desc: 'My favorite band of all time.', accent: '#FFDE21' },
+          ].map((card, i) => (
+            <ProjectCard key={card.to} {...card} index={i} />
+          ))}
+        </div>
       </div>
 
     </section>

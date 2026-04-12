@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import { AnimatedText } from '../components/ui/animated-underline-text';
 
 
 const Contact: React.FC = () => {
@@ -11,7 +10,12 @@ const Contact: React.FC = () => {
                 <div className="flex flex-col md:flex-row items-center md:items-start space-y-12 md:space-y-0 md:space-x-16">
                     {/* Left Section: Text Content */}
                     <div className="md:w-1/2">
-                        <h2 className="text-6xl font-bold text-[#001d36] mb-6">Hello there!</h2>
+                        <AnimatedText
+                          text="Hello there!"
+                          textClassName="text-[#001d36]"
+                          underlineClassName="text-[#a855f7]"
+                          className="mb-10"
+                        />
                         <p className="text-lg font-beezee text-[#001d36] leading-relaxed mb-6">
                             I'm Jay! I'm originally from South Korea but grew up in a city called Santa Rosa, CA from 2011. Now, I'm a senior at Pomona College studying math and cognitive science, with a concentration in human-centered design.
                         </p>
