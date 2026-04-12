@@ -24,49 +24,10 @@ const ScrollProgress: React.FC = () => {
   );
 };
 
-// ── Ambient floating orbs ──────────────────────────────────
-const AmbientOrbs: React.FC = () => (
+// ── Aurora background ──────────────────────────────────────
+const AuroraBackground: React.FC = () => (
   <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-    <motion.div
-      className="absolute rounded-full"
-      style={{
-        width: 560, height: 560,
-        background: 'radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 68%)',
-        top: '-10%', left: '-10%',
-      }}
-      animate={{ x: [0, 120, 60, -30, 0], y: [0, -60, 80, 30, 0] }}
-      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-    />
-    <motion.div
-      className="absolute rounded-full"
-      style={{
-        width: 460, height: 460,
-        background: 'radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 68%)',
-        top: '25%', right: '-8%',
-      }}
-      animate={{ x: [0, -80, -30, -100, 0], y: [0, 100, -60, 40, 0] }}
-      transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-    />
-    <motion.div
-      className="absolute rounded-full"
-      style={{
-        width: 380, height: 380,
-        background: 'radial-gradient(circle, rgba(132,204,22,0.15) 0%, transparent 68%)',
-        bottom: '5%', left: '30%',
-      }}
-      animate={{ x: [0, 80, -60, 40, -80, 0], y: [0, -80, -40, 60, 20, 0] }}
-      transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-    />
-    <motion.div
-      className="absolute rounded-full"
-      style={{
-        width: 300, height: 300,
-        background: 'radial-gradient(circle, rgba(99,102,241,0.14) 0%, transparent 68%)',
-        top: '55%', left: '-5%',
-      }}
-      animate={{ x: [0, 60, 100, 40, 0], y: [0, -50, 30, -80, 0] }}
-      transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-    />
+    <div className="aurora-layer" />
   </div>
 );
 
@@ -155,7 +116,7 @@ const App: React.FC = () => {
     <Router>
       <Cursor />
       <ScrollProgress />
-      <AmbientOrbs />
+      <AuroraBackground />
       <div className="min-h-screen font-patrick text-[#001d36] flex flex-col items-center">
 
         <motion.header
