@@ -130,7 +130,7 @@ const FunStuffNav: React.FC = () => {
   };
   return (
     <button onClick={handleClick} className="text-xl font-beezee hover:text-lime-400 mx-2 cursor-pointer">
-      Fun Stuff
+      fun stuff
     </button>
   );
 };
@@ -154,9 +154,9 @@ const App: React.FC = () => {
               <img src="/JayLogo.gif" alt="Animated Logo" className="w-32 h-auto" />
             </Link>
             <nav className="flex space-x-4">
-              <Link to="/" className="text-xl font-beezee hover:text-lime-400 mx-2">Projects</Link>
+              <Link to="/" className="text-xl font-beezee hover:text-lime-400 mx-2">projects</Link>
               <FunStuffNav />
-              <Link to="/contact" className="text-xl font-beezee hover:text-lime-500">About me</Link>
+              <Link to="/contact" className="text-xl font-beezee hover:text-lime-500">about me</Link>
             </nav>
           </div>
         </motion.header>
@@ -253,8 +253,6 @@ const Home: React.FC = () => {
   ];
 
   const otherCards = [
-    { to: '/FraryTale',                                    img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale',                   accent: '#f43f5e' },
-    { to: '/Ground',                                       img: '/Ground.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.',               title: 'Ground',                       accent: '#4ade80' },
     { href: 'https://verita-ai.com',                       img: '/Verita.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Special Projects Lead (Operations) at a multimodal data startup',    title: 'Verita AI',                    accent: '#f59e0b' },
     { href: 'https://trueventures.com',                    img: '/TVLogo2.jpg',                imgClass: 'mx-auto w-3/4 h-48 object-cover', desc: 'Data Science with Madison Reed as part of True Ventures Fellowship', title: 'Madison Reed & True Ventures', accent: '#8b5cf6' },
     { href: 'https://crater.vc/',                          img: '/crater.jpeg',                imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Investing in SoCal\'s biggest dreamers at early stages',            title: 'Crescent Fund & Crater Ventures', accent: '#10b981' },
@@ -388,7 +386,7 @@ const Home: React.FC = () => {
       {/* ── Other work cards ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         {otherCards.map((card, i) => (
-          <ProjectCard key={card.href ?? card.to} {...card} index={i} />
+          <ProjectCard key={card.href} {...card} index={i} />
         ))}
       </div>
 
@@ -414,7 +412,9 @@ const Home: React.FC = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {[
-            { to: '/grill-me', img: '/Pparachutes.png', imgClass: 'h-48 object-cover', title: 'Coldplay', desc: 'My favorite band of all time.', accent: '#FFDE21' },
+            { to: '/FraryTale', img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale', accent: '#f43f5e' },
+            { to: '/Ground',    img: '/Ground.png',                  imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.', title: 'Ground',     accent: '#4ade80' },
+            { to: '/grill-me',  img: '/Pparachutes.png',             imgClass: 'h-48 object-cover',               desc: 'My favorite band of all time.',                                         title: 'Coldplay',   accent: '#FFDE21' },
           ].map((card, i) => (
             <ProjectCard key={card.to} {...card} index={i} />
           ))}
