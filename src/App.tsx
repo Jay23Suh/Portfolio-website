@@ -9,7 +9,7 @@ import Contact from './pages/Contacts';
 import Sparkathon from './pages/Sparkathon';
 import FraryTale from './pages/FraryTale';
 import Ground from './pages/Ground';
-import GrillMe from './pages/GrillMe';
+import Coldplay from './pages/Coldplay';
 import Cursor from './components/Cursor';
 import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
 import { Typewriter } from './components/ui/typewriter';
@@ -172,7 +172,7 @@ const App: React.FC = () => {
             <Route path="/Sparkathon" element={<Sparkathon />} />
             <Route path="/FraryTale" element={<FraryTale />} />
             <Route path="/Ground" element={<Ground />} />
-            <Route path="/grill-me" element={<GrillMe />} />
+            <Route path="/grill-me" element={<Coldplay />} />
           </Routes>
         </main>
 
