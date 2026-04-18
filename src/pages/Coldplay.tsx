@@ -249,7 +249,14 @@ const Coldplay: React.FC = () => {
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Interactive particle image */}
-        <InteractivePixelBackground imageSrc="/PVivaP.png" brightnessThreshold={80} sampleRate={4} background="#000000" />
+        <InteractivePixelBackground 
+          imageSrc="/PVivaP.png" 
+          brightnessThreshold={80} 
+          sampleRate={4} 
+          background="#000000" 
+          springStrength={0.04} 
+          friction={0.84} 
+        />
 
         {/* SVG oil-paint canvas texture overlay */}
         <svg
