@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { ComicText } from '../components/ui/comic-text';
-import { ShaderBackground } from '../components/ui/animated-shader-hero';
+import { InteractivePixelBackground } from '../components/ui/interactive-pixel-background';
 import { Sword, Flame, Crown } from 'lucide-react';
 
 const TOTAL_FRAMES = 240;
@@ -24,9 +24,13 @@ const Coldplay: React.FC = () => {
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
+  const { scrollY } = useScroll();
+
+  // Section-relative progress derived from raw pixel scroll + element offsetTop
+  const scrollYProgress = useTransform(scrollY, (y) => {
+    const el = containerRef.current;
+    if (!el) return 0;
+    return Math.max(0, Math.min(1, (y - el.offsetTop) / (el.offsetHeight - window.innerHeight)));
   });
 
   // ── Draw frame ─────────────────────────────────────────────
@@ -105,34 +109,35 @@ const Coldplay: React.FC = () => {
 
   // ── Viva la Vida section scroll ────────────────────────────
   const vivaRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: vivaProg } = useScroll({
-    target: vivaRef,
-    offset: ['start start', 'end end'],
+  const vivaProg = useTransform(scrollY, (y) => {
+    const el = vivaRef.current;
+    if (!el) return 0;
+    return Math.max(0, Math.min(1, (y - el.offsetTop) / (el.offsetHeight - window.innerHeight)));
   });
 
   const badgeOpacity   = useTransform(vivaProg, [0.02, 0.10], [0, 1]);
   const badgeY         = useTransform(vivaProg, [0.02, 0.10], ['20px', '0px']);
 
-  // 5 song title popups — each holds for a beat then fades
-  const s0Opacity = useTransform(vivaProg, [0.06, 0.14, 0.22, 0.28], [0, 1, 1, 0]);
-  const s0Y       = useTransform(vivaProg, [0.06, 0.15], ['36px', '0px']);
-  const s0Filter  = useTransform(vivaProg, [0.06, 0.15], ['blur(10px)', 'blur(0px)']);
+  // 5 song title popups spread across 0→0.95 so all reliably appear
+  const s0Opacity = useTransform(vivaProg, [0.04, 0.11, 0.17, 0.22], [0, 1, 1, 0]);
+  const s0Y       = useTransform(vivaProg, [0.04, 0.12], ['36px', '0px']);
+  const s0Filter  = useTransform(vivaProg, [0.04, 0.12], ['blur(10px)', 'blur(0px)']);
 
-  const s1Opacity = useTransform(vivaProg, [0.24, 0.32, 0.40, 0.46], [0, 1, 1, 0]);
-  const s1Y       = useTransform(vivaProg, [0.24, 0.33], ['36px', '0px']);
-  const s1Filter  = useTransform(vivaProg, [0.24, 0.33], ['blur(10px)', 'blur(0px)']);
+  const s1Opacity = useTransform(vivaProg, [0.22, 0.29, 0.35, 0.40], [0, 1, 1, 0]);
+  const s1Y       = useTransform(vivaProg, [0.22, 0.30], ['36px', '0px']);
+  const s1Filter  = useTransform(vivaProg, [0.22, 0.30], ['blur(10px)', 'blur(0px)']);
 
-  const s2Opacity = useTransform(vivaProg, [0.42, 0.50, 0.58, 0.64], [0, 1, 1, 0]);
-  const s2Y       = useTransform(vivaProg, [0.42, 0.51], ['36px', '0px']);
-  const s2Filter  = useTransform(vivaProg, [0.42, 0.51], ['blur(10px)', 'blur(0px)']);
+  const s2Opacity = useTransform(vivaProg, [0.40, 0.47, 0.53, 0.58], [0, 1, 1, 0]);
+  const s2Y       = useTransform(vivaProg, [0.40, 0.48], ['36px', '0px']);
+  const s2Filter  = useTransform(vivaProg, [0.40, 0.48], ['blur(10px)', 'blur(0px)']);
 
-  const s3Opacity = useTransform(vivaProg, [0.60, 0.68, 0.76, 0.82], [0, 1, 1, 0]);
-  const s3Y       = useTransform(vivaProg, [0.60, 0.69], ['36px', '0px']);
-  const s3Filter  = useTransform(vivaProg, [0.60, 0.69], ['blur(10px)', 'blur(0px)']);
+  const s3Opacity = useTransform(vivaProg, [0.58, 0.65, 0.71, 0.76], [0, 1, 1, 0]);
+  const s3Y       = useTransform(vivaProg, [0.58, 0.66], ['36px', '0px']);
+  const s3Filter  = useTransform(vivaProg, [0.58, 0.66], ['blur(10px)', 'blur(0px)']);
 
-  const s4Opacity = useTransform(vivaProg, [0.78, 0.86, 0.94, 1.0], [0, 1, 1, 0]);
-  const s4Y       = useTransform(vivaProg, [0.78, 0.87], ['36px', '0px']);
-  const s4Filter  = useTransform(vivaProg, [0.78, 0.87], ['blur(10px)', 'blur(0px)']);
+  const s4Opacity = useTransform(vivaProg, [0.76, 0.83, 0.89, 0.94], [0, 1, 1, 0]);
+  const s4Y       = useTransform(vivaProg, [0.76, 0.84], ['36px', '0px']);
+  const s4Filter  = useTransform(vivaProg, [0.76, 0.84], ['blur(10px)', 'blur(0px)']);
 
   const vivaFadeIn     = useTransform(vivaProg, [0, 0.05], [1, 0]);
   const iconsOpacity   = useTransform(vivaProg, [0.88, 0.94], [0, 1]);
@@ -240,11 +245,11 @@ const Coldplay: React.FC = () => {
     </div>
 
     {/* ══ VIVA LA VIDA — scroll-driven shader section ══════════ */}
-    <div ref={vivaRef} style={{ height: '500vh' }}>
+    <div ref={vivaRef} style={{ height: '600vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden">
 
-        {/* WebGL painterly shader */}
-        <ShaderBackground />
+        {/* Interactive particle image */}
+        <InteractivePixelBackground imageSrc="/PVivaP.png" brightnessThreshold={80} sampleRate={4} background="#000000" />
 
         {/* SVG oil-paint canvas texture overlay */}
         <svg
@@ -262,7 +267,7 @@ const Coldplay: React.FC = () => {
         {/* Vignette */}
         <div
           className="absolute inset-0 pointer-events-none z-[3]"
-          style={{ background: 'radial-gradient(ellipse at center, transparent 30%, rgba(5,26,64,0.85) 100%)' }}
+          style={{ background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.85) 100%)' }}
         />
 
         {/* ── Crossfade in from Parachutes black ── */}
@@ -307,14 +312,7 @@ const Coldplay: React.FC = () => {
         ))}
 
         {/* ── Icons — Flame · Crown · Flame ── */}
-        <motion.div
-          style={{ opacity: iconsOpacity }}
-          className="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-8 pointer-events-none z-20"
-        >
-          <Flame size={22} color="rgba(115,5,5,0.8)" strokeWidth={1.5} />
-          <Crown size={26} color="rgba(217,204,185,0.7)" strokeWidth={1.5} />
-          <Flame size={22} color="rgba(115,5,5,0.8)" strokeWidth={1.5} />
-        </motion.div>
+
 
         {/* ── Scroll hint ── */}
         <motion.div
