@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { AnimatedText } from '../components/ui/animated-underline-text';
+import { SoccerGame } from '../components/SoccerGame';
 
 
 const Contact: React.FC = () => {
@@ -31,6 +33,17 @@ const Contact: React.FC = () => {
                             Also, you can learn a little more about me on my {' '}
                             <a href="https://www.linkedin.com/in/jayhyunsuh/" className="text-[#001d36] underline hover:text-blue-800">LinkedIn.</a>
                         </p>
+                                         <motion.div
+        className="w-full flex justify-center mt-8 mb-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 12, 0] }}
+        transition={{
+          opacity: { duration: 0.5, delay: 1.2 },
+          y: { duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 1.2 },
+        }}
+      >
+        <img src="/arrow-fat-down.svg" alt="Scroll down" className="w-20 h-20" />
+      </motion.div>
                     </div>
 
                     {/* Right Section: Image */}
@@ -43,6 +56,8 @@ const Contact: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            
 
 
             {/* <div className="mt-16">
@@ -99,6 +114,15 @@ const Contact: React.FC = () => {
                 </div>
             </div> */}
 
+            {/* ── Soccer mini-game ── */}
+            <div className="container mx-auto px-8 mt-16 pb-16">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex-1 h-px bg-[#001d36]/15" />
+                <span className="text-[11px] tracking-[0.55em] uppercase text-[#001d36]/40 font-beezee">kick around</span>
+                <div className="flex-1 h-px bg-[#001d36]/15" />
+              </div>
+              <SoccerGame />
+            </div>
         </>
     );
 }

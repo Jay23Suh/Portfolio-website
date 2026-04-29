@@ -15,6 +15,21 @@ import { BackgroundGradientAnimation } from './components/ui/background-gradient
 import { Typewriter } from './components/ui/typewriter';
 
 
+// ── Glass displacement filter (used by ProjectCard panels) ─
+const GlassFilter: React.FC = () => (
+  <svg className="hidden" aria-hidden="true">
+    <defs>
+      <filter id="card-glass" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.05" numOctaves="1" seed="1" result="turbulence" />
+        <feGaussianBlur in="turbulence" stdDeviation="2" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="30" xChannelSelector="R" yChannelSelector="B" result="displaced" />
+        <feGaussianBlur in="displaced" stdDeviation="1.5" result="finalBlur" />
+        <feComposite in="finalBlur" in2="finalBlur" operator="over" />
+      </filter>
+    </defs>
+  </svg>
+);
+
 // ── Scroll progress bar ────────────────────────────────────
 const ScrollProgress: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -63,9 +78,18 @@ const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title
             className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
             style={{ transitionTimingFunction: 'cubic-bezier(0.33,1,0.68,1)' }}
           >
-            <div className="bg-black/75 backdrop-blur-sm px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
-              <p className="text-white text-sm leading-snug">{desc}</p>
-              <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
+            <div className="relative px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
+              {/* Frosted backdrop */}
+              <div className="absolute inset-0 backdrop-blur-md bg-white/70" />
+              {/* Liquid glass displacement layer — needs a fill to distort */}
+              <div
+                className="absolute inset-0 bg-white/30 rounded-sm"
+                style={{ filter: 'url("#card-glass")', mixBlendMode: 'normal' }}
+              />
+              <div className="relative z-10">
+                <p className="text-[#001d36] text-sm leading-snug">{desc}</p>
+                <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
+              </div>
             </div>
           </div>
         </div>
@@ -81,9 +105,18 @@ const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title
             className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
             style={{ transitionTimingFunction: 'cubic-bezier(0.33,1,0.68,1)' }}
           >
-            <div className="bg-black/75 backdrop-blur-sm px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
-              <p className="text-white text-sm leading-snug">{desc}</p>
-              <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
+            <div className="relative px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
+              {/* Frosted backdrop */}
+              <div className="absolute inset-0 backdrop-blur-md bg-white/70" />
+              {/* Liquid glass displacement layer — needs a fill to distort */}
+              <div
+                className="absolute inset-0 bg-white/30 rounded-sm"
+                style={{ filter: 'url("#card-glass")', mixBlendMode: 'normal' }}
+              />
+              <div className="relative z-10">
+                <p className="text-[#001d36] text-sm leading-snug">{desc}</p>
+                <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
+              </div>
             </div>
           </div>
         </div>
@@ -138,6 +171,7 @@ const FunStuffNav: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <GlassFilter />
       <Cursor />
       <ScrollProgress />
       <AuroraBackground />
@@ -414,7 +448,7 @@ const Home: React.FC = () => {
           {[
             { to: '/FraryTale', img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale', accent: '#f43f5e' },
             { to: '/Ground',    img: '/Ground.png',                  imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.', title: 'Ground',     accent: '#4ade80' },
-            { to: '/coldplay',  img: '/Pparachutes.png',             imgClass: 'h-48 object-cover',               desc: 'My favorite band of all time.',                                         title: 'Coldplay',   accent: '#FFDE21' },
+            // { to: '/coldplay',  img: '/Pparachutes.png',             imgClass: 'h-48 object-cover',               desc: 'My favorite band of all time.',                                         title: 'Coldplay',   accent: '#FFDE21' },
           ].map((card, i) => (
             <ProjectCard key={card.to} {...card} index={i} />
           ))}
