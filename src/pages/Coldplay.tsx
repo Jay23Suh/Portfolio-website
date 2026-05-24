@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { InteractivePixelBackground } from '../components/ui/interactive-pixel-background';
 import AnimatedShaderBackground from '../components/ui/animated-shader-background';
@@ -453,6 +453,8 @@ const MobileGallery: React.FC<{ onDiskClick: (index: number) => void }> = ({ onD
 // Pan: x goes 0vw → -180vw as scrollYProgress goes 0 → 1
 // Track: [100vw Parachutes] [80vw gap] [100vw Viva la Vida] = 280vw total
 const Coldplay: React.FC = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   const { scrollYProgress } = useScroll();
 
   const x = useTransform(scrollYProgress, [0.1, 1], ['0vw', '-360vw']);
