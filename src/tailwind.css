@@ -405,3 +405,18 @@ a, button, [role="button"] {
     height: 28px;
     color: rgba(255, 255, 255, 0.26);
 }
+
+/* ── Gallery vinyl disk spin ─────────────────────────────── */
+@keyframes vinyl-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.vinyl-disk-spin {
+    animation: vinyl-spin 6s linear infinite;
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vinyl-disk-spin { animation: none; }
+}

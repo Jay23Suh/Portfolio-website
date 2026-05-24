@@ -106,100 +106,95 @@ const PLAYER_TRACKS: Track[] = [
     cover: '/PViva.png',
     src: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/10/17/14/10171485-72c7-d616-f66f-d01691e2e6fc/mzaf_3887230690964978124.plus.aac.p.m4a',
   },
+  {
+    title: 'JUPiTER',
+    artist: 'Coldplay',
+    cover: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/3c/0f/af3c0fe2-1c4f-8499-67a8-14a8e41fdbf8/5021732410535.jpg/600x600bb.jpg',
+    src: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/be/9e/9b/be9e9b13-d2cc-2f74-5b34-3b96505abc84/mzaf_7682343340978927688.plus.aac.p.m4a',
+  },
 ];
 
-// ── Vinyl disk config (one per album, themed by featured song) ──
-const DISK_CONFIGS: Record<string, {
-  labelColor: string;
-  labelHighlight: string;
-  glowColor: string;
-  trackIndex: number;
-  songName: string;
-}> = {
-  parachutes: {
-    labelColor: '#C49400',
-    labelHighlight: '#FFE05C',
-    glowColor: 'rgba(255,215,60,0.32)',
-    trackIndex: 0,
-    songName: 'Yellow',
-  },
-  arobtth: {
-    labelColor: '#2E7D32',
-    labelHighlight: '#60AD5E',
-    glowColor: 'rgba(60,160,60,0.30)',
-    trackIndex: 1,
-    songName: 'Green Eyes',
-  },
-  viva: {
-    labelColor: '#0097A7',
-    labelHighlight: '#80DEEA',
-    glowColor: 'rgba(0,188,212,0.28)',
-    trackIndex: 2,
-    songName: 'Glass of Water',
-  },
+// ── Vinyl disk config ───────────────────────────────────────
+const DISK_CONFIGS: Record<string, { glowColor: string; trackIndex: number }> = {
+  parachutes: { glowColor: 'rgba(255,215,60,0.35)',  trackIndex: 0 },
+  arobtth:    { glowColor: 'rgba(60,160,60,0.32)',   trackIndex: 1 },
+  viva:       { glowColor: 'rgba(0,188,212,0.30)',   trackIndex: 2 },
 };
 
-// ── Vinyl disk SVG ──────────────────────────────────────────
-// Label is shifted to cy=65 (lower third) so when the disk peeks from below
-// an album cover, the colored label is the part that's actually visible.
+// ── Vinyl disk: circular album cover with groove overlay ────
 const VinylDisk: React.FC<{
   albumId: string;
-  labelColor: string;
-  labelHighlight: string;
+  cover?: string;
   glowColor: string;
-  songName: string;
   onClick?: () => void;
-}> = ({ albumId, labelColor, labelHighlight, glowColor, songName, onClick }) => {
+}> = ({ albumId, cover, glowColor, onClick }) => {
   const [hovered, setHovered] = useState(false);
-  const gradId = `vl-${albumId}`;
-  const vinylId = `vv-${albumId}`;
+  const vignetteId = `vm-${albumId}`;
+  const vinylGradId = `vg-${albumId}`;
   return (
     <div
       onClick={(e) => { e.stopPropagation(); onClick?.(); }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        width: '100%',
+        height: '100%',
         cursor: 'pointer',
+        borderRadius: '50%',
         filter: hovered
-          ? `drop-shadow(0 4px 20px ${glowColor}) drop-shadow(0 0 10px ${glowColor})`
-          : `drop-shadow(0 3px 12px ${glowColor})`,
+          ? `drop-shadow(0 6px 24px ${glowColor}) drop-shadow(0 0 12px ${glowColor})`
+          : `drop-shadow(0 4px 14px ${glowColor})`,
         transform: hovered ? 'scale(1.07)' : 'scale(1)',
         transition: 'filter 0.3s ease, transform 0.3s ease',
+        position: 'relative',
       }}
     >
-      <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', display: 'block' }}>
+      {/* Spinning layer: album art (or dark vinyl) + groove rings + gloss */}
+      <div
+        className="vinyl-disk-spin"
+        style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', position: 'relative' }}
+      >
+        {cover ? (
+          <img src={cover} alt="" draggable={false}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        ) : (
+          <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%', display: 'block' }}>
+            <defs>
+              <radialGradient id={vinylGradId} cx="36%" cy="32%" r="72%">
+                <stop offset="0%" stopColor="#2a2a2a" />
+                <stop offset="100%" stopColor="#060606" />
+              </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50" fill={`url(#${vinylGradId})`} />
+          </svg>
+        )}
+        <svg
+          viewBox="0 0 100 100"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+        >
+          {[44, 38, 32, 26].map((r) => (
+            <circle key={r} cx="50" cy="50" r={r} fill="none"
+              stroke={cover ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.04)'} strokeWidth="0.7" />
+          ))}
+          <ellipse cx="36" cy="28" rx="13" ry="7" fill="rgba(255,255,255,0.06)"
+            transform="rotate(-20 36 28)" />
+        </svg>
+      </div>
+
+      {/* Static overlay: edge vignette + center hole */}
+      <svg
+        viewBox="0 0 100 100"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+      >
         <defs>
-          <radialGradient id={gradId} cx="38%" cy="30%" r="68%">
-            <stop offset="0%" stopColor={labelHighlight} />
-            <stop offset="100%" stopColor={labelColor} />
-          </radialGradient>
-          <radialGradient id={vinylId} cx="36%" cy="32%" r="72%">
-            <stop offset="0%" stopColor="#2e2e2e" />
-            <stop offset="100%" stopColor="#070707" />
+          <radialGradient id={vignetteId} cx="50%" cy="50%" r="50%">
+            <stop offset="68%" stopColor="transparent" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.55)" />
           </radialGradient>
         </defs>
-        {/* Vinyl body */}
-        <circle cx="50" cy="50" r="50" fill={`url(#${vinylId})`} />
-        {/* Groove rings (centered on disk) */}
-        {[46, 42, 38, 34, 30].map((r) => (
-          <circle key={r} cx="50" cy="50" r={r} fill="none"
-            stroke="rgba(255,255,255,0.03)" strokeWidth="0.65" />
-        ))}
-        {/* Label circle shifted to lower third so it peeks out below the album */}
-        <circle cx="50" cy="65" r="22" fill={`url(#${gradId})`} />
-        <circle cx="50" cy="65" r="22" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
-        <circle cx="50" cy="65" r="15" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.4" />
-        {/* Song name on label */}
-        <text x="50" y="67" textAnchor="middle" dominantBaseline="middle"
-          fontFamily="Georgia, serif" fontStyle="italic" fontSize="6.5"
-          fill="rgba(0,0,0,0.5)" letterSpacing="0.2">
-          {songName}
-        </text>
-        {/* Center hole */}
-        <circle cx="50" cy="65" r="3" fill="#05050c" />
-        {/* Gloss highlight on upper vinyl */}
-        <ellipse cx="34" cy="24" rx="10" ry="6" fill="rgba(255,255,255,0.05)"
-          transform="rotate(-18 34 24)" />
+        <circle cx="50" cy="50" r="50" fill={`url(#${vignetteId})`} />
+        <circle cx="50" cy="50" r="4.5" fill="rgba(5,5,12,0.88)" />
+        <circle cx="50" cy="50" r="4.5" fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="0.5" />
       </svg>
     </div>
   );
@@ -326,10 +321,8 @@ const Exhibit: React.FC<{
             }}>
               <VinylDisk
                 albumId={album.id}
-                labelColor={diskCfg.labelColor}
-                labelHighlight={diskCfg.labelHighlight}
+                cover={album.cover}
                 glowColor={diskCfg.glowColor}
-                songName={diskCfg.songName}
                 onClick={() => onDiskClick(diskCfg.trackIndex)}
               />
             </div>
@@ -392,10 +385,8 @@ const MobileGallery: React.FC<{ onDiskClick: (index: number) => void }> = ({ onD
             }}>
               <VinylDisk
                 albumId={album.id}
-                labelColor={diskCfg.labelColor}
-                labelHighlight={diskCfg.labelHighlight}
+                cover={album.cover}
                 glowColor={diskCfg.glowColor}
-                songName={diskCfg.songName}
                 onClick={() => onDiskClick(diskCfg.trackIndex)}
               />
             </div>
@@ -519,6 +510,18 @@ const Coldplay: React.FC = () => {
           }}>
             {songOfMonth.album} — {songOfMonth.year}
           </p>
+
+          {/* Spinning disk — click to play preview */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+            <div style={{ width: '100px', height: '100px' }}>
+              <VinylDisk
+                albumId="sotm"
+                cover="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/af/3c/0f/af3c0fe2-1c4f-8499-67a8-14a8e41fdbf8/5021732410535.jpg/600x600bb.jpg"
+                glowColor="rgba(255,190,60,0.38)"
+                onClick={() => setActiveTrackIndex(3)}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -694,6 +697,7 @@ const Coldplay: React.FC = () => {
             <MusicPlayer
               tracks={PLAYER_TRACKS}
               controlledIndex={activeTrackIndex}
+              crossOrigin="anonymous"
               onClose={() => setActiveTrackIndex(null)}
             />
           </motion.div>

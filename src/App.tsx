@@ -448,7 +448,7 @@ const Home: React.FC = () => {
           {[
             { to: '/FraryTale', img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale', accent: '#f43f5e' },
             { to: '/Ground',    img: '/Ground.png',                  imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.', title: 'Ground',     accent: '#4ade80' },
-            // { to: '/coldplay',  img: '/Pparachutes.png',             imgClass: 'h-48 object-cover',               desc: 'My favorite band of all time.',                                         title: 'Coldplay',   accent: '#FFDE21' },
+            { to: '/coldplay',  img: '/parachutes.png',              imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'My favorite band of all time.',          title: 'Coldplay',   accent: '#FFDE21' },
           ].map((card, i) => (
             <ProjectCard key={card.to} {...card} index={i} />
           ))}
