@@ -178,3 +178,230 @@ a, button, [role="button"] {
     transition: transform 0.1s ease;
     will-change: transform;
 }
+
+/* ── Music Player Widget ─────────────────────────────────── */
+@keyframes mp-cover-in {
+    from { opacity: 0; transform: scale(1.08); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes mp-cover-out {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.9); }
+}
+@keyframes mp-ti-in {
+    from { opacity: 0; transform: translateX(var(--dx)); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes mp-ti-out {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(var(--dx)); }
+}
+
+.mp-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(10, 10, 18, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    padding: 14px 16px;
+    width: 320px;
+    position: relative;
+    color: white;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.55);
+    user-select: none;
+}
+
+.mp-mask {
+    position: relative;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+.mp-spin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+}
+
+.mp-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.mp-cover-enter { animation: mp-cover-in  0.6s ease-out forwards; }
+.mp-cover-exit  { animation: mp-cover-out 0.6s ease-out forwards; }
+
+.mp-hole {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.mp-hole-inner {
+    width: 12px;
+    height: 12px;
+    background: rgba(10, 10, 18, 0.92);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.mp-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.mp-scales {
+    width: 72px;
+    height: auto;
+    opacity: 0.25;
+    transition: opacity 0.5s;
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.mp-card.mp-playing .mp-scales { opacity: 0.85; }
+
+.mp-scales circle { fill: rgba(255, 255, 255, 0.75); }
+
+.mp-track-info {
+    position: relative;
+    min-height: 34px;
+}
+
+.mp-ti-layer {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.mp-ti-abs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.mp-artist {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.36);
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mp-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: system-ui, sans-serif;
+    letter-spacing: 0.01em;
+}
+
+.mp-ti-enter { animation: mp-ti-in  0.38s ease-out forwards; }
+.mp-ti-exit  { animation: mp-ti-out 0.38s ease-out forwards; pointer-events: none; }
+
+.mp-bar {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.18s;
+}
+
+.mp-bar:hover { height: 5px; }
+
+.mp-bar-fill {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.70);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+    pointer-events: none;
+}
+
+.mp-time {
+    display: flex;
+    gap: 3px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.28);
+    font-family: system-ui, sans-serif;
+    margin-top: -4px;
+}
+
+.mp-sep { color: rgba(255, 255, 255, 0.16); }
+
+.mp-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mp-ctrl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: color 0.18s, background 0.18s;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.mp-ctrl:hover {
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.mp-ctrl-play {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.10);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.mp-ctrl-play:hover { background: rgba(255, 255, 255, 0.18); }
+
+.mp-ctrl-loop {
+    width: 28px;
+    height: 28px;
+    color: rgba(255, 255, 255, 0.26);
+}
+
+.mp-ctrl-loop.mp-active { color: rgba(255, 255, 255, 0.80); }
+
+.mp-ctrl-close {
+    width: 28px;
+    height: 28px;
+    color: rgba(255, 255, 255, 0.26);
+}
