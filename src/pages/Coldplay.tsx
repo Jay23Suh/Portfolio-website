@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { InteractivePixelBackground } from '../components/ui/interactive-pixel-background';
 import AnimatedShaderBackground from '../components/ui/animated-shader-background';
@@ -18,7 +18,7 @@ interface Album {
 function trackStyle(track: string, tiers?: Record<string, 1 | 2>) {
   const tier = tiers?.[track];
   if (tier === 1) return { color: 'rgba(255,255,255,0.90)', fontWeight: 700 };
-  if (tier === 2) return { color: 'rgba(255,255,255,0.62)', fontWeight: 500 };
+  if (tier === 2) return { color: 'rgba(255,255,255,0.62)', fontWeight: 600 };
   return { color: 'rgba(255,255,255,0.40)', fontWeight: 400 };
 }
 
@@ -60,6 +60,7 @@ const ALBUMS: Album[] = [
       'Warning Sign': 2,
       'A Rush of Blood to the Head': 2,
       'Amsterdam': 2,
+      'Politik': 2
     },
   },
   {
@@ -82,6 +83,10 @@ const ALBUMS: Album[] = [
       'Glass of Water': 2,
       'Strawberry Swing': 2,
       "Now My Feet Won't Touch the Ground": 2,
+      'Death and All His Friends': 2,
+      'Cemeteries of London': 2,
+      'Violet Hill': 2,
+      'Lost+ (feat. Jay-Z)': 2
     },
   },
 ];
@@ -252,8 +257,8 @@ const Placard: React.FC<{ album: Album; visible: boolean }> = ({ album, visible 
         return (
           <li
             key={track}
+            className="font-patrick"
             style={{
-              fontFamily: 'system-ui, sans-serif',
               fontSize: '10px',
               letterSpacing: '0.07em',
               color: ts.color,
@@ -455,12 +460,13 @@ const MobileGallery: React.FC<{ onDiskClick: (index: number) => void }> = ({ onD
 const Coldplay: React.FC = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const { scrollYProgress } = useScroll();
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: galleryRef, offset: ['start start', 'end end'] });
 
   const x = useTransform(scrollYProgress, [0.1, 1], ['0vw', '-360vw']);
   const overlayOpacity  = useTransform(scrollYProgress, [0, 0.25, 0.35, 1], [1, 1, 0, 0]);
-  const arobtthOpacity  = useTransform(scrollYProgress, [0.25, 0.35, 0.65, 0.75], [0, 1, 1, 0]);
-  const pixelBgOpacity  = useTransform(scrollYProgress, [0, 0.65, 0.75, 1], [0, 0, 1, 1]);
+  const arobtthOpacity  = useTransform(scrollYProgress, [0.25, 0.35, 0.47, 0.55], [0, 1, 1, 0]);
+  const pixelBgOpacity  = useTransform(scrollYProgress, [0, 0.47, 0.52, 1], [0, 0, 1, 1]);
   const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
   const [auroraPaused, setAuroraPaused] = useState(false);
@@ -470,12 +476,34 @@ const Coldplay: React.FC = () => {
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setAuroraPaused(v > 0.35);
-    setArobtthPaused(v < 0.25 || v > 0.75);
-    setActiveAlbum(v < 0.33 ? 0 : v < 0.67 ? 1 : 2);
+    setArobtthPaused(v < 0.25 || v > 0.55);
+    setActiveAlbum(v < 0.35 ? 0 : v < 0.55 ? 1 : 2);
   });
 
   // ── UPDATE MONTHLY ────────────────────────────────────────
   const songOfMonth = { title: 'JUPiTER', album: 'Moon Music', year: '2024' };
+  // ──────────────────────────────────────────────────────────
+
+  // ── EDIT: closing paragraph ───────────────────────────────
+  const closingParagraph = `I have so much gratitude and appreciation for Coldplay, they are the most uplifting, easy-on-the-ears, and inspirational band that have been my number #1 listened to artist for the last 6 years. The above are just three of my favorite albums from their discography with my favorite songs being highlighted bright or the brightest.  `;
+  // ──────────────────────────────────────────────────────────
+
+  const galleryItems = [
+    {
+      src: '/ColdplayAppleMusic.PNG',
+      description: 'Just proof of my commitment, I hope this shows loyalty rather than mania. I listen to plenty of other bands too! ',
+    },
+    {
+      src: '/ColdplayConcert.JPG',
+      description: 'I went to a Coldplay concert at the Rose Bowl in October of 2023 with my mom. It was genuinely life-changing, and I think it made me a better person overnight.',
+      maxWidth: '720px',
+      maxHeight: '600px',
+    },
+    {
+      src: '/Louvre.png',
+      description: 'This painting is the Liberty Leading the People by Eugène Delacroix from 1830. I had the pleasure of seeing the artwork in the Louvre in Paris. Coldplay used this painting for their Viva La Vida album cover. ',
+    },
+  ];
   // ──────────────────────────────────────────────────────────
 
   return (
@@ -533,7 +561,7 @@ const Coldplay: React.FC = () => {
       </div>
 
       {/* ── Desktop horizontal gallery ── */}
-      <div className="hidden md:block" style={{ height: '600vh' }}>
+      <div ref={galleryRef} className="hidden md:block" style={{ height: '600vh' }}>
         <div className="sticky top-0 h-screen overflow-hidden" style={{ background: '#05050a' }}>
 
           {/* Interactive pixel background — fades in as scroll enters Viva la Vida */}
@@ -705,6 +733,77 @@ const Coldplay: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ── Closing paragraph + photo gallery ── */}
+      <div style={{ background: '#05050a' }}>
+
+        {/* Closing paragraph */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{ maxWidth: '600px', margin: '0 auto', padding: '7rem 2rem 5rem' }}
+        >
+          <div className="w-8 h-px mb-8" style={{ background: 'rgba(255,255,255,0.12)' }} />
+          <p className="font-patrick" style={{
+            fontSize: '1.05rem',
+            lineHeight: 1.75,
+            color: 'rgba(255,255,255,0.55)',
+          }}>
+            {closingParagraph}
+          </p>
+        </motion.div>
+
+        {/* Photo gallery */}
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 2rem 10rem' }}>
+          {galleryItems.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+              className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-10 md:gap-16 items-center mb-24`}
+            >
+              <img
+                src={item.src}
+                alt=""
+                draggable={false}
+                style={{
+                  flexShrink: 0,
+                  display: 'block',
+                  maxWidth: item.maxWidth ?? '520px',
+                  maxHeight: item.maxHeight ?? '420px',
+                  width: 'auto',
+                  height: 'auto',
+                }}
+                className="rounded-sm"
+              />
+              <div className="flex-1">
+                <p style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '8px',
+                  letterSpacing: '0.45em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.20)',
+                  marginBottom: '1.25rem',
+                }}>
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <p className="font-patrick" style={{
+                  fontSize: '1rem',
+                  lineHeight: 1.7,
+                  color: 'rgba(255,255,255,0.50)',
+                }}>
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
     </>
   );
 };
