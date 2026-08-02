@@ -287,9 +287,10 @@ const Home: React.FC = () => {
   ];
 
   const otherCards = [
-    { href: 'https://verita-ai.com',                       img: '/Verita.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Special Projects Lead (Operations) at a multimodal data startup',    title: 'Verita AI',                    accent: '#f59e0b' },
+    { href: 'https://www.instalily.ai/',                   img: '/instalily-logo.png',         imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Growth at InstaLILY, an AI startup for the physical economy', title: 'InstaLILY',                    accent: '#3b82f6' },
+    { href: 'https://verita-ai.com',                       img: '/Verita.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Special Projects Lead (Operations) at a multimodal data startup',    title: 'Verita AI',                    accent: '#f59e0b', wrapped: true },
     { href: 'https://trueventures.com',                    img: '/TVLogo2.jpg',                imgClass: 'mx-auto w-3/4 h-48 object-cover', desc: 'Data Science with Madison Reed as part of True Ventures Fellowship', title: 'Madison Reed & True Ventures', accent: '#8b5cf6' },
-    { href: 'https://crater.vc/',                          img: '/crater.jpeg',                imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Investing in SoCal\'s biggest dreamers at early stages',            title: 'Crescent Fund & Crater Ventures', accent: '#10b981' },
+    { href: 'https://crater.vc/',                          img: '/crater.jpeg',                imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Investing in SoCal\'s biggest dreamers at early stages',            title: 'Crescent Fund & Crater Ventures', accent: '#10b981', wrapped: true },
   ];
 
   return (

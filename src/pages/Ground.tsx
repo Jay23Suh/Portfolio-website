@@ -65,7 +65,7 @@ const Ground: React.FC = () => {
       <FadeIn delay={0.1}>
         <section className="mb-16 max-w-3xl mx-auto text-center">
           <a
-            href="https://groundnow.vercel.app/"
+            href="https://apps.apple.com/us/app/ground-be-present/id6778570888?mt=12"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-[#001d36] text-white text-lg font-semibold px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors duration-300 mb-6"

@@ -146,12 +146,12 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-function useAudioPlayer(tracks: Track[]) {
+function useAudioPlayer(tracks: Track[], initialIndex: number = 0) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [state, dispatch] = useReducer(reducer, {
-    currentIndex: 0,
+    currentIndex: initialIndex,
     order: tracks.map((_, i) => i),
     loopMode: 'off',
     isPlaying: false,
@@ -212,8 +212,10 @@ function useAudioPlayer(tracks: Track[]) {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.src = tracks[0].src;
+    audio.src = tracks[initialIndex].src;
     audio.load();
+    audio.play().catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tracks]);
 
   return { audioRef, state, currentTime, duration, currentTrack: tracks[state.currentIndex], toggle, seek, cycleLoop, getFrequencyData, loadTrack };
@@ -388,13 +390,17 @@ export interface MusicPlayerProps {
 }
 
 export function MusicPlayer({ tracks, crossOrigin, controlledIndex, onClose }: MusicPlayerProps) {
-  const player = useAudioPlayer(tracks);
-  const [layers, setLayers] = useState<Layer[]>(() => [{ id: 0, track: tracks[0], dir: null }]);
-  const lastIndex = useRef(0);
+  // Captured once on mount — the track this player instance opens on.
+  const initialIndex = useRef(controlledIndex ?? 0).current;
+  const player = useAudioPlayer(tracks, initialIndex);
+  const [layers, setLayers] = useState<Layer[]>(() => [{ id: 0, track: tracks[initialIndex], dir: null }]);
+  const lastIndex = useRef(initialIndex);
   const idRef = useRef(1);
-  const prevControlled = useRef<number | undefined>(undefined);
+  const prevControlled = useRef<number | undefined>(controlledIndex);
 
-  // Switch track when controlledIndex changes from outside
+  // Switch track when controlledIndex changes from outside (the initial
+  // index is already loaded by useAudioPlayer's mount effect above, so this
+  // only needs to react to genuine changes after mount).
   useEffect(() => {
     if (controlledIndex === undefined) return;
     if (controlledIndex === prevControlled.current) return;

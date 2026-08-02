@@ -457,17 +457,26 @@ const MobileGallery: React.FC<{ onDiskClick: (index: number) => void }> = ({ onD
 // Layout: 400vh outer div → sticky 100vh viewport → 280vw horizontal track
 // Pan: x goes 0vw → -180vw as scrollYProgress goes 0 → 1
 // Track: [100vw Parachutes] [80vw gap] [100vw Viva la Vida] = 280vw total
+// The pan itself still completes over the same 600vh of scroll as before —
+// HOLD_VH just tacks on extra scroll distance at the end (with everything
+// clamped at its final value) so Viva la Vida sits still before the
+// sticky section releases into normal vertical scroll.
+const PAN_VH = 600;
+const HOLD_VH = 200;
+const TOTAL_VH = PAN_VH + HOLD_VH;
+const toFrac = (vh: number) => vh / TOTAL_VH;
+
 const Coldplay: React.FC = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const galleryRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: galleryRef, offset: ['start start', 'end end'] });
 
-  const x = useTransform(scrollYProgress, [0.1, 1], ['0vw', '-360vw']);
-  const overlayOpacity  = useTransform(scrollYProgress, [0, 0.25, 0.35, 1], [1, 1, 0, 0]);
-  const arobtthOpacity  = useTransform(scrollYProgress, [0.25, 0.35, 0.47, 0.55], [0, 1, 1, 0]);
-  const pixelBgOpacity  = useTransform(scrollYProgress, [0, 0.47, 0.52, 1], [0, 0, 1, 1]);
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
+  const x = useTransform(scrollYProgress, [toFrac(60), toFrac(600)], ['0vw', '-360vw']);
+  const overlayOpacity  = useTransform(scrollYProgress, [toFrac(0), toFrac(150), toFrac(210), toFrac(600)], [1, 1, 0, 0]);
+  const arobtthOpacity  = useTransform(scrollYProgress, [toFrac(150), toFrac(210), toFrac(282), toFrac(330)], [0, 1, 1, 0]);
+  const pixelBgOpacity  = useTransform(scrollYProgress, [toFrac(0), toFrac(282), toFrac(312), toFrac(600)], [0, 0, 1, 1]);
+  const hintOpacity = useTransform(scrollYProgress, [toFrac(0), toFrac(36)], [1, 0]);
 
   const [auroraPaused, setAuroraPaused] = useState(false);
   const [arobtthPaused, setArobtthPaused] = useState(true);
@@ -475,9 +484,9 @@ const Coldplay: React.FC = () => {
   const [activeTrackIndex, setActiveTrackIndex] = useState<number | null>(null);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    setAuroraPaused(v > 0.35);
-    setArobtthPaused(v < 0.25 || v > 0.55);
-    setActiveAlbum(v < 0.35 ? 0 : v < 0.55 ? 1 : 2);
+    setAuroraPaused(v > toFrac(210));
+    setArobtthPaused(v < toFrac(150) || v > toFrac(330));
+    setActiveAlbum(v < toFrac(210) ? 0 : v < toFrac(330) ? 1 : 2);
   });
 
   // ── UPDATE MONTHLY ────────────────────────────────────────
@@ -561,7 +570,7 @@ const Coldplay: React.FC = () => {
       </div>
 
       {/* ── Desktop horizontal gallery ── */}
-      <div ref={galleryRef} className="hidden md:block" style={{ height: '600vh' }}>
+      <div ref={galleryRef} className="hidden md:block" style={{ height: `${TOTAL_VH}vh` }}>
         <div className="sticky top-0 h-screen overflow-hidden" style={{ background: '#05050a' }}>
 
           {/* Interactive pixel background — fades in as scroll enters Viva la Vida */}
