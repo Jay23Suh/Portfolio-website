@@ -10,6 +10,7 @@ import Sparkathon from './pages/Sparkathon';
 import FraryTale from './pages/FraryTale';
 import Ground from './pages/Ground';
 import Coldplay from './pages/Coldplay';
+import MapHome from './pages/MapHome';
 import Cursor from './components/Cursor';
 import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
 import { Typewriter } from './components/ui/typewriter';
@@ -207,6 +208,7 @@ const App: React.FC = () => {
             <Route path="/FraryTale" element={<FraryTale />} />
             <Route path="/Ground" element={<Ground />} />
             <Route path="/coldplay" element={<Coldplay />} />
+            <Route path="/map" element={<MapHome />} />
           </Routes>
         </main>
 
