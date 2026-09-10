@@ -179,7 +179,7 @@ const App: React.FC = () => {
       <div className="min-h-screen font-patrick text-[#001d36] flex flex-col items-center">
 
         <motion.header
-          className="w-full bg-opacity-70"
+          className="w-full bg-opacity-70 relative z-[60]" style={{ mixBlendMode: "multiply" }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -191,7 +191,7 @@ const App: React.FC = () => {
             <nav className="flex space-x-4">
               <Link to="/" className="text-xl font-beezee hover:text-lime-400 mx-2">projects</Link>
               <FunStuffNav />
-              <Link to="/contact" className="text-xl font-beezee hover:text-lime-500">about me</Link>
+              <Link to="/contacts" className="text-xl font-beezee hover:text-lime-500">about me</Link>
             </nav>
           </div>
         </motion.header>
@@ -202,7 +202,7 @@ const App: React.FC = () => {
             <Route path="/Edulis" element={<Edulis />} />
             <Route path="/project-one" element={<ProjectOne />} />
             <Route path="/project-two" element={<ProjectTwo />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contacts" element={<Contact />} />
             <Route path="/ProjectSaverSports" element={<ProjectSaverSports />} />
             <Route path="/Sparkathon" element={<Sparkathon />} />
             <Route path="/FraryTale" element={<FraryTale />} />

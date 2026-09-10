@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { Typewriter } from '../components/ui/typewriter';
 
 // ── Canvas constants ─────────────────────────────────────────────────
 
@@ -57,7 +58,7 @@ const CARDS: CardData[] = [
     id: 'edulis', to: '/Edulis',
     img: '/EdulisLogo.png', imgFit: 'contain',
     title: 'Edulis Labs', desc: 'A GTM strategy for a startup challenging norms.',
-    accent: '#a855f7', tag: 'GTM Strategy', x: 1215, y: 210,
+    accent: '#a855f7', tag: 'GTM Strategy', x: 1215, y: 350,
   },
   // ── Row 2: Fork — investing vs operating ─────────────────────────
   {
@@ -109,7 +110,7 @@ const CARDS: CardData[] = [
 
 interface InfoCardData {
   id: string;
-  title: string;
+  title?: string;
   body: string;
   accent: string;
   x: number;
@@ -122,16 +123,15 @@ interface InfoCardData {
 const INFO_CARDS: InfoCardData[] = [
   {
     id: 'about_me',
-    title: "Hi, I'm Jay.",
-    body: "A student at the Claremont Colleges, passionate about human-centered design and startups. I love finding real problems and figuring out how to solve them.",
+    body: "HERE IS A LITTLE HISTORY OF ME IN THE ACADEMIC AND PROFESSIONAL (AND FUN) WORLD",
     accent: '#a855f7',
-    x: 580, y: 20, w: 380, h: 118,
+    x: 580, y: -10, w: 380, h: 140,
     tilt: -0.8,
   },
   {
     id: 'college_transition',
     title: 'All of this happened in college.',
-    body: "These experiences shaped a deep love for startups — both building and investing. I wanted to be in rooms where I could learn fast, move with urgency, and keep humans at the center.",
+    body: "These experiences shaped a deep love for startups both building and investing. I wanted to be in rooms where I could learn fast, move with urgency, and keep humans at the center.",
     accent: '#6366f1',
     x: 545, y: 540, w: 450, h: 148,
     tilt: 1.0,
@@ -176,6 +176,9 @@ const CONNECTIONS: ConnectionDef[] = [
   { from: 'verita',     to: 'instalily',  color: '#f59e0b' },
   // Fun: Frary Tale connected to Sparkathon
   { from: 'sparkathon', to: 'frarytale',  color: '#f43f5e' },
+  // Edulis to college and operating
+  { from: 'edulis', to: 'college_transition', color: '#a855f7' },
+  { from: 'edulis', to: 'verita', color: '#a855f7' },
 ];
 
 // ── Story step definitions ────────────────────────────────────────────
@@ -205,7 +208,7 @@ const STEPS: StepDef[] = [
   // 7 — arrow: circle bottom → transition card
   { svgElements: ['circle_arrow'],    camera: { cx: 770,  cy: 430,  zoom: 1.3  } },
   // 8 — "All of this happened in college"
-  { infoCards: ['college_transition'],camera: { cx: 770,  cy: 620,  zoom: 1.6  } },
+  { infoCards: ['college_transition'], arrows: [8], camera: { cx: 770,  cy: 620,  zoom: 1.6  } },
   // 9 — arrow: transition → bracket peak
   { svgElements: ['bracket_arrow'],   camera: { cx: 770,  cy: 730,  zoom: 1.5  } },
   // 10 — bracket arch draws left→right
@@ -215,7 +218,7 @@ const STEPS: StepDef[] = [
   // 12-15 — startup cards pan left→right
   { cards: ['crater'],                camera: { cx: 205,  cy: 960,  zoom: 2.0  } },
   { cards: ['madison'],               camera: { cx: 725,  cy: 945,  zoom: 1.9  } },
-  { cards: ['verita'],                camera: { cx: 1115, cy: 965,  zoom: 2.0  } },
+  { cards: ['verita'], arrows: [9],               camera: { cx: 1115, cy: 965,  zoom: 2.0  } },
   { cards: ['instalily'],             camera: { cx: 1395, cy: 950,  zoom: 2.0  } },
   // 16-17 — startup arrows
   { arrows: [4],                      camera: { cx: 465,  cy: 955,  zoom: 1.5  } },
@@ -353,7 +356,7 @@ const CARD_CONFIGS: Record<string, { tilt: number }> = {
 // ── Info / narrative card ─────────────────────────────────────────────
 
 const InfoCard: React.FC<InfoCardData & { show?: boolean; animated?: boolean }> = ({
-  title, body, accent, x, y, w, h, tilt = 0, show = true, animated = false,
+  id, title, body, accent, x, y, w, h, tilt = 0, show = true, animated = false,
 }) => {
   const tSide = tilt >= 0 ? 1 : -1;
   const shadow = `${tSide * 4}px 6px 0 ${accent}20, ${tSide * 8}px 12px 22px ${accent}12`;
@@ -363,31 +366,41 @@ const InfoCard: React.FC<InfoCardData & { show?: boolean; animated?: boolean }> 
   const hidden = animated && !show;
 
   return (
-    <div style={{
-      position: 'absolute', left: x, top: y, width: w, height: h,
-      transform: hidden ? `rotate(${tilt}deg) translateY(14px)` : `rotate(${tilt}deg)`,
-      opacity: hidden ? 0 : 1,
-      transition: animated ? 'opacity 0.5s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1)' : undefined,
-      boxShadow: shadow,
-      borderRadius: radius,
-      border: `1.5px solid ${accent}77`,
-      background: `linear-gradient(150deg, #fffefb 0%, ${accent}0d 100%)`,
-      overflow: 'hidden',
-      display: 'flex', flexDirection: 'column',
-    }}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: hidden ? 0 : 1 }}
+      style={{
+        position: 'absolute', left: x, top: y, width: w, height: h,
+        transform: hidden ? `rotate(${tilt}deg) translateY(14px)` : `rotate(${tilt}deg)`,
+        transition: animated ? 'opacity 0.5s ease, transform 0.55s cubic-bezier(0.34,1.56,0.64,1)' : 'opacity 0.5s ease',
+        boxShadow: shadow,
+        borderRadius: radius,
+        border: `1.5px solid ${accent}77`,
+        background: `linear-gradient(150deg, #fffefb 0%, ${accent}0d 100%)`,
+        overflow: 'hidden',
+        display: 'flex', flexDirection: 'column',
+      }}
+    >
       <div style={{ height: 5, background: accent, opacity: 0.65, flexShrink: 0 }} />
       <div style={{
         flex: 1, padding: '10px 18px 13px',
         display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 6,
       }}>
-        <div className="font-patrick" style={{ fontSize: 15, lineHeight: 1.2, color: '#1a1008' }}>
-          {title}
-        </div>
-        <div className="font-beezee" style={{ fontSize: 11.5, lineHeight: 1.48, color: 'rgba(26,16,8,0.56)' }}>
-          {body}
+        {title && (
+          <div className="font-patrick" style={{ fontSize: 15, lineHeight: 1.2, color: '#1a1008' }}>
+            {title}
+          </div>
+        )}
+        <div className="font-beezee" style={{ 
+          fontSize: id === 'about_me' ? 14 : 11.5, 
+          fontWeight: id === 'about_me' ? 'bold' : 'normal', 
+          lineHeight: 1.48, 
+          color: id === 'about_me' ? '#000' : 'rgba(26,16,8,0.56)' 
+        }}>
+          {id === 'about_me' && show ? <Typewriter text={body} speed={70} /> : body}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -505,8 +518,21 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
 }) => {
   // Precompute arrow paths
   const arrowPaths = CONNECTIONS.map((conn, i) => {
-    const A = CENTERS[conn.from], B = CENTERS[conn.to];
+    const A = CENTERS[conn.from], B = { ...CENTERS[conn.to] };
     if (!A || !B) return null;
+    
+    // Custom endpoints to prevent arrows from passing through cards/brackets
+    if (conn.from === 'edulis' && conn.to === 'college_transition') {
+      // Point to the top-right edge of the college_transition card instead of its center
+      B.x = 940;
+      B.y = 540;
+    }
+    if (conn.from === 'edulis' && conn.to === 'verita') {
+      // Point to the top of the bracket ("clef") near "operating"
+      B.x = 1110;
+      B.y = 785;
+    }
+
     const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
     const dx = B.x - A.x, dy = B.y - A.y;
     const len = Math.sqrt(dx * dx + dy * dy) || 1;
@@ -605,8 +631,17 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       </svg>
 
       {/* ── Annotations ──────────────────────────────────────────── */}
+      <div className="font-patrick" style={{ position:'absolute', left:980, top:45, zIndex: 10, fontSize:22, color:'#a855f7', transform:'rotate(4deg)', pointerEvents:'none', opacity: animated ? (visInfo.has('about_me') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined, textAlign: 'center', lineHeight: 1.15 }}>
+        scroll down! ↓<br/>and click each card
+      </div>
+      <div className="font-patrick" style={{ position:'absolute', left:150, top:460, zIndex: 10, fontSize:22, color:'#ec4899', transform:'rotate(8deg)', pointerEvents:'none', opacity: animated ? (visCards.has('saver') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined }}>
+        ↑ click me!
+      </div>
       <div className="font-beezee" style={{ position:'absolute', left:75, top:173, fontSize:9.5, letterSpacing:'0.16em', textTransform:'uppercase', color:'rgba(26,16,8,0.30)', pointerEvents:'none' }}>
-        the beginning — human-centered design
+        the beginning human-centered design
+      </div>
+      <div className="font-patrick" style={{ position:'absolute', left:1320, top:1085, zIndex: 10, fontSize:22, color:'#3b82f6', transform:'rotate(-2deg)', pointerEvents:'none' }}>
+        ↑ where I'm at now
       </div>
       {/* Cluster labels */}
       {(['investing','investing + operating','operating'] as const).map((label, i) => (
@@ -623,7 +658,14 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       {/* Fun row labels */}
       <div className="font-beezee" style={{ position:'absolute', left:65, top:1244, fontSize:9.5, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(26,16,8,0.26)', pointerEvents:'none' }}>& beyond</div>
       <div className="font-patrick" style={{ position:'absolute', left:642, top:1292, fontSize:11.5, color:'rgba(26,16,8,0.28)', transform:'rotate(1.6deg)', pointerEvents:'none' }}>♥ just for love</div>
-      <div className="font-beezee" style={{ position:'absolute', left:1192, top:1244, fontSize:8.5, letterSpacing:'0.12em', textTransform:'uppercase', color:'#4ade80cc', pointerEvents:'none' }}>startup project</div>
+      
+      <div className="font-patrick" style={{ position:'absolute', left:1120, top:1220, zIndex: 10, fontSize:22, color:'#4ade80', transform:'rotate(-4deg)', pointerEvents:'none' }}>
+        my wellness app ↘
+      </div>
+
+      <div className="font-patrick" style={{ position:'absolute', left:50, top:1540, zIndex: 10, fontSize:19, color:'#f43f5e', transform:'rotate(1deg)', pointerEvents:'none', width: 290, textAlign: 'center', lineHeight: 1.15 }}>
+        ↑<br/>my short interview series with claremont entrepreneurs
+      </div>
 
       {/* Doodles */}
       {DOODLES.map((d, i) => <Doodle key={i} {...d} />)}
@@ -645,30 +687,31 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
 
 const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) => (
   <section style={{
-    height: '100vh',
+    minHeight: '100dvh',
     display: 'flex', flexDirection: 'column',
-    alignItems: 'center', justifyContent: 'center',
+    alignItems: 'flex-start', justifyContent: 'center',
     position: 'relative', overflow: 'hidden',
+    padding: '0 8vw', // Asymmetric wide spacing
   }}>
-    <div className="text-center px-8" style={{ maxWidth: 780 }}>
+    <div style={{ maxWidth: 1200 }}>
       <motion.h1
         className="font-patrick text-[#001d36] font-bold"
-        style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6rem)', lineHeight: 1.05, marginBottom: '1rem' }}
-        initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+        style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', lineHeight: 0.95, marginBottom: '1.5rem', letterSpacing: '-0.02em' }}
+        initial={{ opacity: 0, y: 40, filter: 'blur(12px)' }}
         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-        transition={{ duration: 0.88, delay: 0.12, ease: 'easeOut' }}
+        transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} // Premium custom cubic-bezier
       >
-        Hi, I'm Jay!
+        Hi, I'm Jay.
       </motion.h1>
       <motion.h2
         className="font-beezee text-[#001d36]"
-        style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)', lineHeight: 1.45, opacity: 0.88 }}
-        initial={{ opacity: 0, y: 22 }}
+        style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)', lineHeight: 1.5, opacity: 0.8 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' }}
+        transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
         I bring a{' '}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-lime-500">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-lime-500 animate-gradient relative inline-block before:content-['']">
           human-centered
         </span>{' '}
         approach to find and tackle real problems.
@@ -677,25 +720,23 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
 
     <motion.button
       onClick={onScrollDown}
-      className="font-beezee text-[#001d36] hover:text-lime-500"
+      className="font-beezee group flex items-center gap-3 text-[#001d36] transition-all duration-300 hover:scale-[0.98] active:scale-95"
       style={{
-        position: 'absolute', bottom: 36,
-        left: '50%', transform: 'translateX(-50%)',
-        display: 'flex', alignItems: 'center', gap: 10,
-        background: 'rgba(255,255,255,0.6)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        border: '1.5px solid rgba(255,255,255,0.65)',
-        borderRadius: 40, padding: '11px 30px',
-        cursor: 'pointer', fontSize: 17,
-        boxShadow: '0 4px 20px rgba(0,29,54,0.08)',
-        transition: 'color 0.2s', whiteSpace: 'nowrap',
+        position: 'absolute', bottom: 48,
+        left: '8vw', // Align with the asymmetric text padding
+        background: 'rgba(255, 255, 255, 0.4)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.5)',
+        borderRadius: 999, padding: '12px 28px',
+        cursor: 'pointer', fontSize: 15,
+        boxShadow: '0 8px 32px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)', // Liquid Glass refraction
       }}
-      animate={{ y: [0, 8, 0] }}
-      transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <img src="/arrow-fat-down.svg" alt="" style={{ width: 22, height: 22 }} />
+      <img src="/arrow-fat-down.svg" alt="" className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-[2px]" />
       explore my work
     </motion.button>
   </section>
@@ -705,26 +746,43 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
 
 const hudBtn: React.CSSProperties = {
   width: 34, height: 34, borderRadius: 17, border: 'none',
-  background: 'rgba(99,102,241,0.10)', cursor: 'pointer',
-  fontSize: 15, display: 'flex', alignItems: 'center', justifyContent: 'center',
-  transition: 'background 0.15s', color: '#1a1008',
+  background: 'rgba(99, 102, 241, 0.08)', cursor: 'pointer',
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  color: 'rgba(0, 29, 54, 0.8)', fontSize: 13,
+  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
 };
 
 const MapHUD: React.FC<{ isPlaying: boolean; onPlay: () => void; onShowAll: () => void }> = ({
   isPlaying, onPlay, onShowAll,
 }) => (
   <div style={{
-    position: 'fixed', bottom: 28, right: 28, zIndex: 110,
+    position: 'fixed', bottom: 32, right: 32, zIndex: 110,
     display: 'flex', alignItems: 'center', gap: 6,
-    background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(18px)',
-    WebkitBackdropFilter: 'blur(18px)',
-    border: '1.5px solid rgba(255,255,255,0.7)', borderRadius: 40,
-    padding: '5px 8px',
-    boxShadow: '0 4px 24px rgba(99,102,241,0.13)',
+    background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    border: '1px solid rgba(255, 255, 255, 0.6)', borderRadius: 999,
+    padding: '6px 8px',
+    boxShadow: '0 10px 40px rgba(0, 29, 54, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
     fontFamily: 'ABeeZee, sans-serif',
   }}>
-    <button onClick={onPlay} style={hudBtn}>{isPlaying ? '⏸' : '▶'}</button>
-    <button onClick={onShowAll} style={{ ...hudBtn, width: 'auto', padding: '0 12px', borderRadius: 20, fontSize: 12 }}>
+    <button 
+      onClick={onPlay} 
+      style={hudBtn}
+      onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+      onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+      onMouseDown={e => e.currentTarget.style.transform = 'scale(0.95)'}
+      onMouseUp={e => e.currentTarget.style.transform = 'scale(1.05)'}
+    >
+      {isPlaying ? '⏸' : '▶'}
+    </button>
+    <button 
+      onClick={onShowAll} 
+      style={{ ...hudBtn, width: 'auto', padding: '0 16px', borderRadius: 20, fontSize: 13, background: 'transparent' }}
+      onMouseOver={e => { e.currentTarget.style.background = 'rgba(99, 102, 241, 0.05)'; e.currentTarget.style.transform = 'scale(1.02)' }}
+      onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'scale(1)' }}
+      onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
+      onMouseUp={e => e.currentTarget.style.transform = 'scale(1.02)'}
+    >
       Show all
     </button>
   </div>
@@ -819,12 +877,26 @@ const MapHome: React.FC = () => {
   const [mode,      setMode]      = useState<'story' | 'map'>('story');
   const [step,      setStep]      = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
 
   // Keep ref in sync for use inside event handlers
   useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
 
   const scrollToMap = useCallback(() => {
     containerRef.current?.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  }, []);
+
+  // Track if we passed the hero section for HUD visibility
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const onScrollHud = () => {
+      setIsPastHero(container.scrollTop >= window.innerHeight * 0.8);
+    };
+    container.addEventListener('scroll', onScrollHud, { passive: true });
+    // Initialize
+    onScrollHud();
+    return () => container.removeEventListener('scroll', onScrollHud);
   }, []);
 
   // Scroll → step (story mode only; programmatic autoscroll is ignored)
@@ -898,22 +970,30 @@ const MapHome: React.FC = () => {
       </div>
 
       {/* Story mode HUD: ▶/⏸ + Show all */}
-      {mode === 'story' && (
+      {mode === 'story' && isPastHero && (
         <MapHUD isPlaying={isPlaying} onPlay={togglePlay} onShowAll={showAll} />
       )}
 
       {/* Map mode: back to story */}
-      {mode === 'map' && (
-        <button onClick={backToStory} style={{
-          position: 'fixed', bottom: 28, right: 28, zIndex: 110,
-          display: 'flex', alignItems: 'center', gap: 8,
-          background: 'rgba(255,255,255,0.88)', backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
-          border: '1.5px solid rgba(255,255,255,0.7)', borderRadius: 40,
-          padding: '10px 20px', cursor: 'pointer', fontSize: 14,
-          boxShadow: '0 4px 24px rgba(99,102,241,0.13)',
-          fontFamily: 'ABeeZee, sans-serif', color: '#1a1008',
-        }}>
+      {mode === 'map' && isPastHero && (
+        <button 
+          onClick={backToStory} 
+          style={{
+            position: 'fixed', bottom: 32, right: 32, zIndex: 110,
+            display: 'flex', alignItems: 'center', gap: 8,
+            background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.6)', borderRadius: 999,
+            padding: '12px 24px', cursor: 'pointer', fontSize: 14,
+            boxShadow: '0 10px 40px rgba(0, 29, 54, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            fontFamily: 'ABeeZee, sans-serif', color: 'rgba(0, 29, 54, 0.9)',
+            transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+          onMouseOver={e => e.currentTarget.style.transform = 'scale(1.02)'}
+          onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+          onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
+          onMouseUp={e => e.currentTarget.style.transform = 'scale(1.02)'}
+        >
           ▶ Story
         </button>
       )}

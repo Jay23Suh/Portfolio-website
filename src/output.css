@@ -1187,10 +1187,6 @@ video {
   width: 100vw;
 }
 
-.max-w-2xl {
-  max-width: 42rem;
-}
-
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -1333,10 +1329,6 @@ video {
 
 .animate-third {
   animation: moveInCircle 40s linear infinite;
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .touch-none {
@@ -2531,11 +2523,6 @@ a, button, [role="button"] {
 .hover\:text-indigo-600:hover {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
-}
-
-.hover\:text-lime-400:hover {
-  --tw-text-opacity: 1;
-  color: rgb(163 230 53 / var(--tw-text-opacity));
 }
 
 .hover\:text-lime-500:hover {
