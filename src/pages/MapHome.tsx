@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Typewriter } from '../components/ui/typewriter';
+import { useHeaderVisibility } from '../hooks/useHeaderVisibility';
 
 // ── Canvas constants ─────────────────────────────────────────────────
 
@@ -192,47 +193,72 @@ interface StepDef {
   arrows?: number[];   // indices into CONNECTIONS
   svgElements?: Array<'circle' | 'circle_arrow' | 'bracket_arrow' | 'bracket' | 'ticks' | 'labels'>;
   camera: Camera;
+  // Relative scroll distance for this step (default 1). Bigger camera jumps / zoom
+  // changes and reading-heavy info cards get more scroll room so the transition has
+  // time to land; small single-beat reveals get less so they don't drag.
+  weight?: number;
 }
 
 const STEPS: StepDef[] = [
-  // 0 — intro
-  { infoCards: ['about_me'],          camera: { cx: 770,  cy: 80,   zoom: 2.0  } },
+  // 0 — intro (typewriter needs a beat to play out)
+  { infoCards: ['about_me'],          camera: { cx: 770,  cy: 80,   zoom: 2.0  }, weight: 1.3 },
   // 1-5 — HCD cards appear left→right
-  { cards: ['saver'],                 camera: { cx: 205,  cy: 320,  zoom: 2.0  } },
+  { cards: ['saver'],                 camera: { cx: 205,  cy: 320,  zoom: 2.0  }, weight: 1.8 }, // big first establishing jump
   { cards: ['sparkathon'], arrows: [0], camera: { cx: 490,  cy: 295, zoom: 1.9  } },
   { cards: ['crosscamp'],  arrows: [1], camera: { cx: 770,  cy: 310, zoom: 1.8  } },
   { cards: ['intergen'],   arrows: [2], camera: { cx: 1060, cy: 305, zoom: 1.8  } },
   { cards: ['edulis'],     arrows: [3], camera: { cx: 1335, cy: 320, zoom: 1.9  } },
   // 6 — circle draws around all 5 HCD cards (zoom out to see full ellipse)
-  { svgElements: ['circle'],          camera: { cx: 770,  cy: 315,  zoom: 1.05 } },
+  { svgElements: ['circle'],          camera: { cx: 770,  cy: 315,  zoom: 1.05 }, weight: 2.0 }, // big dezoom + draw-on
   // 7 — arrow: circle bottom → transition card
-  { svgElements: ['circle_arrow'],    camera: { cx: 770,  cy: 430,  zoom: 1.3  } },
+  { svgElements: ['circle_arrow'],    camera: { cx: 770,  cy: 430,  zoom: 1.3  }, weight: 0.8 },
   // 8 — "All of this happened in college"
-  { infoCards: ['college_transition'], arrows: [8], camera: { cx: 770,  cy: 620,  zoom: 1.6  } },
+  { infoCards: ['college_transition'], arrows: [8], camera: { cx: 770,  cy: 620,  zoom: 1.6  }, weight: 1.4 },
   // 9 — arrow: transition → bracket peak
-  { svgElements: ['bracket_arrow'],   camera: { cx: 770,  cy: 730,  zoom: 1.5  } },
+  { svgElements: ['bracket_arrow'],   camera: { cx: 770,  cy: 730,  zoom: 1.5  }, weight: 0.8 },
   // 10 — bracket arch draws left→right
-  { svgElements: ['bracket'],         camera: { cx: 770,  cy: 800,  zoom: 1.4  } },
+  { svgElements: ['bracket'],         camera: { cx: 770,  cy: 800,  zoom: 1.4  }, weight: 1.1 },
   // 11 — tick marks + cluster labels appear
-  { svgElements: ['ticks', 'labels'], camera: { cx: 770,  cy: 835,  zoom: 1.3  } },
+  { svgElements: ['ticks', 'labels'], camera: { cx: 770,  cy: 835,  zoom: 1.3  }, weight: 0.8 },
   // 12-15 — startup cards pan left→right
-  { cards: ['crater'],                camera: { cx: 205,  cy: 960,  zoom: 2.0  } },
+  { cards: ['crater'],                camera: { cx: 205,  cy: 960,  zoom: 2.0  }, weight: 1.8 }, // big jump to new row
   { cards: ['madison'],               camera: { cx: 725,  cy: 945,  zoom: 1.9  } },
   { cards: ['verita'], arrows: [9],               camera: { cx: 1115, cy: 965,  zoom: 2.0  } },
   { cards: ['instalily'],             camera: { cx: 1395, cy: 950,  zoom: 2.0  } },
   // 16-17 — startup arrows
-  { arrows: [4],                      camera: { cx: 465,  cy: 955,  zoom: 1.5  } },
-  { arrows: [5, 6],                   camera: { cx: 1100, cy: 950,  zoom: 1.4  } },
+  { arrows: [4],                      camera: { cx: 465,  cy: 955,  zoom: 1.5  }, weight: 2.2 }, // longest jump in the whole story
+  { arrows: [5, 6],                   camera: { cx: 1100, cy: 950,  zoom: 1.4  }, weight: 1.6 },
   // 18 — "A consistent thread"
-  { infoCards: ['theme_ai_humans'],   camera: { cx: 770,  cy: 1155, zoom: 1.6  } },
+  { infoCards: ['theme_ai_humans'],   camera: { cx: 770,  cy: 1155, zoom: 1.6  }, weight: 1.3 },
   // 19-21 — fun row pan left→right
-  { cards: ['frarytale'], arrows: [7],camera: { cx: 200,  cy: 1390, zoom: 1.9  } },
-  { cards: ['coldplay'],              camera: { cx: 770,  cy: 1435, zoom: 1.9  } },
-  { cards: ['ground'],                camera: { cx: 1330, cy: 1390, zoom: 1.9  } },
+  { cards: ['frarytale'], arrows: [7],camera: { cx: 200,  cy: 1390, zoom: 1.9  }, weight: 1.7 }, // big jump to new row
+  { cards: ['coldplay'],              camera: { cx: 770,  cy: 1435, zoom: 1.9  }, weight: 1.5 },
+  { cards: ['ground'],                camera: { cx: 1330, cy: 1390, zoom: 1.9  }, weight: 1.5 },
 ];
 
-const MAX_STEP    = STEPS.length; // 23
-const PX_PER_STEP = 400;          // pixels of scroll per story step
+const MAX_STEP    = STEPS.length;
+const PX_PER_STEP = 400; // base pixels of scroll per unit of step weight
+
+// Cumulative scroll offset (px) at which each step begins, and the total scroll
+// distance the whole story takes — steps with a higher `weight` get more room.
+const STEP_OFFSETS: number[] = (() => {
+  let acc = 0;
+  return STEPS.map(s => {
+    const offset = acc;
+    acc += (s.weight ?? 1) * PX_PER_STEP;
+    return offset;
+  });
+})();
+const TOTAL_STEPS_PX = STEP_OFFSETS[STEP_OFFSETS.length - 1] + (STEPS[STEPS.length - 1].weight ?? 1) * PX_PER_STEP;
+
+// Given a scroll offset within the story section, find which step it falls in.
+function stepForOffset(px: number): number {
+  if (px < 0) return 0;
+  for (let i = STEP_OFFSETS.length - 1; i >= 0; i--) {
+    if (px >= STEP_OFFSETS[i]) return i;
+  }
+  return 0;
+}
 
 function computeVisible(step: number) {
   const cards     = new Set<string>();
@@ -724,10 +750,10 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
       style={{
         position: 'absolute', bottom: 48,
         left: '8vw', // Align with the asymmetric text padding
-        background: 'rgba(255, 255, 255, 0.4)',
+        background: 'rgba(168, 85, 247, 0.16)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.5)',
+        border: '1px solid rgba(168, 85, 247, 0.4)',
         borderRadius: 999, padding: '12px 28px',
         cursor: 'pointer', fontSize: 15,
         boxShadow: '0 8px 32px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)', // Liquid Glass refraction
@@ -737,8 +763,36 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
       transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <img src="/arrow-fat-down.svg" alt="" className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-[2px]" />
-      explore my work
+      explore my journey
     </motion.button>
+
+    <motion.div
+      style={{ position: 'absolute', bottom: 48, right: '8vw' }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <Link
+        to="/work"
+        className="font-beezee group flex items-center gap-3 text-[#001d36] transition-all duration-300 hover:scale-[0.98] active:scale-95"
+        style={{
+          background: 'rgba(132, 204, 22, 0.16)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(132, 204, 22, 0.35)',
+          borderRadius: 999, padding: '12px 28px',
+          cursor: 'pointer', fontSize: 15,
+          boxShadow: '0 8px 32px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
+        }}
+      >
+        Skip to the work
+        <img
+          src="/arrow-fat-down.svg"
+          alt=""
+          className="w-5 h-5 rotate-[-90deg] transition-transform duration-300 group-hover:translate-x-[2px]"
+        />
+      </Link>
+    </motion.div>
   </section>
 );
 
@@ -814,7 +868,7 @@ const MapSection: React.FC<{ mode: 'story' | 'map'; step: number }> = ({ mode, s
     const ty         = vpSize.h / 2 - cam.cy * totalScale;
 
     return (
-      <section style={{ height: `${MAX_STEP * PX_PER_STEP + vpSize.h}px` }}>
+      <section style={{ height: `${TOTAL_STEPS_PX + vpSize.h}px` }}>
         <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
           <div style={{
             position: 'absolute', width: CANVAS_W, height: CANVAS_H,
@@ -879,8 +933,16 @@ const MapHome: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPastHero, setIsPastHero] = useState(false);
 
+  const { setHidden: setHeaderHidden } = useHeaderVisibility();
+
   // Keep ref in sync for use inside event handlers
   useEffect(() => { isPlayingRef.current = isPlaying; }, [isPlaying]);
+
+  // Hide the site header once we've scrolled past the hero; restore it on unmount
+  useEffect(() => {
+    setHeaderHidden(isPastHero);
+    return () => setHeaderHidden(false);
+  }, [isPastHero, setHeaderHidden]);
 
   const scrollToMap = useCallback(() => {
     containerRef.current?.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -913,16 +975,14 @@ const MapHome: React.FC = () => {
       }
       const vpH = window.innerHeight;
       const inSection = container.scrollTop - vpH;
-      const rawStep = Math.floor(inSection / PX_PER_STEP);
       // Past the last step — auto-switch to map mode (same as "Show all")
-      if (rawStep >= MAX_STEP) {
+      if (inSection >= TOTAL_STEPS_PX) {
         setMode('map');
         setIsPlaying(false);
         container.scrollTo({ top: vpH, behavior: 'smooth' });
         return;
       }
-      const newStep = Math.max(rawStep, 0);
-      setStep(newStep);
+      setStep(stepForOffset(inSection));
     };
     container.addEventListener('scroll', onScroll, { passive: true });
     return () => container.removeEventListener('scroll', onScroll);
@@ -938,7 +998,7 @@ const MapHome: React.FC = () => {
         const container = containerRef.current;
         if (container) {
           autoScrollingRef.current = true;
-          container.scrollTo({ top: window.innerHeight + next * PX_PER_STEP, behavior: 'smooth' });
+          container.scrollTo({ top: window.innerHeight + STEP_OFFSETS[next], behavior: 'smooth' });
           setTimeout(() => { autoScrollingRef.current = false; }, 1000);
         }
         return next;
