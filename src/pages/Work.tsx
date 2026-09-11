@@ -1,302 +1,214 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Typewriter } from '../components/ui/typewriter';
 
-// ── Project card ───────────────────────────────────────────
-interface CardProps {
+// ── Work item data ────────────────────────────────────────────
+// fit: 'contain' for wordmark/poster logos where cropping cuts off text;
+// 'cover' (default) for photos/illustrations that tolerate a center-crop.
+
+interface WorkItem {
+  title: string;
+  tag: string;
+  desc: string;
+  accent: string;
+  logo: string;
+  fit?: 'contain' | 'cover';
   to?: string;
   href?: string;
-  img: string;
-  imgClass: string;
-  desc: string;
-  title: string;
-  accent: string;
-  wrapped?: boolean;
-  index: number;
 }
 
-const ProjectCard: React.FC<CardProps> = ({ to, href, img, imgClass, desc, title, accent, wrapped, index }) => {
+interface Lane {
+  id: string;
+  label: string;
+  items: WorkItem[];
+}
+
+const LANES: Lane[] = [
+  {
+    id: 'hcd',
+    label: 'Human-Centered Design',
+    items: [
+      { title: 'Saver Sports', tag: 'Youth Sports', desc: 'Empowers young athletes through community support.', accent: '#7ea740', logo: '/SaverLogo.jpeg', fit: 'contain', to: '/ProjectSaverSports' },
+      { title: 'Sparkathon', tag: 'Entrepreneurship Event', desc: 'A human-centered design, community pitch competition hosted by Pomona Ventures.', accent: '#4093b9', logo: '/Sparkathon.png', fit: 'contain', to: '/Sparkathon' },
+      { title: 'Cross-campus Staff Community', tag: 'Community', desc: 'Staff collaboration across campuses fosters a stronger community.', accent: '#7273cb', logo: '/Tccs.png', to: '/project-two' },
+      { title: 'Intergenerational Connectivity', tag: 'Community', desc: 'Intergenerational connections create meaningful relationships.', accent: '#3b9a8f', logo: '/banner.png', to: '/project-one' },
+      { title: 'Edulis Labs', tag: 'GTM Strategy', desc: 'A GTM strategy for a startup challenging norms.', accent: '#9f6ecf', logo: '/EdulisLogo.png', fit: 'contain', to: '/Edulis' },
+    ],
+  },
+  {
+    id: 'startup',
+    label: 'Startups & Operating',
+    items: [
+      { title: 'Crescent Fund & Crater Ventures', tag: 'VC', desc: "Investing in SoCal's biggest dreamers at early stages.", accent: '#399a7a', logo: '/crater.jpeg', href: 'https://crater.vc/' },
+      { title: 'Madison Reed & True Ventures', tag: 'Data Science', desc: 'Data science with Madison Reed as part of the True Ventures Fellowship.', accent: '#8c6ece', logo: '/TVLogo2.jpg', fit: 'contain', href: 'https://trueventures.com' },
+      { title: 'Verita AI', tag: 'Human Data', desc: 'Special Projects Lead (Operations) at a multimodal data startup.', accent: '#c09040', logo: '/Verita.png', href: 'https://verita-ai.com' },
+      { title: 'InstaLILY', tag: 'AI Startup', desc: 'Growth at InstaLILY, an AI startup for the physical economy.', accent: '#5e87ca', logo: '/instalily-logo.png', fit: 'contain', href: 'https://www.instalily.ai/' },
+    ],
+  },
+  {
+    id: 'fun',
+    label: 'Fun & Personal',
+    items: [
+      { title: 'Frary Tale', tag: 'Storytelling', desc: 'Documenting journeys with Claremont Entrepreneurs for the community.', accent: '#c96173', logo: '/FraryTale_resized_16_9.png', to: '/FraryTale' },
+      { title: 'Ground', tag: 'Wellness', desc: 'An accessible, light-hearted way to ground ourselves in the present.', accent: '#66ba85', logo: '/Ground.png', fit: 'contain', to: '/Ground' },
+      { title: 'Coldplay', tag: 'Music', desc: 'My favorite band of all time.', accent: '#ccb94e', logo: '/parachutes.png', to: '/coldplay' },
+    ],
+  },
+];
+
+// ── Tilt — a light touch, pointer/motion-safe ─────────────────
+
+const canTilt = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Work row ───────────────────────────────────────────────────
+
+const WorkRow: React.FC<{ item: WorkItem; index: number; isLast: boolean }> = ({ item, index, isLast }) => {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!canTilt() || !ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    ref.current.style.transform = `perspective(700px) rotateX(${(-py * 3).toFixed(2)}deg) rotateY(${(px * 3).toFixed(2)}deg) translateY(-1px)`;
+  };
+  const handleMouseLeave = () => {
+    if (ref.current) ref.current.style.transform = '';
+  };
+
+  const kind = item.to ? 'case study' : 'company ↗';
 
   const inner = (
     <>
-      {wrapped ? (
-        <div className="relative overflow-hidden flex justify-center p-4">
-          <img src={img} alt={title} className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{ background: `linear-gradient(to top, ${accent}55, ${accent}15)` }}
-          />
-          {/* Slide-up panel lives inside the image area */}
-          <div
-            className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-            style={{ transitionTimingFunction: 'cubic-bezier(0.33,1,0.68,1)' }}
+      <img
+        src={item.logo}
+        alt=""
+        className="work-row-logo"
+        style={{ objectFit: item.fit ?? 'cover' }}
+      />
+      <div className="min-w-0 flex flex-col gap-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-beezee font-bold text-[15px] text-[#001d36]">{item.title}</span>
+          <span
+            className="font-beezee text-[10.5px] tracking-wide uppercase px-2 py-0.5 rounded whitespace-nowrap"
+            style={{ color: item.accent, background: 'rgba(0,29,54,0.05)' }}
           >
-            <div className="relative px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
-              {/* Frosted backdrop */}
-              <div className="absolute inset-0 backdrop-blur-md bg-white/70" />
-              {/* Liquid glass displacement layer — needs a fill to distort */}
-              <div
-                className="absolute inset-0 bg-white/30 rounded-sm"
-                style={{ filter: 'url("#card-glass")', mixBlendMode: 'normal' }}
-              />
-              <div className="relative z-10">
-                <p className="text-[#001d36] text-sm leading-snug">{desc}</p>
-                <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
-              </div>
-            </div>
-          </div>
+            {item.tag}
+          </span>
         </div>
-      ) : (
-        <div className="relative overflow-hidden">
-          <img src={img} alt={title} className={`${imgClass} w-full transition-transform duration-500 group-hover:scale-105`} />
-          <div
-            className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{ background: `linear-gradient(to top, ${accent}55, ${accent}15)` }}
-          />
-          {/* Slide-up panel lives inside the image area */}
-          <div
-            className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-            style={{ transitionTimingFunction: 'cubic-bezier(0.33,1,0.68,1)' }}
-          >
-            <div className="relative px-4 py-3" style={{ borderTop: `2px solid ${accent}` }}>
-              {/* Frosted backdrop */}
-              <div className="absolute inset-0 backdrop-blur-md bg-white/70" />
-              {/* Liquid glass displacement layer — needs a fill to distort */}
-              <div
-                className="absolute inset-0 bg-white/30 rounded-sm"
-                style={{ filter: 'url("#card-glass")', mixBlendMode: 'normal' }}
-              />
-              <div className="relative z-10">
-                <p className="text-[#001d36] text-sm leading-snug">{desc}</p>
-                <span className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>View project →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="p-6">
-        <h4 className="text-xl text-[#001d36] font-semibold mb-2">{title}</h4>
+        <p className="font-beezee text-[13.5px] leading-snug text-[#001d36]/60" style={{ maxWidth: '58ch' }}>
+          {item.desc}
+        </p>
       </div>
+      <span className="font-beezee text-[12.5px] text-[#001d36]/55 whitespace-nowrap self-center">
+        {kind} →
+      </span>
     </>
   );
 
-  const sharedClass = "tilt-card group block relative bg-opacity-80 shadow-lg rounded-lg overflow-hidden backdrop-blur-md border border-white/60";
+  const rowStyle: React.CSSProperties | undefined = isLast ? { borderBottom: 'none' } : undefined;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -6, transition: { type: 'spring', stiffness: 350, damping: 22 } }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.55, delay: index * 0.1, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.4, delay: index * 0.04, ease: 'easeOut' }}
     >
-      {to ? (
-        <Link to={to} className={sharedClass}>{inner}</Link>
+      {item.to ? (
+        <Link
+          ref={ref}
+          to={item.to}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="work-row"
+          style={rowStyle}
+        >
+          {inner}
+        </Link>
       ) : (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={sharedClass}>{inner}</a>
+        <a
+          ref={ref}
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="work-row"
+          style={rowStyle}
+        >
+          {inner}
+        </a>
       )}
     </motion.div>
   );
 };
 
+// ── Lane ─────────────────────────────────────────────────────
 
-// ── Masked word reveal helper ──────────────────────────────
-const MaskedWord: React.FC<{ children: string; className?: string }> = ({ children, className }) => (
-  <span style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'bottom' }}>
-    <motion.span
-      className={`inline-block ${className ?? ''}`}
-      variants={{
-        hidden: { y: '110%' },
-        visible: { y: '0%', transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] } },
-      }}
-    >
-      {children}
-    </motion.span>
-  </span>
+const WorkLane: React.FC<{ lane: Lane }> = ({ lane }) => (
+  <div id={lane.id === 'fun' ? 'fun-stuff' : undefined} className="mb-10 scroll-mt-24">
+    <div className="flex items-baseline gap-2.5 mb-2">
+      <h2 className="font-patrickReg text-[1.4rem] text-[#001d36]">{lane.label}</h2>
+      <span className="font-beezee text-xs text-[#001d36]/35 tabular-nums">{lane.items.length}</span>
+    </div>
+    <div>
+      {lane.items.map((item, i) => (
+        <WorkRow key={item.title} item={item} index={i} isLast={i === lane.items.length - 1} />
+      ))}
+    </div>
+  </div>
 );
 
+// ── Page ─────────────────────────────────────────────────────
 
 const Work: React.FC = () => {
-  useEffect(() => {
-    const cards = document.querySelectorAll<HTMLElement>('.tilt-card');
-    const handleMouseMove = (e: MouseEvent) => {
-      const card = e.currentTarget as HTMLElement;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const rotateX = ((y - cy) / cy) * -8;
-      const rotateY = ((x - cx) / cx) * 8;
-      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    };
-    const handleMouseLeave = (e: MouseEvent) => {
-      (e.currentTarget as HTMLElement).style.transform = '';
-    };
-    cards.forEach(card => {
-      card.addEventListener('mousemove', handleMouseMove);
-      card.addEventListener('mouseleave', handleMouseLeave);
-    });
-    return () => {
-      cards.forEach(card => {
-        card.removeEventListener('mousemove', handleMouseMove);
-        card.removeEventListener('mouseleave', handleMouseLeave);
-      });
-    };
-  }, []);
-
-  const taglineWords = [
-    { word: 'Human-Centered', color: 'hover:text-purple-600' },
-    { word: 'Design', color: 'hover:text-teal-600' },
-    { word: 'Projects', color: 'hover:text-cyan-300' },
-  ];
-
-  const otherBitsWords = [
-    { word: 'Other', color: 'hover:text-sky-600' },
-    { word: 'bits', color: 'hover:text-rose-600' },
-    { word: 'of', color: 'hover:text-slate-500' },
-  ];
-
-  const mainCards = [
-    { to: '/Edulis',             img: '/EdulisLogo.png',  imgClass: 'mx-auto w-3/4 h-48 object-cover', desc: 'A GTM strategy for a startup challenging norms.',                                               title: 'Edulis Labs',                  accent: '#a855f7' },
-    { to: '/project-one',        img: '/banner.png',       imgClass: 'h-48 object-cover',               desc: 'Intergenerational connections create meaningful relationships.',                                title: 'Intergenerational Connectivity', accent: '#14b8a6' },
-    { to: '/project-two',        img: '/Tccs.png',         imgClass: 'h-48 object-cover',               desc: 'Staff collaboration across campuses fosters a stronger community.',                            title: 'Cross-campus Staff Community', accent: '#6366f1' },
-    { to: '/ProjectSaverSports', img: '/SaverLogo.jpeg',   imgClass: 'max-w-xs max-h-50 object-cover',  desc: 'Saver Sports empowers young athletes through community support.',                             title: 'Saver Sports',                 accent: '#84cc16', wrapped: true },
-    { to: '/Sparkathon',         img: '/Sparkathon.png',   imgClass: 'h-48 object-cover',               desc: 'A Human-centered design, community pitch competition hosted by Pomona Ventures.',             title: 'Sparkathon',                   accent: '#0ea5e9', wrapped: true },
-  ];
-
-  const otherCards = [
-    { href: 'https://www.instalily.ai/',                   img: '/instalily-logo.png',         imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Growth at InstaLILY, an AI startup for the physical economy', title: 'InstaLILY',                    accent: '#3b82f6' },
-    { href: 'https://verita-ai.com',                       img: '/Verita.png',                 imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Special Projects Lead (Operations) at a multimodal data startup',    title: 'Verita AI',                    accent: '#f59e0b', wrapped: true },
-    { href: 'https://trueventures.com',                    img: '/TVLogo2.jpg',                imgClass: 'mx-auto w-3/4 h-48 object-cover', desc: 'Data Science with Madison Reed as part of True Ventures Fellowship', title: 'Madison Reed & True Ventures', accent: '#8b5cf6' },
-    { href: 'https://crater.vc/',                          img: '/crater.jpeg',                imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Investing in SoCal\'s biggest dreamers at early stages',            title: 'Crescent Fund & Crater Ventures', accent: '#10b981', wrapped: true },
-  ];
-
   return (
-    <section className="container mx-auto px-8 py-16 text-center bg-opacity-70 rounded-lg backdrop-blur-md">
+    <section className="container mx-auto px-6 md:px-8 py-16 max-w-[860px]">
 
-      {/* ── Tagline — masked word reveal ── */}
-      <motion.h2
-        className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6"
-        initial="hidden"
-        animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } }}
+      <motion.h1
+        className="font-patrickReg text-[2.1rem] md:text-[2.5rem] text-[#001d36] mb-3"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        {taglineWords.map(({ word, color }) => (
-          <span key={word} className="mx-2">
-            <MaskedWord className={`transition duration-300 transform hover:scale-110 hover:-translate-y-1 ${color}`}>
-              {word}
-            </MaskedWord>
-          </span>
-        ))}
-      </motion.h2>
-
-      {/* ── Bouncing arrow ── */}
-      <motion.div
-        className="flex justify-center mt-8 mb-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 12, 0] }}
-        transition={{
-          opacity: { duration: 0.5, delay: 1.2 },
-          y: { duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 1.2 },
-        }}
+        Selected work
+      </motion.h1>
+      <motion.p
+        className="font-beezee text-[14.5px] text-[#001d36]/60 leading-relaxed mb-8"
+        style={{ maxWidth: '62ch' }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src="/arrow-fat-down.svg" alt="Scroll down" className="w-20 h-20" />
-      </motion.div>
+        Human-centered design, startups I've built and invested in, and a few things I make for fun.
+      </motion.p>
 
-      {/* ── Main project cards ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {mainCards.map((card, i) => (
-          <ProjectCard key={card.to} {...card} index={i} />
-        ))}
-
-        <motion.div
-          className="text-6xl mt-24"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          animate={{ y: [0, -10, 0] }}
+      <div className="flex flex-wrap gap-2.5 mb-9">
+        <a
+          className="glass-pill"
+          style={{ '--pill-tint': 'rgba(59,154,143,0.14)', '--pill-border': 'rgba(59,154,143,0.35)' } as React.CSSProperties}
+          href="mailto:jayyy.suh@gmail.com"
         >
-          <span className="hover:text-green-500 inline-block transition duration-300 transform hover:scale-110 hover:-translate-y-10">
-            Keep scrolling!
-          </span>
-        </motion.div>
-      </div>
-
-      {/* ── "Other bits of [typewriter]" heading ── */}
-      <motion.h2
-        className="text-4xl text-[#001d36] font-beezee font-extrabold mb-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.6 }}
-        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-      >
-        {otherBitsWords.map(({ word, color }) => (
-          <span key={word} className="mx-2">
-            <MaskedWord className={`transition duration-300 transform hover:scale-110 hover:-translate-y-1 ${color}`}>
-              {word}
-            </MaskedWord>
-          </span>
-        ))}
-        <span className="mx-2 text-yellow-500">
-          <Typewriter
-            text={['fun work', 'professional work']}
-            speed={60}
-            deleteSpeed={35}
-            waitTime={2200}
-            cursorChar="|"
-            cursorClassName="ml-0.5 text-yellow-500"
-          />
-        </span>
-      </motion.h2>
-
-      <motion.div
-        className="flex justify-center mt-8 mb-10"
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <img src="/arrow-fat-down.svg" alt="Scroll down" className="w-20 h-20" />
-      </motion.div>
-
-      {/* ── Other work cards ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {otherCards.map((card, i) => (
-          <ProjectCard key={card.href} {...card} index={i} />
-        ))}
-      </div>
-
-      {/* ── Fun Stuff gallery ── */}
-      <div id="fun-stuff" className="scroll-mt-24 mb-16">
-        <motion.h2
-          className="text-4xl text-[#001d36] font-beezee font-extrabold mb-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          ✉ Email me
+        </a>
+        <a
+          className="glass-pill"
+          style={{ '--pill-tint': 'rgba(94,135,202,0.14)', '--pill-border': 'rgba(94,135,202,0.35)' } as React.CSSProperties}
+          href="https://www.linkedin.com/in/jayhyunsuh/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          {[
-            { word: 'Fun',   color: 'hover:text-fuchsia-500' },
-            { word: 'Stuff', color: 'hover:text-teal-500' },
-          ].map(({ word, color }) => (
-            <span key={word} className="mx-2">
-              <MaskedWord className={`transition duration-300 transform hover:scale-110 hover:-translate-y-1 ${color}`}>
-                {word}
-              </MaskedWord>
-            </span>
-          ))}
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {[
-            { to: '/FraryTale', img: '/FraryTale_resized_16_9.png', imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'Documenting journeys with Claremont Entrepreneurs for the community', title: 'Frary Tale', accent: '#f43f5e' },
-            { to: '/Ground',    img: '/Ground.png',                  imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'An accessible, light-hearted way to ground ourselves in the present.', title: 'Ground',     accent: '#4ade80' },
-            { to: '/coldplay',  img: '/parachutes.png',              imgClass: 'mx-auto w-auto h-48 object-cover', desc: 'My favorite band of all time.',          title: 'Coldplay',   accent: '#FFDE21' },
-          ].map((card, i) => (
-            <ProjectCard key={card.to} {...card} index={i} />
-          ))}
-        </div>
+          LinkedIn ↗
+        </a>
       </div>
+
+      {LANES.map(lane => (
+        <WorkLane key={lane.id} lane={lane} />
+      ))}
 
     </section>
   );

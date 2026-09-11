@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&display=swap');
@@ -420,3 +421,68 @@ a, button, [role="button"] {
 @media (prefers-reduced-motion: reduce) {
     .vinyl-disk-spin { animation: none; }
 }
+
+/* ── /work — resume-style rows ───────────────────────────── */
+.work-row {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 4px 14px;
+    padding: 11px 12px;
+    margin: 0 -12px;
+    border-radius: 12px;
+    border-bottom: 1px solid rgba(0, 29, 54, 0.12);
+    text-decoration: none;
+    color: inherit;
+    transform-style: preserve-3d;
+    transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, transform 0.15s ease-out;
+    will-change: transform;
+}
+
+.work-row:hover {
+    background: rgba(255, 254, 251, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 29, 54, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border-color: transparent;
+}
+
+.work-row-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 9px;
+    padding: 5px;
+    background: #fffefb;
+    border: 1px solid rgba(0, 29, 54, 0.1);
+    flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .work-row { transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+}
+
+@media (max-width: 500px) {
+    .work-row { grid-template-columns: 36px minmax(0, 1fr); }
+    .work-row-logo { width: 36px; height: 36px; }
+    .work-row > span:last-child { grid-column: 2; justify-self: start; }
+}
+
+/* ── /work — glass pill buttons (email / linkedin) ───────── */
+.glass-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #001d36;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--pill-tint, rgba(0, 29, 54, 0.06));
+    border: 1px solid var(--pill-border, rgba(0, 29, 54, 0.13));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 6px 20px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-pill:hover { transform: scale(0.98); }

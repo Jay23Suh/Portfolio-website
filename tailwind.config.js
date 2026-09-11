@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         patrick: ['"Patrick Hand SC"', 'cursive'],
+        patrickReg: ['"Patrick Hand"', 'cursive'],
         beezee: ['"ABeeZee"', 'sans-serif'],
         edu: ['"Edu AU VIC WA NT Arrows"', 'cursive'],
       },

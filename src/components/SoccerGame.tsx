@@ -28,6 +28,16 @@ const PLAYER_H    = 34;
 const HEAD_R      = 11;
 const KICK_DIST   = BALL_R + 17;
 
+// Goalkeeper — side-view height coverage (up = jump for high shots, down = crouch for low)
+const GK_X           = GOAL_X - 16;                        // stands just in front of the goal line
+const GK_W           = 14;                                 // hitbox thickness
+const GK_H           = 26;                                 // hitbox height
+const GK_SPEED       = 2.2;                                // capped px/frame — reactable, not a wall
+const GK_SAFE_MARGIN = 20;                                 // sliver at each corner the keeper can never reach
+const GK_STAND_Y     = GROUND - PLAYER_H / 2;              // resting stance — feet on the ground
+const GK_MIN_Y       = GOAL_TOP + GK_SAFE_MARGIN + GK_H / 2; // highest its center can travel
+const GK_MAX_Y       = GROUND - GK_SAFE_MARGIN - GK_H / 2;   // lowest its center can travel
+
 type Phase = 'playing' | 'celebrating' | 'dropping';
 
 interface GS {
@@ -40,6 +50,7 @@ interface GS {
   timer: number;
   keys: { l: boolean; r: boolean };
   crowd: { x: number; y: number; ph: number; hue: number; sz: number }[];
+  gkY: number;
 }
 
 function mkState(): GS {
@@ -63,6 +74,7 @@ function mkState(): GS {
     px: VW / 2 - 28, pvx: 0,
     score: 0, phase: 'playing', timer: 0,
     keys: { l: false, r: false }, crowd,
+    gkY: GK_STAND_Y,
   };
 }
 
@@ -206,6 +218,24 @@ export function SoccerGame() {
       if (s.bx - BALL_R <= 0) {
         s.bx  = BALL_R;
         s.bvx = Math.abs(s.bvx) * WALL_DAMP;
+      }
+
+      // Goalkeeper — steers toward the ball's height, bounded so corners stay open
+      const gkTarget = s.bvx > 0
+        ? Math.max(GK_MIN_Y, Math.min(GK_MAX_Y, s.by))
+        : GK_STAND_Y;
+      if (s.gkY < gkTarget) s.gkY = Math.min(gkTarget, s.gkY + GK_SPEED);
+      else if (s.gkY > gkTarget) s.gkY = Math.max(gkTarget, s.gkY - GK_SPEED);
+
+      // Save — ball meets the keeper before reaching the net
+      if (
+        s.bvx > 0 &&
+        s.bx + BALL_R >= GK_X - GK_W / 2 &&
+        s.bx - BALL_R <= GK_X + GK_W / 2 &&
+        Math.abs(s.by - s.gkY) <= GK_H / 2
+      ) {
+        s.bvx = -Math.abs(s.bvx) * WALL_DAMP;
+        s.bx  = GK_X - GK_W / 2 - BALL_R;
       }
 
       // Right wall — goal if ball reaches back of net, bounce if it missed
@@ -429,6 +459,95 @@ export function SoccerGame() {
       ctx.lineWidth = 3.5;
       ctx.beginPath(); ctx.moveTo(ftx, fty); ctx.lineTo(btx, bty); ctx.stroke();
       ctx.shadowBlur = 0;
+
+      // ── Goalkeeper (chibi style, matches the player) ────
+      {
+        // gkGround is the keeper's own "ground" reference — the whole figure
+        // rides up/down as it jumps or crouches to cover s.gkY.
+        const gkGround  = s.gkY + PLAYER_H / 2;
+        const gkBodyTop = gkGround - PLAYER_H + 2;
+        const gkBodyH   = PLAYER_H - 18;
+        const gkHeadR   = 14;
+        const gkHeadY   = gkBodyTop - gkHeadR + 1;
+
+        // Shadow — fixed to the real ground, shrinks as the keeper "jumps" higher
+        const gkAir   = Math.max(0, GROUND - gkGround);
+        const gkShSc  = Math.max(0.35, 1 - gkAir / 60);
+        ctx.fillStyle = `rgba(0,0,0,${0.18 * gkShSc})`;
+        ctx.beginPath();
+        ctx.ellipse(GK_X, GROUND + 3, 13 * gkShSc, 3.5 * gkShSc, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Shoes
+        ctx.fillStyle = '#2b2b2b';
+        ctx.beginPath(); ctx.ellipse(GK_X - 6, gkGround - 2, 7, 4, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(GK_X + 6, gkGround - 2, 7, 4, 0, 0, Math.PI * 2); ctx.fill();
+
+        // Legs (shorts)
+        ctx.fillStyle = '#1b1b1b';
+        ctx.fillRect(GK_X - 9, gkGround - 16, 8, 14);
+        ctx.fillRect(GK_X + 1, gkGround - 16, 8, 14);
+
+        // Arms — raised, ready-to-dive stance
+        ctx.strokeStyle = '#f5cba7';
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(GK_X - 9, gkBodyTop + 6); ctx.lineTo(GK_X - 16, gkBodyTop - 6);
+        ctx.moveTo(GK_X + 9, gkBodyTop + 6); ctx.lineTo(GK_X + 16, gkBodyTop - 6);
+        ctx.stroke();
+
+        // Shirt — contrasting goalkeeper kit
+        ctx.fillStyle = '#f4c542';
+        ctx.beginPath();
+        ctx.moveTo(GK_X - 10, gkBodyTop + 4);
+        ctx.arc(GK_X - 6, gkBodyTop + 4, 4, Math.PI, -Math.PI / 2);
+        ctx.arc(GK_X + 6, gkBodyTop + 4, 4, -Math.PI / 2, 0);
+        ctx.lineTo(GK_X + 10, gkBodyTop + gkBodyH);
+        ctx.arc(GK_X + 7, gkBodyTop + gkBodyH, 3, 0, Math.PI / 2);
+        ctx.lineTo(GK_X - 7, gkBodyTop + gkBodyH + 3);
+        ctx.arc(GK_X - 7, gkBodyTop + gkBodyH, 3, Math.PI / 2, Math.PI);
+        ctx.closePath();
+        ctx.fill();
+        // Collar
+        ctx.fillStyle = '#1b1b1b';
+        ctx.beginPath(); ctx.arc(GK_X, gkBodyTop + 4, 4, Math.PI, 0); ctx.fill();
+        // Number
+        ctx.fillStyle = 'rgba(0,0,0,0.55)';
+        ctx.font = 'bold 7px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('1', GK_X, gkBodyTop + gkBodyH - 3);
+        ctx.textAlign = 'left';
+
+        // Head
+        ctx.fillStyle = '#f5cba7';
+        ctx.beginPath(); ctx.arc(GK_X, gkHeadY, gkHeadR, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 0.8; ctx.stroke();
+
+        // Hair
+        ctx.fillStyle = '#1a1a1a';
+        ctx.beginPath();
+        ctx.arc(GK_X - gkHeadR * 0.55, gkHeadY - gkHeadR * 0.55, gkHeadR * 0.55, -Math.PI, 0.1);
+        ctx.arc(GK_X,                 gkHeadY - gkHeadR * 0.88, gkHeadR * 0.55, -Math.PI, 0.1);
+        ctx.arc(GK_X + gkHeadR * 0.55, gkHeadY - gkHeadR * 0.55, gkHeadR * 0.55, -Math.PI, 0.5);
+        ctx.lineTo(GK_X + gkHeadR * 0.6, gkHeadY);
+        ctx.lineTo(GK_X - gkHeadR * 0.6, gkHeadY);
+        ctx.closePath();
+        ctx.fill();
+
+        // Eyes — focused, looking forward
+        const gkEyeY = gkHeadY + 1;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.ellipse(GK_X - 4.5, gkEyeY, 3.5, 4.2, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(GK_X + 4.5, gkEyeY, 3.5, 4.2, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#1a0a00';
+        ctx.beginPath(); ctx.arc(GK_X - 4.5, gkEyeY + 0.5, 2.2, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(GK_X + 4.5, gkEyeY + 0.5, 2.2, 0, Math.PI * 2); ctx.fill();
+
+        // Mouth — determined line
+        ctx.strokeStyle = '#c0785a'; ctx.lineWidth = 1.2; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(GK_X - 3, gkHeadY + 7); ctx.lineTo(GK_X + 3, gkHeadY + 7); ctx.stroke();
+      }
 
       // ── Player (chibi cartoon style) ────────────────────
       const px     = s.px;

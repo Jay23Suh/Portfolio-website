@@ -35,75 +35,75 @@ const CARDS: CardData[] = [
     id: 'saver', to: '/ProjectSaverSports',
     img: '/SaverLogo.jpeg', imgFit: 'contain',
     title: 'Saver Sports', desc: 'Empowers young athletes through community support.',
-    accent: '#84cc16', tag: 'Youth', x: 75, y: 212,
+    accent: '#7ea740', tag: 'Youth', x: 75, y: 212,
   },
   {
     id: 'sparkathon', to: '/Sparkathon',
     img: '/Sparkathon.png', imgFit: 'cover',
     title: 'Sparkathon', desc: 'HCD pitch competition by Pomona Ventures.',
-    accent: '#0ea5e9', tag: 'Event', x: 360, y: 180,
+    accent: '#4093b9', tag: 'Event', x: 360, y: 180,
   },
   {
     id: 'crosscamp', to: '/project-two',
     img: '/Tccs.png', imgFit: 'contain',
     title: 'Cross-campus Staff', desc: 'Staff collaboration fosters a stronger community.',
-    accent: '#2563eb', tag: 'Community', x: 645, y: 222,
+    accent: '#4f72be', tag: 'Community', x: 645, y: 222,
   },
   {
     id: 'intergen', to: '/project-one',
     img: '/banner.png', imgFit: 'cover',
     title: 'Intergenerational Connectivity', desc: 'Connections that create meaningful relationships.',
-    accent: '#14b8a6', tag: 'Community', x: 930, y: 188,
+    accent: '#3b9a8f', tag: 'Community', x: 930, y: 188,
   },
   {
     id: 'edulis', to: '/Edulis',
     img: '/EdulisLogo.png', imgFit: 'contain',
     title: 'Edulis Labs', desc: 'A GTM strategy for a startup challenging norms.',
-    accent: '#0d9488', tag: 'GTM Strategy', x: 1215, y: 350,
+    accent: '#30827b', tag: 'GTM Strategy', x: 1215, y: 350,
   },
   // ── Row 2: Fork — investing vs operating ─────────────────────────
   {
     id: 'crater', href: 'https://crater.vc/',
     img: '/crater.jpeg', imgFit: 'cover',
     title: 'Crescent Fund & Crater', desc: "Investing in SoCal's biggest dreamers.",
-    accent: '#10b981', tag: 'VC', x: 60, y: 854, w: 285, h: 245,
+    accent: '#399a7a', tag: 'VC', x: 60, y: 854, w: 285, h: 245,
   },
   {
     id: 'madison', href: 'https://trueventures.com',
     img: '/TVLogo2.jpg', imgFit: 'contain',
     title: 'Madison Reed & True Ventures', desc: 'Data science as part of True Ventures Fellowship.',
-    accent: '#0891b2', tag: 'Data Science', x: 570, y: 820, w: 310, h: 245,
+    accent: '#318295', tag: 'Data Science', x: 570, y: 820, w: 310, h: 245,
   },
   {
     id: 'verita', href: 'https://verita-ai.com',
     img: '/Verita.png', imgFit: 'contain',
     title: 'Verita AI', desc: 'Special Projects Lead at a multimodal data startup.',
-    accent: '#f59e0b', tag: 'Operations', x: 975, y: 860, w: 270, h: 245,
+    accent: '#c09040', tag: 'Operations', x: 975, y: 860, w: 270, h: 245,
   },
   {
     id: 'instalily', href: 'https://www.instalily.ai/',
     img: '/instalily-logo.png', imgFit: 'contain',
     title: 'InstaLILY', desc: 'Growth at an AI startup for the physical economy.',
-    accent: '#3b82f6', tag: 'AI Startup', x: 1258, y: 832, w: 270, h: 245,
+    accent: '#5e87ca', tag: 'AI Startup', x: 1258, y: 832, w: 270, h: 245,
   },
   // ── Row 3: Fun & beyond ──────────────────────────────────────────
   {
     id: 'frarytale', to: '/FraryTale',
     img: '/FraryTale_resized_16_9.png', imgFit: 'cover',
     title: 'Frary Tale', desc: 'Documenting journeys with Claremont Entrepreneurs.',
-    accent: '#f43f5e', tag: 'Storytelling', x: 60, y: 1290, w: 270, h: 235,
+    accent: '#c96173', tag: 'Storytelling', x: 60, y: 1290, w: 270, h: 235,
   },
   {
     id: 'coldplay', to: '/coldplay',
     img: '/parachutes.png', imgFit: 'cover',
     title: 'Coldplay', desc: 'My favorite band of all time.',
-    accent: '#f59e0b', tag: 'Music', x: 630, y: 1318, w: 270, h: 235,
+    accent: '#c09040', tag: 'Music', x: 630, y: 1318, w: 270, h: 235,
   },
   {
     id: 'ground', to: '/Ground',
     img: '/Ground.png', imgFit: 'contain',
     title: 'Ground', desc: 'An accessible way to ground ourselves in the present.',
-    accent: '#4ade80', tag: 'Wellness', x: 1190, y: 1268, w: 270, h: 235,
+    accent: '#66ba85', tag: 'Wellness', x: 1190, y: 1268, w: 270, h: 235,
   },
 ];
 
@@ -124,16 +124,16 @@ interface InfoCardData {
 const INFO_CARDS: InfoCardData[] = [
   {
     id: 'about_me',
-    body: "HERE IS A LITTLE HISTORY OF ME IN THE ACADEMIC AND PROFESSIONAL (AND FUN) WORLD",
-    accent: '#0d9488',
+    body: "Here is a little history of me in the academic and professional (and fun) world",
+    accent: '#30827b',
     x: 580, y: -10, w: 380, h: 140,
     tilt: -0.8,
   },
   {
     id: 'college_transition',
     title: 'All of this happened in college.',
-    body: "These experiences shaped a deep love for startups both building and investing. I wanted to be in rooms where I could learn fast, move with urgency, and keep humans at the center.",
-    accent: '#2563eb',
+    body: "These experiences shaped a deep love for startups both building and investing. I wanted to be in rooms where I could learn fast, move with agency, and keep humans at the center.",
+    accent: '#4f72be',
     x: 545, y: 540, w: 450, h: 148,
     tilt: 1.0,
   },
@@ -141,7 +141,7 @@ const INFO_CARDS: InfoCardData[] = [
     id: 'theme_ai_humans',
     title: 'A consistent thread.',
     body: "Across every role — investing, operating, building — I've kept technology, AI, data, and people at the center of how I work.",
-    accent: '#0ea5e9',
+    accent: '#4093b9',
     x: 550, y: 1120, w: 440, h: 122,
     tilt: -0.7,
   },
@@ -165,21 +165,21 @@ interface ConnectionDef {
 
 const CONNECTIONS: ConnectionDef[] = [
   // HCD chain (chronological)
-  { from: 'saver',      to: 'sparkathon', color: '#84cc16' },
-  { from: 'sparkathon', to: 'crosscamp',  color: '#0ea5e9' },
-  { from: 'crosscamp',  to: 'intergen',   color: '#2563eb' },
-  { from: 'intergen',   to: 'edulis',     color: '#14b8a6' },
+  { from: 'saver',      to: 'sparkathon', color: '#7ea740' },
+  { from: 'sparkathon', to: 'crosscamp',  color: '#4093b9' },
+  { from: 'crosscamp',  to: 'intergen',   color: '#4f72be' },
+  { from: 'intergen',   to: 'edulis',     color: '#3b9a8f' },
   // Investing chain
-  { from: 'crater',     to: 'madison',    color: '#10b981' },
+  { from: 'crater',     to: 'madison',    color: '#399a7a' },
   // Bridge → operating
-  { from: 'madison',    to: 'instalily',  color: '#0891b2' },
+  { from: 'madison',    to: 'instalily',  color: '#318295' },
   // Operating chain
-  { from: 'verita',     to: 'instalily',  color: '#f59e0b' },
+  { from: 'verita',     to: 'instalily',  color: '#c09040' },
   // Fun: Frary Tale connected to Sparkathon
-  { from: 'sparkathon', to: 'frarytale',  color: '#f43f5e' },
+  { from: 'sparkathon', to: 'frarytale',  color: '#c96173' },
   // Edulis to college and operating
-  { from: 'edulis', to: 'college_transition', color: '#0d9488' },
-  { from: 'edulis', to: 'verita', color: '#0284c7' },
+  { from: 'edulis', to: 'college_transition', color: '#30827b' },
+  { from: 'edulis', to: 'verita', color: '#317ca2' },
 ];
 
 // ── Story step definitions ────────────────────────────────────────────
@@ -318,25 +318,25 @@ interface DoodleItem {
 
 const DOODLES: DoodleItem[] = [
   // ── Left margin ───────────────────────────────────────────────────
-  { type: 'heart',      x: 36,   y: 315,  size: 32, color: '#14b8a6', opacity: 0.22 },  // HCD center
-  { type: 'chart_bars', x: 36,   y: 963,  size: 40, color: '#10b981', opacity: 0.22 },  // startup center
-  { type: 'camera',     x: 36,   y: 1398, size: 40, color: '#f43f5e', opacity: 0.20 },  // fun center
+  { type: 'heart',      x: 36,   y: 315,  size: 32, color: '#3b9a8f', opacity: 0.22 },  // HCD center
+  { type: 'chart_bars', x: 36,   y: 963,  size: 40, color: '#399a7a', opacity: 0.22 },  // startup center
+  { type: 'camera',     x: 36,   y: 1398, size: 40, color: '#c96173', opacity: 0.20 },  // fun center
   // ── Right margin ──────────────────────────────────────────────────
-  { type: 'pencil',     x: 1510, y: 315,  size: 36, color: '#2563eb', opacity: 0.22 },  // HCD right
-  { type: 'plant',      x: 1510, y: 1398, size: 44, color: '#4ade80', opacity: 0.22 },  // fun right
+  { type: 'pencil',     x: 1510, y: 315,  size: 36, color: '#4f72be', opacity: 0.22 },  // HCD right
+  { type: 'plant',      x: 1510, y: 1398, size: 44, color: '#66ba85', opacity: 0.22 },  // fun right
   // ── Flanking college_transition (center y=614) ────────────────────
-  { type: 'star',       x: 200,  y: 614,  size: 28, color: '#84cc16', opacity: 0.22 },
-  { type: 'lightbulb',  x: 1200, y: 614,  size: 36, color: '#0ea5e9', opacity: 0.22 },
+  { type: 'star',       x: 200,  y: 614,  size: 28, color: '#7ea740', opacity: 0.22 },
+  { type: 'lightbulb',  x: 1200, y: 614,  size: 36, color: '#4093b9', opacity: 0.22 },
   // ── Startup row inter-card gaps ───────────────────────────────────
-  { type: 'branch',     x: 450,  y: 963,  size: 38, color: '#059669', opacity: 0.20 },
-  { type: 'gear',       x: 900,  y: 963,  size: 38, color: '#f59e0b', opacity: 0.20 },
+  { type: 'branch',     x: 450,  y: 963,  size: 38, color: '#2b876b', opacity: 0.20 },
+  { type: 'gear',       x: 900,  y: 963,  size: 38, color: '#c09040', opacity: 0.20 },
   // ── Flanking theme box (center y=1181) ───────────────────────────
-  { type: 'rocket',     x: 200,  y: 1181, size: 36, color: '#3b82f6', opacity: 0.20 },
-  { type: 'globe',      x: 1200, y: 1181, size: 34, color: '#14b8a6', opacity: 0.20 },
+  { type: 'rocket',     x: 200,  y: 1181, size: 36, color: '#5e87ca', opacity: 0.20 },
+  { type: 'globe',      x: 1200, y: 1181, size: 34, color: '#3b9a8f', opacity: 0.20 },
   // ── Fun row ───────────────────────────────────────────────────────
-  { type: 'music',      x: 480,  y: 1290, size: 46, color: '#f59e0b', opacity: 0.22 },
-  { type: 'headphones', x: 765,  y: 1302, size: 38, color: '#f59e0b', opacity: 0.20 },
-  { type: 'leaf',       x: 1090, y: 1272, size: 36, color: '#4ade80', opacity: 0.20 },
+  { type: 'music',      x: 480,  y: 1290, size: 46, color: '#c09040', opacity: 0.22 },
+  { type: 'headphones', x: 765,  y: 1302, size: 38, color: '#c09040', opacity: 0.20 },
+  { type: 'leaf',       x: 1090, y: 1272, size: 36, color: '#66ba85', opacity: 0.20 },
 ];
 
 const Doodle: React.FC<DoodleItem> = ({ type, x, y, size, color, rotation = 0, opacity = 0.25 }) => {
@@ -417,8 +417,8 @@ const InfoCard: React.FC<InfoCardData & { show?: boolean; animated?: boolean }> 
             {title}
           </div>
         )}
-        <div className="font-beezee" style={{ 
-          fontSize: id === 'about_me' ? 14 : 11.5, 
+        <div className={id === 'about_me' ? 'font-patrickReg' : 'font-beezee'} style={{
+          fontSize: id === 'about_me' ? 14 : 11.5,
           fontWeight: id === 'about_me' ? 'bold' : 'normal', 
           lineHeight: 1.48, 
           color: id === 'about_me' ? '#000' : 'rgba(26,16,8,0.56)' 
@@ -657,16 +657,16 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       </svg>
 
       {/* ── Annotations ──────────────────────────────────────────── */}
-      <div className="font-patrick" style={{ position:'absolute', left:980, top:45, zIndex: 10, fontSize:22, color:'#0ea5e9', transform:'rotate(4deg)', pointerEvents:'none', opacity: animated ? (visInfo.has('about_me') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined, textAlign: 'center', lineHeight: 1.15 }}>
+      <div className="font-patrick" style={{ position:'absolute', left:980, top:45, zIndex: 10, fontSize:22, color:'#4093b9', transform:'rotate(4deg)', pointerEvents:'none', opacity: animated ? (visInfo.has('about_me') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined, textAlign: 'center', lineHeight: 1.15 }}>
         scroll down! ↓<br/>and click each card
       </div>
-      <div className="font-patrick" style={{ position:'absolute', left:150, top:460, zIndex: 10, fontSize:22, color:'#ec4899', transform:'rotate(8deg)', pointerEvents:'none', opacity: animated ? (visCards.has('saver') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined }}>
+      <div className="font-patrick" style={{ position:'absolute', left:150, top:460, zIndex: 10, fontSize:22, color:'#c46695', transform:'rotate(8deg)', pointerEvents:'none', opacity: animated ? (visCards.has('saver') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined }}>
         ↑ click me!
       </div>
       <div className="font-beezee" style={{ position:'absolute', left:75, top:173, fontSize:9.5, letterSpacing:'0.16em', textTransform:'uppercase', color:'rgba(26,16,8,0.30)', pointerEvents:'none' }}>
         the beginning human-centered design
       </div>
-      <div className="font-patrick" style={{ position:'absolute', left:1320, top:1085, zIndex: 10, fontSize:22, color:'#3b82f6', transform:'rotate(-2deg)', pointerEvents:'none' }}>
+      <div className="font-patrick" style={{ position:'absolute', left:1320, top:1085, zIndex: 10, fontSize:22, color:'#5e87ca', transform:'rotate(-2deg)', pointerEvents:'none' }}>
         ↑ where I'm at now
       </div>
       {/* Cluster labels */}
@@ -674,7 +674,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
         <div key={label} className="font-beezee" style={{
           position:'absolute', left:[65,571,976][i], top:800, fontSize:8.5,
           letterSpacing:'0.14em', textTransform:'uppercase', pointerEvents:'none',
-          color:['#10b981cc','#0ea5e9cc','#f59e0bcc'][i],
+          color:['#399a7acc','#4093b9cc','#c09040cc'][i],
           opacity: animated ? (visSvg.has('labels') ? 1 : 0) : 1,
           transition: animated ? 'opacity 0.5s ease' : undefined,
         }}>
@@ -685,11 +685,11 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       <div className="font-beezee" style={{ position:'absolute', left:65, top:1244, fontSize:9.5, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(26,16,8,0.26)', pointerEvents:'none' }}>& beyond</div>
       <div className="font-patrick" style={{ position:'absolute', left:642, top:1292, fontSize:11.5, color:'rgba(26,16,8,0.28)', transform:'rotate(1.6deg)', pointerEvents:'none' }}>♥ just for love</div>
       
-      <div className="font-patrick" style={{ position:'absolute', left:1120, top:1220, zIndex: 10, fontSize:22, color:'#4ade80', transform:'rotate(-4deg)', pointerEvents:'none' }}>
+      <div className="font-patrick" style={{ position:'absolute', left:1120, top:1220, zIndex: 10, fontSize:22, color:'#66ba85', transform:'rotate(-4deg)', pointerEvents:'none' }}>
         my wellness app ↘
       </div>
 
-      <div className="font-patrick" style={{ position:'absolute', left:50, top:1540, zIndex: 10, fontSize:19, color:'#f43f5e', transform:'rotate(1deg)', pointerEvents:'none', width: 290, textAlign: 'center', lineHeight: 1.15 }}>
+      <div className="font-patrick" style={{ position:'absolute', left:50, top:1540, zIndex: 10, fontSize:19, color:'#c96173', transform:'rotate(1deg)', pointerEvents:'none', width: 290, textAlign: 'center', lineHeight: 1.15 }}>
         ↑<br/>my short interview series with claremont entrepreneurs
       </div>
 
@@ -763,7 +763,7 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
       transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <img src="/arrow-fat-down.svg" alt="" className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-[2px]" />
-      explore my journey
+      have some time? explore my journey
     </motion.button>
 
     <motion.div
@@ -785,7 +785,7 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
           boxShadow: '0 8px 32px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
         }}
       >
-        Skip to the work
+        in a rush? skip to the work
         <img
           src="/arrow-fat-down.svg"
           alt=""
@@ -913,10 +913,10 @@ const MapAurora: React.FC = () => (
   <div style={{
     position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
     background: [
-      'radial-gradient(ellipse 90% 70% at 15% 25%, rgba(6,182,212,0.22) 0%, transparent 55%)',
-      'radial-gradient(ellipse 70% 60% at 85% 65%, rgba(20,184,166,0.20) 0%, transparent 55%)',
-      'radial-gradient(ellipse 80% 50% at 55% 88%, rgba(132,204,22,0.16) 0%, transparent 55%)',
-      'radial-gradient(ellipse 60% 70% at 38% 10%, rgba(59,130,246,0.16) 0%, transparent 50%)',
+      'radial-gradient(ellipse 90% 70% at 15% 25%, rgba(54,154,171,0.14) 0%, transparent 55%)',
+      'radial-gradient(ellipse 70% 60% at 85% 65%, rgba(59,154,143,0.13) 0%, transparent 55%)',
+      'radial-gradient(ellipse 80% 50% at 55% 88%, rgba(126,167,64,0.10) 0%, transparent 55%)',
+      'radial-gradient(ellipse 60% 70% at 38% 10%, rgba(94,135,202,0.10) 0%, transparent 50%)',
     ].join(','),
   }} />
 );
