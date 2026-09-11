@@ -39,7 +39,7 @@ const ScrollProgress: React.FC = () => {
   return (
     <motion.div
       className="fixed top-0 left-0 right-0 h-[3px] origin-left z-50"
-      style={{ scaleX, background: 'linear-gradient(to right, #a855f7, #14b8a6, #84cc16)' }}
+      style={{ scaleX, background: 'linear-gradient(to right, #0ea5e9, #14b8a6, #84cc16)' }}
     />
   );
 };

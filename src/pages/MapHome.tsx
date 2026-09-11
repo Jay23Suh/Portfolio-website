@@ -47,7 +47,7 @@ const CARDS: CardData[] = [
     id: 'crosscamp', to: '/project-two',
     img: '/Tccs.png', imgFit: 'contain',
     title: 'Cross-campus Staff', desc: 'Staff collaboration fosters a stronger community.',
-    accent: '#6366f1', tag: 'Community', x: 645, y: 222,
+    accent: '#2563eb', tag: 'Community', x: 645, y: 222,
   },
   {
     id: 'intergen', to: '/project-one',
@@ -59,7 +59,7 @@ const CARDS: CardData[] = [
     id: 'edulis', to: '/Edulis',
     img: '/EdulisLogo.png', imgFit: 'contain',
     title: 'Edulis Labs', desc: 'A GTM strategy for a startup challenging norms.',
-    accent: '#a855f7', tag: 'GTM Strategy', x: 1215, y: 350,
+    accent: '#0d9488', tag: 'GTM Strategy', x: 1215, y: 350,
   },
   // ── Row 2: Fork — investing vs operating ─────────────────────────
   {
@@ -72,7 +72,7 @@ const CARDS: CardData[] = [
     id: 'madison', href: 'https://trueventures.com',
     img: '/TVLogo2.jpg', imgFit: 'contain',
     title: 'Madison Reed & True Ventures', desc: 'Data science as part of True Ventures Fellowship.',
-    accent: '#8b5cf6', tag: 'Data Science', x: 570, y: 820, w: 310, h: 245,
+    accent: '#0891b2', tag: 'Data Science', x: 570, y: 820, w: 310, h: 245,
   },
   {
     id: 'verita', href: 'https://verita-ai.com',
@@ -125,7 +125,7 @@ const INFO_CARDS: InfoCardData[] = [
   {
     id: 'about_me',
     body: "HERE IS A LITTLE HISTORY OF ME IN THE ACADEMIC AND PROFESSIONAL (AND FUN) WORLD",
-    accent: '#a855f7',
+    accent: '#0d9488',
     x: 580, y: -10, w: 380, h: 140,
     tilt: -0.8,
   },
@@ -133,7 +133,7 @@ const INFO_CARDS: InfoCardData[] = [
     id: 'college_transition',
     title: 'All of this happened in college.',
     body: "These experiences shaped a deep love for startups both building and investing. I wanted to be in rooms where I could learn fast, move with urgency, and keep humans at the center.",
-    accent: '#6366f1',
+    accent: '#2563eb',
     x: 545, y: 540, w: 450, h: 148,
     tilt: 1.0,
   },
@@ -167,19 +167,19 @@ const CONNECTIONS: ConnectionDef[] = [
   // HCD chain (chronological)
   { from: 'saver',      to: 'sparkathon', color: '#84cc16' },
   { from: 'sparkathon', to: 'crosscamp',  color: '#0ea5e9' },
-  { from: 'crosscamp',  to: 'intergen',   color: '#6366f1' },
+  { from: 'crosscamp',  to: 'intergen',   color: '#2563eb' },
   { from: 'intergen',   to: 'edulis',     color: '#14b8a6' },
   // Investing chain
   { from: 'crater',     to: 'madison',    color: '#10b981' },
   // Bridge → operating
-  { from: 'madison',    to: 'instalily',  color: '#8b5cf6' },
+  { from: 'madison',    to: 'instalily',  color: '#0891b2' },
   // Operating chain
   { from: 'verita',     to: 'instalily',  color: '#f59e0b' },
   // Fun: Frary Tale connected to Sparkathon
   { from: 'sparkathon', to: 'frarytale',  color: '#f43f5e' },
   // Edulis to college and operating
-  { from: 'edulis', to: 'college_transition', color: '#a855f7' },
-  { from: 'edulis', to: 'verita', color: '#a855f7' },
+  { from: 'edulis', to: 'college_transition', color: '#0d9488' },
+  { from: 'edulis', to: 'verita', color: '#0284c7' },
 ];
 
 // ── Story step definitions ────────────────────────────────────────────
@@ -322,13 +322,13 @@ const DOODLES: DoodleItem[] = [
   { type: 'chart_bars', x: 36,   y: 963,  size: 40, color: '#10b981', opacity: 0.22 },  // startup center
   { type: 'camera',     x: 36,   y: 1398, size: 40, color: '#f43f5e', opacity: 0.20 },  // fun center
   // ── Right margin ──────────────────────────────────────────────────
-  { type: 'pencil',     x: 1510, y: 315,  size: 36, color: '#a855f7', opacity: 0.22 },  // HCD right
+  { type: 'pencil',     x: 1510, y: 315,  size: 36, color: '#2563eb', opacity: 0.22 },  // HCD right
   { type: 'plant',      x: 1510, y: 1398, size: 44, color: '#4ade80', opacity: 0.22 },  // fun right
   // ── Flanking college_transition (center y=614) ────────────────────
   { type: 'star',       x: 200,  y: 614,  size: 28, color: '#84cc16', opacity: 0.22 },
   { type: 'lightbulb',  x: 1200, y: 614,  size: 36, color: '#0ea5e9', opacity: 0.22 },
   // ── Startup row inter-card gaps ───────────────────────────────────
-  { type: 'branch',     x: 450,  y: 963,  size: 38, color: '#8b5cf6', opacity: 0.20 },
+  { type: 'branch',     x: 450,  y: 963,  size: 38, color: '#059669', opacity: 0.20 },
   { type: 'gear',       x: 900,  y: 963,  size: 38, color: '#f59e0b', opacity: 0.20 },
   // ── Flanking theme box (center y=1181) ───────────────────────────
   { type: 'rocket',     x: 200,  y: 1181, size: 36, color: '#3b82f6', opacity: 0.20 },
@@ -596,10 +596,10 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
             </marker>
           ))}
           <marker id="ah-indigo" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <polygon points="0,0 0,6 8,3" fill="rgba(99,102,241,0.75)" />
+            <polygon points="0,0 0,6 8,3" fill="rgba(37,99,235,0.75)" />
           </marker>
           <marker id="ah-plum" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <polygon points="0,0 0,6 8,3" fill="rgba(80,60,140,0.70)" />
+            <polygon points="0,0 0,6 8,3" fill="rgba(17,94,89,0.70)" />
           </marker>
         </defs>
 
@@ -616,14 +616,14 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
         {/* Hand-drawn ellipse around HCD row */}
         <path
           d="M 772 158 C 1180 153 1515 228 1517 316 C 1519 402 1185 472 770 473 C 354 474 19 402 21 314 C 23 226 362 155 772 158"
-          stroke="rgba(99,102,241,0.38)" strokeWidth="2.8"
+          stroke="rgba(37,99,235,0.38)" strokeWidth="2.8"
           fill="none" strokeLinecap="round" strokeLinejoin="round"
           {...drawPath('circle')}
         />
 
         {/* Arrow: ellipse bottom → college_transition */}
         <path d="M 772 473 Q 780 506 770 537"
-          stroke="rgba(99,102,241,0.58)" strokeWidth="2"
+          stroke="rgba(37,99,235,0.58)" strokeWidth="2"
           fill="none" strokeLinecap="round"
           markerEnd="url(#ah-indigo)"
           style={fadeEl('circle_arrow')}
@@ -631,7 +631,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
 
         {/* Arrow: college_transition → bracket peak */}
         <path d="M 770 688 Q 782 736 797 780"
-          stroke="rgba(80,60,140,0.52)" strokeWidth="2"
+          stroke="rgba(17,94,89,0.52)" strokeWidth="2"
           fill="none" strokeLinecap="round"
           markerEnd="url(#ah-plum)"
           style={fadeEl('bracket_arrow')}
@@ -639,7 +639,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
 
         {/* Bracket arch */}
         <path d="M 202 818 Q 797 748 1393 818"
-          stroke="rgba(80,60,140,0.42)" strokeWidth="2.5"
+          stroke="rgba(17,94,89,0.42)" strokeWidth="2.5"
           fill="none" strokeLinecap="round"
           {...drawPath('bracket')}
         />
@@ -649,7 +649,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
           const [x1,y1,x2,y2] = coords.split(',').map(Number);
           return (
             <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="rgba(80,60,140,0.32)" strokeWidth="1.8" strokeLinecap="round"
+              stroke="rgba(17,94,89,0.32)" strokeWidth="1.8" strokeLinecap="round"
               style={fadeEl('ticks')}
             />
           );
@@ -657,7 +657,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       </svg>
 
       {/* ── Annotations ──────────────────────────────────────────── */}
-      <div className="font-patrick" style={{ position:'absolute', left:980, top:45, zIndex: 10, fontSize:22, color:'#a855f7', transform:'rotate(4deg)', pointerEvents:'none', opacity: animated ? (visInfo.has('about_me') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined, textAlign: 'center', lineHeight: 1.15 }}>
+      <div className="font-patrick" style={{ position:'absolute', left:980, top:45, zIndex: 10, fontSize:22, color:'#0ea5e9', transform:'rotate(4deg)', pointerEvents:'none', opacity: animated ? (visInfo.has('about_me') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined, textAlign: 'center', lineHeight: 1.15 }}>
         scroll down! ↓<br/>and click each card
       </div>
       <div className="font-patrick" style={{ position:'absolute', left:150, top:460, zIndex: 10, fontSize:22, color:'#ec4899', transform:'rotate(8deg)', pointerEvents:'none', opacity: animated ? (visCards.has('saver') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined }}>
@@ -674,7 +674,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
         <div key={label} className="font-beezee" style={{
           position:'absolute', left:[65,571,976][i], top:800, fontSize:8.5,
           letterSpacing:'0.14em', textTransform:'uppercase', pointerEvents:'none',
-          color:['#10b981cc','#8b5cf6cc','#f59e0bcc'][i],
+          color:['#10b981cc','#0ea5e9cc','#f59e0bcc'][i],
           opacity: animated ? (visSvg.has('labels') ? 1 : 0) : 1,
           transition: animated ? 'opacity 0.5s ease' : undefined,
         }}>
@@ -737,7 +737,7 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
         transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
         I bring a{' '}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-lime-500 animate-gradient relative inline-block before:content-['']">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-teal-400 to-lime-500 animate-gradient relative inline-block before:content-['']">
           human-centered
         </span>{' '}
         approach to find and tackle real problems.
@@ -750,10 +750,10 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
       style={{
         position: 'absolute', bottom: 48,
         left: '8vw', // Align with the asymmetric text padding
-        background: 'rgba(168, 85, 247, 0.16)',
+        background: 'rgba(14, 165, 233, 0.16)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid rgba(168, 85, 247, 0.4)',
+        border: '1px solid rgba(14, 165, 233, 0.4)',
         borderRadius: 999, padding: '12px 28px',
         cursor: 'pointer', fontSize: 15,
         boxShadow: '0 8px 32px rgba(0, 29, 54, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)', // Liquid Glass refraction
@@ -800,7 +800,7 @@ const HeroSection: React.FC<{ onScrollDown: () => void }> = ({ onScrollDown }) =
 
 const hudBtn: React.CSSProperties = {
   width: 34, height: 34, borderRadius: 17, border: 'none',
-  background: 'rgba(99, 102, 241, 0.08)', cursor: 'pointer',
+  background: 'rgba(14, 165, 233, 0.08)', cursor: 'pointer',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   color: 'rgba(0, 29, 54, 0.8)', fontSize: 13,
   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -832,7 +832,7 @@ const MapHUD: React.FC<{ isPlaying: boolean; onPlay: () => void; onShowAll: () =
     <button 
       onClick={onShowAll} 
       style={{ ...hudBtn, width: 'auto', padding: '0 16px', borderRadius: 20, fontSize: 13, background: 'transparent' }}
-      onMouseOver={e => { e.currentTarget.style.background = 'rgba(99, 102, 241, 0.05)'; e.currentTarget.style.transform = 'scale(1.02)' }}
+      onMouseOver={e => { e.currentTarget.style.background = 'rgba(14, 165, 233, 0.05)'; e.currentTarget.style.transform = 'scale(1.02)' }}
       onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'scale(1)' }}
       onMouseDown={e => e.currentTarget.style.transform = 'scale(0.97)'}
       onMouseUp={e => e.currentTarget.style.transform = 'scale(1.02)'}
@@ -913,7 +913,7 @@ const MapAurora: React.FC = () => (
   <div style={{
     position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
     background: [
-      'radial-gradient(ellipse 90% 70% at 15% 25%, rgba(168,85,247,0.22) 0%, transparent 55%)',
+      'radial-gradient(ellipse 90% 70% at 15% 25%, rgba(6,182,212,0.22) 0%, transparent 55%)',
       'radial-gradient(ellipse 70% 60% at 85% 65%, rgba(20,184,166,0.20) 0%, transparent 55%)',
       'radial-gradient(ellipse 80% 50% at 55% 88%, rgba(132,204,22,0.16) 0%, transparent 55%)',
       'radial-gradient(ellipse 60% 70% at 38% 10%, rgba(59,130,246,0.16) 0%, transparent 50%)',
