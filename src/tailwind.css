@@ -2,6 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* shadcn/ui theme variables (HSL channels). Only shadcn components read these; no global element styles. */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 209 100% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 209 100% 11%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 210 10% 40%;
+    --primary: 210 62% 35%;
+    --primary-foreground: 0 0% 100%;
+    --border: 210 20% 88%;
+    --ring: 210 62% 35%;
+    --radius: 0.75rem;
+    --chart-1: 210 62% 35%;   /* navy  #22598f : newer models */
+    --chart-2: 35 85% 43%;    /* amber #c97a10 : thesis models */
+    --chart-3: 210 10% 60%;
+  }
+}
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');

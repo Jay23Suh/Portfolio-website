@@ -12,6 +12,15 @@ module.exports = {
         edu: ['"Edu AU VIC WA NT Arrows"', 'cursive'],
       },
       colors: {
+        // shadcn/ui tokens (see src/tailwind.css)
+        border: 'hsl(var(--border))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
+        muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
+        primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
+        chart: { 1: 'hsl(var(--chart-1))', 2: 'hsl(var(--chart-2))', 3: 'hsl(var(--chart-3))' },
         navy: '#22598f',
         navyDark: '#0a1d34',
         orange: '#ffb01f',

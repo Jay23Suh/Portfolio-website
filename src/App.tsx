@@ -12,6 +12,7 @@ import Ground from './pages/Ground';
 import Coldplay from './pages/Coldplay';
 import MapHome from './pages/MapHome';
 import Work from './pages/Work';
+import ShapeComplexity from './pages/ShapeComplexity';
 import Cursor from './components/Cursor';
 import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
 import { HeaderVisibilityProvider, useHeaderVisibility } from './hooks/useHeaderVisibility';
@@ -100,6 +101,7 @@ const App: React.FC = () => {
               <Route path="/FraryTale" element={<FraryTale />} />
               <Route path="/Ground" element={<Ground />} />
               <Route path="/coldplay" element={<Coldplay />} />
+              <Route path="/shape-complexity" element={<ShapeComplexity />} />
             </Routes>
           </main>
 

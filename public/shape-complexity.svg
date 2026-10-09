@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="A simple circle next to a spiky, irregular shape">
+  <rect width="640" height="360" fill="#001d36"/>
+  <circle cx="190" cy="180" r="92" fill="#ffffff"/>
+  <path fill="#ffffff" d="M450 72 L468 132 L520 96 L500 154 L566 150 L514 190 L572 226 L506 226 L524 290 L470 248 L446 306 L428 244 L372 280 L394 218 L330 206 L390 180 L344 130 L408 144 L404 82 Z"/>
+  <text x="190" y="322" fill="#9fb3c8" font-family="sans-serif" font-size="22" text-anchor="middle">simple</text>
+  <text x="450" y="342" fill="#9fb3c8" font-family="sans-serif" font-size="22" text-anchor="middle">complex?</text>
+</svg>

@@ -94,10 +94,16 @@ const CARDS: CardData[] = [
     accent: '#c96173', tag: 'Storytelling', x: 60, y: 1290, w: 270, h: 235,
   },
   {
+    id: 'maththesis', to: '/shape-complexity',
+    img: '/shape-complexity.svg', imgFit: 'cover',
+    title: 'Shape Complexity', desc: 'Do AI models see shape complexity like people do?',
+    accent: '#22598f', tag: 'Math Thesis', x: 427, y: 1280, w: 270, h: 235,
+  },
+  {
     id: 'coldplay', to: '/coldplay',
     img: '/parachutes.png', imgFit: 'cover',
     title: 'Coldplay', desc: 'My favorite band of all time.',
-    accent: '#c09040', tag: 'Music', x: 630, y: 1318, w: 270, h: 235,
+    accent: '#c09040', tag: 'Music', x: 793, y: 1318, w: 270, h: 235,
   },
   {
     id: 'ground', to: '/Ground',
@@ -230,9 +236,10 @@ const STEPS: StepDef[] = [
   { arrows: [5, 6],                   camera: { cx: 1100, cy: 950,  zoom: 1.4  }, weight: 1.6 },
   // 18 — "A consistent thread"
   { infoCards: ['theme_ai_humans'],   camera: { cx: 770,  cy: 1155, zoom: 1.6  }, weight: 1.3 },
-  // 19-21 — fun row pan left→right
+  // 19-22 — fun row pan left→right
   { cards: ['frarytale'], arrows: [7],camera: { cx: 200,  cy: 1390, zoom: 1.9  }, weight: 1.7 }, // big jump to new row
-  { cards: ['coldplay'],              camera: { cx: 770,  cy: 1435, zoom: 1.9  }, weight: 1.5 },
+  { cards: ['maththesis'],            camera: { cx: 562,  cy: 1430, zoom: 1.9  }, weight: 1.5 },
+  { cards: ['coldplay'],              camera: { cx: 928,  cy: 1435, zoom: 1.9  }, weight: 1.5 },
   { cards: ['ground'],                camera: { cx: 1330, cy: 1390, zoom: 1.9  }, weight: 1.5 },
 ];
 
@@ -334,8 +341,9 @@ const DOODLES: DoodleItem[] = [
   { type: 'rocket',     x: 200,  y: 1181, size: 36, color: '#5e87ca', opacity: 0.20 },
   { type: 'globe',      x: 1200, y: 1181, size: 34, color: '#3b9a8f', opacity: 0.20 },
   // ── Fun row ───────────────────────────────────────────────────────
-  { type: 'music',      x: 480,  y: 1290, size: 46, color: '#c09040', opacity: 0.22 },
-  { type: 'headphones', x: 765,  y: 1302, size: 38, color: '#c09040', opacity: 0.20 },
+  { type: 'magnify',    x: 378,  y: 1300, size: 36, color: '#22598f', opacity: 0.20 },
+  { type: 'headphones', x: 745,  y: 1302, size: 38, color: '#c09040', opacity: 0.20 },
+  { type: 'music',      x: 1126, y: 1455, size: 42, color: '#c09040', opacity: 0.22 },
   { type: 'leaf',       x: 1090, y: 1272, size: 36, color: '#66ba85', opacity: 0.20 },
 ];
 
@@ -377,6 +385,7 @@ const CARD_CONFIGS: Record<string, { tilt: number }> = {
   verita:     { tilt: -2.4 }, madison:    { tilt:  1.1 },
   crater:     { tilt: -1.7 }, frarytale:  { tilt:  2.0 },
   ground:     { tilt: -1.3 }, coldplay:   { tilt:  2.6 },
+  maththesis: { tilt: -1.6 },
 };
 
 // ── Info / narrative card ─────────────────────────────────────────────
@@ -683,7 +692,7 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
       ))}
       {/* Fun row labels */}
       <div className="font-beezee" style={{ position:'absolute', left:65, top:1244, fontSize:9.5, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(26,16,8,0.26)', pointerEvents:'none' }}>& beyond</div>
-      <div className="font-patrick" style={{ position:'absolute', left:642, top:1292, fontSize:11.5, color:'rgba(26,16,8,0.28)', transform:'rotate(1.6deg)', pointerEvents:'none' }}>♥ just for love</div>
+      <div className="font-patrick" style={{ position:'absolute', left:805, top:1292, fontSize:11.5, color:'rgba(26,16,8,0.28)', transform:'rotate(1.6deg)', pointerEvents:'none' }}>♥ just for love</div>
       
       <div className="font-patrick" style={{ position:'absolute', left:1120, top:1220, zIndex: 10, fontSize:22, color:'#66ba85', transform:'rotate(-4deg)', pointerEvents:'none' }}>
         my wellness app ↘
@@ -691,6 +700,10 @@ const MapCanvas: React.FC<VisibleSets & { animated: boolean }> = ({
 
       <div className="font-patrick" style={{ position:'absolute', left:50, top:1540, zIndex: 10, fontSize:19, color:'#c96173', transform:'rotate(1deg)', pointerEvents:'none', width: 290, textAlign: 'center', lineHeight: 1.15 }}>
         ↑<br/>my short interview series with claremont entrepreneurs
+      </div>
+
+      <div className="font-patrick" style={{ position:'absolute', left:417, top:1538, zIndex: 10, fontSize:19, color:'#22598f', transform:'rotate(-1.5deg)', pointerEvents:'none', width: 290, textAlign: 'center', lineHeight: 1.15, opacity: animated ? (visCards.has('maththesis') ? 1 : 0) : 1, transition: animated ? 'opacity 0.5s ease' : undefined }}>
+        ↑<br/>my math thesis! run with newer models
       </div>
 
       {/* Doodles */}
