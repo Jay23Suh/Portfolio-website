@@ -1,0 +1,90 @@
+{
+  "exported_utc": "2026-11-23T19:38:02Z",
+  "pairwise_evals_commit": "b4c3cd16aa79ac3b9d1c5fcb2b982977220269c1",
+  "dataset": {
+    "name": "shape-complexity",
+    "version": "1.0.0",
+    "files": {
+      "pairs.csv": "3f855aaecf2f47e457c8dae33a1480d4cb8c73e68a38b18625a7ea59f6005506",
+      "controls.csv": "51aa41e0b6ae9aa3630f9a17b08eedd1fc5d4eeabd602489af61ceada07bd9c1",
+      "manifest.json": "a2a4b33fb1c51f14f5372fdd18fe752d3e50658d96402127ac594425fbba0cfc"
+    }
+  },
+  "prompt": {
+    "version": "v0",
+    "sha256": "a67960aade01403a9a1ba2f2739133c3117e43508b442479c4bdcf58eb4e3a02"
+  },
+  "runs": {
+    "legacy_claude": {
+      "label": "Claude Sonnet 4.5",
+      "responses_sha256": "e482673ed7129f5277fcd342efb4f91c8099cf95c3281cdbf801bb370eec5af6",
+      "prompt_version": "legacy",
+      "prompt_sha256": null,
+      "temperature": 0.45,
+      "created_utc": null
+    },
+    "legacy_gemini": {
+      "label": "Gemini 2.0 Flash",
+      "responses_sha256": "5951b56731c1c553e70438708d6d0d7c124ff8f1b80993ab225080326293fd4c",
+      "prompt_version": "legacy",
+      "prompt_sha256": null,
+      "temperature": 0.45,
+      "created_utc": null
+    },
+    "legacy_chatgpt": {
+      "label": "ChatGPT 5.2",
+      "responses_sha256": "60e740afc1913be5706f4dc98c5a5c8a4c68ebdae62c41667876c35e064f791d",
+      "prompt_version": "legacy",
+      "prompt_sha256": null,
+      "temperature": 0.45,
+      "created_utc": null
+    },
+    "legacy_grok": {
+      "label": "Grok 4.1 Fast",
+      "responses_sha256": "c7be2d82358c1cb80a0e4e054ad82d251a7d86508fc91027a8f358e32b828e41",
+      "prompt_version": "legacy",
+      "prompt_sha256": null,
+      "temperature": 0.45,
+      "created_utc": null
+    },
+    "anthropic_claude-sonnet-5.5__v0__t0p45": {
+      "label": "Claude Sonnet 5.5",
+      "responses_sha256": "6701e008d73ae8c437ace4326a8c4eeffa9a54b47990ee79714a4ab18cc743b3",
+      "prompt_version": "v0",
+      "prompt_sha256": "a67960aade01403a9a1ba2f2739133c3117e43508b442479c4bdcf58eb4e3a02",
+      "temperature": 0.45,
+      "created_utc": "2026-10-09T00:52:55.482Z"
+    },
+    "google_gemini-3.8-flash__v0__t0p45": {
+      "label": "Gemini 3.8 Flash",
+      "responses_sha256": "e13e6a57a28984340598bffeade8719ba6b149962674be906b07d2b25fda274f",
+      "prompt_version": "v0",
+      "prompt_sha256": "a67960aade01403a9a1ba2f2739133c3117e43508b442479c4bdcf58eb4e3a02",
+      "temperature": 0.45,
+      "created_utc": "2026-10-09T00:52:55.481Z"
+    },
+    "openai_gpt-6.1-sol__v0__t0p45": {
+      "label": "GPT-6.1-sol",
+      "responses_sha256": "c1040d000d371e3a4e3baf0165cc6f657384d255e82058d63412fccaef5edbda",
+      "prompt_version": "v0",
+      "prompt_sha256": "a67960aade01403a9a1ba2f2739133c3117e43508b442479c4bdcf58eb4e3a02",
+      "temperature": 0.45,
+      "created_utc": "2026-10-09T00:52:55.481Z"
+    },
+    "qwen_qwen3.8-27b__v0__t0p45": {
+      "label": "Qwen 3.8 27B",
+      "responses_sha256": "0b0dda41c08e930547e43ed049c9cec1166e4b5b5277057dd785b0676ac82183",
+      "prompt_version": "v0",
+      "prompt_sha256": "a67960aade01403a9a1ba2f2739133c3117e43508b442479c4bdcf58eb4e3a02",
+      "temperature": 0.45,
+      "created_utc": "2026-10-09T00:52:55.482Z"
+    }
+  },
+  "bundle_files": {
+    "summary": "10b10d25d81dad437a78d715ce1fbf5969042de96bd6f394028dc87800b78111",
+    "pairs": "dd20b16848de49a89a1b22037851ec001465bc08c7de6daef1b7bcc4d9124633",
+    "rankings": "45fd248177a553808484bd1ab21f27fdc1412b7936ecc72c164ec7ffff491194",
+    "features": "8d88bf159be3799b02968b36dabb2e27b205041f20a57ff72b9170112305f355"
+  },
+  "images_included": false
+}
