@@ -94,7 +94,7 @@ const CARDS: CardData[] = [
     accent: '#c96173', tag: 'Storytelling', x: 60, y: 1290, w: 270, h: 235,
   },
   {
-    id: 'maththesis', to: '/shape-complexity',
+    id: 'maththesis', to: '/evals',
     img: '/shape-complexity.svg', imgFit: 'cover',
     title: 'Shape Complexity', desc: 'Do AI models see shape complexity like people do?',
     accent: '#22598f', tag: 'Math Thesis', x: 427, y: 1280, w: 270, h: 235,

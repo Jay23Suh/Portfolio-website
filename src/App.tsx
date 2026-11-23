@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
 import Edulis from './pages/Edulis';
 import ProjectOne from './pages/ProjectOne';
@@ -12,7 +12,10 @@ import Ground from './pages/Ground';
 import Coldplay from './pages/Coldplay';
 import MapHome from './pages/MapHome';
 import Work from './pages/Work';
-import ShapeComplexity from './pages/ShapeComplexity';
+import EvalsStory from './pages/evals/EvalsStory';
+import EvalsResults from './pages/evals/EvalsResults';
+import EvalsNotebook from './pages/evals/EvalsNotebook';
+import { StatsProvider } from './lib/evals/stats';
 import Cursor from './components/Cursor';
 import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
 import { HeaderVisibilityProvider, useHeaderVisibility } from './hooks/useHeaderVisibility';
@@ -89,6 +92,7 @@ const App: React.FC = () => {
           <SiteHeader />
 
           <main className="flex-grow w-full">
+            <StatsProvider>
             <Routes>
               <Route path="/" element={<MapHome />} />
               <Route path="/work" element={<Work />} />
@@ -101,8 +105,12 @@ const App: React.FC = () => {
               <Route path="/FraryTale" element={<FraryTale />} />
               <Route path="/Ground" element={<Ground />} />
               <Route path="/coldplay" element={<Coldplay />} />
-              <Route path="/shape-complexity" element={<ShapeComplexity />} />
+              <Route path="/evals" element={<EvalsStory />} />
+              <Route path="/evals/results" element={<EvalsResults />} />
+              <Route path="/evals/notebook" element={<EvalsNotebook />} />
+              <Route path="/shape-complexity" element={<Navigate to="/evals" replace />} />
             </Routes>
+            </StatsProvider>
           </main>
 
           <footer className="w-full bg-opacity-70 text-gray-300 py-6 backdrop-blur-md">
