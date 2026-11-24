@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+
+# Eval explorer shape images: local dev only until Bazazian et al. permit redistribution
+/public/data/evals/shapes/

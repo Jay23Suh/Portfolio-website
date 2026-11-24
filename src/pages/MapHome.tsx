@@ -7,7 +7,7 @@ import { useHeaderVisibility } from '../hooks/useHeaderVisibility';
 // ── Canvas constants ─────────────────────────────────────────────────
 
 const CANVAS_W = 1540;
-const CANVAS_H = 1640;
+const CANVAS_H = 1960;
 const CARD_W   = 255;
 const CARD_H   = 230;
 
@@ -94,7 +94,7 @@ const CARDS: CardData[] = [
     accent: '#c96173', tag: 'Storytelling', x: 60, y: 1290, w: 270, h: 235,
   },
   {
-    id: 'maththesis', to: '/shape-complexity',
+    id: 'maththesis', to: '/evals',
     img: '/shape-complexity.svg', imgFit: 'cover',
     title: 'Shape Complexity', desc: 'Do AI models see shape complexity like people do?',
     accent: '#22598f', tag: 'Math Thesis', x: 427, y: 1280, w: 270, h: 235,
@@ -110,6 +110,19 @@ const CARDS: CardData[] = [
     img: '/Ground.png', imgFit: 'contain',
     title: 'Ground', desc: 'An accessible way to ground ourselves in the present.',
     accent: '#66ba85', tag: 'Wellness', x: 1190, y: 1268, w: 270, h: 235,
+  },
+  // ── Row 4: more evals, branching off the math thesis ─────────────
+  {
+    id: 'proofs', to: '/evals/proofs',
+    img: '/proofs.svg', imgFit: 'cover',
+    title: 'Explanatory Proofs', desc: 'Do AI models agree with mathematicians on which proof explains best?',
+    accent: '#22598f', tag: 'Eval', x: 230, y: 1660, w: 270, h: 235,
+  },
+  {
+    id: 'gambles', to: '/evals/gambles',
+    img: '/gambles.svg', imgFit: 'cover',
+    title: 'Risky Choices', desc: 'Can AI models predict which gamble people pick?',
+    accent: '#22598f', tag: 'Eval', x: 620, y: 1660, w: 270, h: 235,
   },
 ];
 
@@ -186,6 +199,9 @@ const CONNECTIONS: ConnectionDef[] = [
   // Edulis to college and operating
   { from: 'edulis', to: 'college_transition', color: '#30827b' },
   { from: 'edulis', to: 'verita', color: '#317ca2' },
+  // Math thesis → follow-up evals
+  { from: 'maththesis', to: 'proofs',  color: '#22598f' },
+  { from: 'maththesis', to: 'gambles', color: '#22598f' },
 ];
 
 // ── Story step definitions ────────────────────────────────────────────
@@ -239,6 +255,8 @@ const STEPS: StepDef[] = [
   // 19-22 — fun row pan left→right
   { cards: ['frarytale'], arrows: [7],camera: { cx: 200,  cy: 1390, zoom: 1.9  }, weight: 1.7 }, // big jump to new row
   { cards: ['maththesis'],            camera: { cx: 562,  cy: 1430, zoom: 1.9  }, weight: 1.5 },
+  { cards: ['proofs'],  arrows: [10], camera: { cx: 420,  cy: 1680, zoom: 1.6  }, weight: 1.3 },
+  { cards: ['gambles'], arrows: [11], camera: { cx: 650,  cy: 1700, zoom: 1.6  }, weight: 1.2 },
   { cards: ['coldplay'],              camera: { cx: 928,  cy: 1435, zoom: 1.9  }, weight: 1.5 },
   { cards: ['ground'],                camera: { cx: 1330, cy: 1390, zoom: 1.9  }, weight: 1.5 },
 ];
@@ -385,7 +403,8 @@ const CARD_CONFIGS: Record<string, { tilt: number }> = {
   verita:     { tilt: -2.4 }, madison:    { tilt:  1.1 },
   crater:     { tilt: -1.7 }, frarytale:  { tilt:  2.0 },
   ground:     { tilt: -1.3 }, coldplay:   { tilt:  2.6 },
-  maththesis: { tilt: -1.6 },
+  maththesis: { tilt: -1.6 }, proofs:     { tilt:  1.4 },
+  gambles:    { tilt: -1.2 },
 };
 
 // ── Info / narrative card ─────────────────────────────────────────────
