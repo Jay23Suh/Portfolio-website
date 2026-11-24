@@ -125,10 +125,127 @@ export interface Manifest {
   images_included: boolean;
 }
 
+// ── Proofs eval (proofs.json) ─────────────────────────────────────────────────
+
+/** A correlation with an optional 95% interval (same shape as CI, but always has a value). */
+export interface R {
+  value: number;
+  ci_low: number | null;
+  ci_high: number | null;
+}
+
+/** Proof name -> Bradley-Terry score (mean 0; each source has its own scale). */
+export type ProofScores = Record<string, number>;
+
+export interface ProofModel {
+  slug: string;
+  label: string;
+  family: string;
+  model_id: string;
+  settings_note: string | null;
+  left_rate: number;
+  order_consistency: number;
+  invalid_rate: number;
+  pearson: R;
+  spearman: R;
+  pearson_controlling_length: number;
+  pearson_at_160: number;
+  judgements: number;
+  scores: ProofScores;
+}
+
+export interface ProofBaseline {
+  label: string; // 'Shorter wins' | 'Longer wins' | 'Random'
+  pearson: R;
+  spearman: R;
+  pearson_controlling_length: number;
+  pearson_at_160: number;
+  judgements: number;
+  scores: ProofScores;
+}
+
+export interface ProofsBundle {
+  eval: 'proofs';
+  settings: string;
+  proofs: string[];
+  /** Typeset height of each proof image in pixels, the stand-in for proof length. */
+  length_px: Record<string, number>;
+  humans: { label: string; judgements: number; scores: ProofScores; split_half_r: number; groups_of_8_r: number };
+  models: ProofModel[];
+  baselines: ProofBaseline[];
+  caveats: string[];
+}
+
+// ── Gambles eval (gambles.json) ───────────────────────────────────────────────
+
+export interface GambleMetrics {
+  majority_accuracy: R;
+  ev_agreement: R;
+  mse: R;
+  pearson_r: R;
+  problems: number;
+}
+
+export interface GambleMode extends GambleMetrics {
+  settings_note: string | null;
+  order_consistency: number;
+  first_position_rate: number | null;
+}
+
+export interface PredictorPoint {
+  row: number;
+  human: number;
+  model: number;
+}
+
+export interface GambleModel {
+  slug: string;
+  label: string;
+  family: string;
+  participant?: GambleMode | null;
+  predictor?: GambleMode | null;
+  predictor_points: PredictorPoint[];
+}
+
+export interface GambleOutcome {
+  p: number;
+  x: number;
+}
+
+/** One choices13k problem for the story's guess-then-reveal example. */
+export interface GambleExample {
+  row: number;
+  people: number;
+  human_b: number;
+  gamble_a: GambleOutcome[];
+  gamble_b: GambleOutcome[];
+  predictions: { slug: string; model_b: number }[];
+}
+
+export interface GamblesBundle {
+  eval: 'gambles';
+  settings: string;
+  condition: string;
+  problems: number;
+  ceiling: { oracle_accuracy: number; mse_floor: number };
+  published: { label: string; accuracy: number }[];
+  models: GambleModel[];
+  baselines: (GambleMetrics & { label: string })[];
+  baselines_all_problems: (GambleMetrics & { label: string })[];
+  caveats: string[];
+  example?: GambleExample | null;
+  /** More sample problems, each picked by a fixed rule in the export (`kind` says which). */
+  examples?: (GambleExample & { kind: ExampleKind })[];
+}
+
+export type ExampleKind = 'near_unanimous' | 'even_split' | 'sure_thing' | 'against_average' | 'models_wrong';
+
 export interface BundleFiles {
   summary: Summary;
   pairs: PairsBundle;
   rankings: Rankings;
   features: Features;
   manifest: Manifest;
+  proofs: ProofsBundle;
+  gambles: GamblesBundle;
 }

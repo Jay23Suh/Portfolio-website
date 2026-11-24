@@ -9,6 +9,7 @@ import {
   EvalsNav,
   GroupLegend,
   Loading,
+  MoreEvals,
   NEWER,
   P,
   Section,
@@ -352,6 +353,7 @@ const EvalsResults: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-12 text-[#001d36]">
       <EvalsNav statsDefault={false} />
+      <MoreEvals current="shapes" view="results" className="-mt-6 mb-8" />
       <Section title="The results" kicker="Layer 2" wide>
         <P className="max-w-3xl">
           Eight AI models judged 264 pairs of shapes on four questions. These charts show how often they agree with people,

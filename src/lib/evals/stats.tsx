@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CI, Est } from './types';
+import type { CI, Est, R } from './types';
 
 // "Show the statistics": one switch for every chart. Until the reader flips it, each page uses its
 // own default (off on the story, on in the notebook); once flipped, the choice applies everywhere
@@ -57,3 +57,22 @@ export function fmtEst(e: Est, stats: boolean, asPct = true, nd = 1): string {
 /** Plain-language sentence for an agreement value. */
 export const plainAgreement = (x: number | null | undefined) =>
   x === null || x === undefined ? '—' : `agrees with people ${Math.round(100 * x)}% of the time`;
+
+/** A signed number with a Unicode minus: "−0.60". */
+export const num = (x: number | null | undefined, nd = 2) =>
+  x === null || x === undefined || Number.isNaN(x) ? '—' : x.toFixed(nd).replace(/^-/, '\u2212');
+
+/** "0.87" (plain) or "0.87 [0.85, 0.87]" (statistics on). Correlations, 2 decimals. */
+export function fmtR(c: R | null | undefined, stats: boolean, nd = 2): string {
+  if (!c || c.value === null || c.value === undefined) return '—';
+  if (!stats || c.ci_low === null || c.ci_high === null) return num(c.value, nd);
+  return `${num(c.value, nd)} [${num(c.ci_low, nd)}, ${num(c.ci_high, nd)}]`;
+}
+
+/** "0.62 to 0.78" or "0.78" when both ends round the same. */
+export function range(xs: number[], f: (x: number) => string, sep = ' to '): string {
+  if (!xs.length) return '—';
+  const lo = f(Math.min(...xs));
+  const hi = f(Math.max(...xs));
+  return lo === hi ? lo : `${lo}${sep}${hi}`;
+}

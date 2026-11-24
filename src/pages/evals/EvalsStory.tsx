@@ -11,6 +11,7 @@ import {
   EvalsNav,
   GroupLegend,
   Loading,
+  MoreEvals,
   P,
   Section,
   ShapeTile,
@@ -386,6 +387,7 @@ const EvalsStory: React.FC = () => {
           </Button>
         </div>
       </Section>
+      <MoreEvals current="shapes" view="story" className="max-w-3xl -mt-8" />
     </div>
   );
 };

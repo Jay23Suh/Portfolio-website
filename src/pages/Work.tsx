@@ -50,6 +50,8 @@ const LANES: Lane[] = [
     label: 'Fun & Personal',
     items: [
       { title: 'Shape Complexity: Humans vs. AI', tag: 'Math Thesis', desc: 'Do AI models see shape complexity the way people do? My thesis experiment, rerun six months later.', accent: '#4a7fb5', logo: '/shape-complexity.svg', fit: 'contain', to: '/evals' },
+      { title: 'Explanatory Proofs: Mathematicians vs. AI', tag: 'Eval', desc: 'Do AI models agree with 38 mathematicians on which proof explains best?', accent: '#4a7fb5', logo: '/proofs.svg', fit: 'contain', to: '/evals/proofs' },
+      { title: 'Risky Choices: People vs. AI', tag: 'Eval', desc: 'Can AI models predict which gamble people pick, or do they just take the higher average?', accent: '#4a7fb5', logo: '/gambles.svg', fit: 'contain', to: '/evals/gambles' },
       { title: 'Frary Tale', tag: 'Storytelling', desc: 'Documenting journeys with Claremont Entrepreneurs for the community.', accent: '#c96173', logo: '/FraryTale_resized_16_9.png', to: '/FraryTale' },
       { title: 'Ground', tag: 'Wellness', desc: 'An accessible, light-hearted way to ground ourselves in the present.', accent: '#66ba85', logo: '/Ground.png', fit: 'contain', to: '/Ground' },
       { title: 'Coldplay', tag: 'Music', desc: 'My favorite band of all time.', accent: '#ccb94e', logo: '/parachutes.png', to: '/coldplay' },
