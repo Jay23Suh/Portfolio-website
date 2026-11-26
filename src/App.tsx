@@ -19,6 +19,8 @@ import ProofsStory from './pages/evals/ProofsStory';
 import ProofsResults from './pages/evals/ProofsResults';
 import GamblesStory from './pages/evals/GamblesStory';
 import GamblesResults from './pages/evals/GamblesResults';
+import ChoicesStory from './pages/evals/ChoicesStory';
+import ChoicesResults from './pages/evals/ChoicesResults';
 import { StatsProvider } from './lib/evals/stats';
 import Cursor from './components/Cursor';
 import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
@@ -116,6 +118,8 @@ const App: React.FC = () => {
               <Route path="/evals/proofs/results" element={<ProofsResults />} />
               <Route path="/evals/gambles" element={<GamblesStory />} />
               <Route path="/evals/gambles/results" element={<GamblesResults />} />
+              <Route path="/evals/choices" element={<ChoicesStory />} />
+              <Route path="/evals/choices/results" element={<ChoicesResults />} />
               <Route path="/shape-complexity" element={<Navigate to="/evals" replace />} />
             </Routes>
             </StatsProvider>
