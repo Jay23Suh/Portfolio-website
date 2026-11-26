@@ -124,6 +124,12 @@ const CARDS: CardData[] = [
     title: 'Risky Choices', desc: 'Can AI models predict which gamble people pick?',
     accent: '#22598f', tag: 'Eval', x: 620, y: 1660, w: 270, h: 235,
   },
+  {
+    id: 'choices', to: '/evals/choices',
+    img: '/choices.svg', imgFit: 'cover',
+    title: 'Fast & Slow Choices', desc: 'Do AI models choose like people, or just remember the studies?',
+    accent: '#22598f', tag: 'Eval', x: 1010, y: 1660, w: 270, h: 235,
+  },
 ];
 
 // ── Info / narrative card data ────────────────────────────────────────
@@ -202,6 +208,7 @@ const CONNECTIONS: ConnectionDef[] = [
   // Math thesis → follow-up evals
   { from: 'maththesis', to: 'proofs',  color: '#22598f' },
   { from: 'maththesis', to: 'gambles', color: '#22598f' },
+  { from: 'maththesis', to: 'choices', color: '#22598f' },
 ];
 
 // ── Story step definitions ────────────────────────────────────────────
@@ -257,6 +264,7 @@ const STEPS: StepDef[] = [
   { cards: ['maththesis'],            camera: { cx: 562,  cy: 1430, zoom: 1.9  }, weight: 1.5 },
   { cards: ['proofs'],  arrows: [10], camera: { cx: 420,  cy: 1680, zoom: 1.6  }, weight: 1.3 },
   { cards: ['gambles'], arrows: [11], camera: { cx: 650,  cy: 1700, zoom: 1.6  }, weight: 1.2 },
+  { cards: ['choices'], arrows: [12], camera: { cx: 1040, cy: 1700, zoom: 1.6  }, weight: 1.2 },
   { cards: ['coldplay'],              camera: { cx: 928,  cy: 1435, zoom: 1.9  }, weight: 1.5 },
   { cards: ['ground'],                camera: { cx: 1330, cy: 1390, zoom: 1.9  }, weight: 1.5 },
 ];
@@ -404,7 +412,7 @@ const CARD_CONFIGS: Record<string, { tilt: number }> = {
   crater:     { tilt: -1.7 }, frarytale:  { tilt:  2.0 },
   ground:     { tilt: -1.3 }, coldplay:   { tilt:  2.6 },
   maththesis: { tilt: -1.6 }, proofs:     { tilt:  1.4 },
-  gambles:    { tilt: -1.2 },
+  gambles:    { tilt: -1.2 }, choices:    { tilt:  1.1 },
 };
 
 // ── Info / narrative card ─────────────────────────────────────────────
