@@ -240,6 +240,80 @@ export interface GamblesBundle {
 
 export type ExampleKind = 'near_unanimous' | 'even_split' | 'sure_thing' | 'against_average' | 'models_wrong';
 
+// ── Thinking, Fast and Slow eval (tfs.json) ──────────────────────────────────
+
+export type TfsVersion = 'canonical' | 'isomorph' | 'new_numbers' | 'deep';
+export type TfsStudyKey =
+  | 'asian_disease'
+  | 'lost_ticket'
+  | 'jacket_calculator'
+  | 'organ_default'
+  | 'anchoring'
+  | 'endowment'
+  | 'loss_aversion'
+  | 'prospect'
+  | 'regret_action'
+  | 'regret_exception';
+
+/** effect: points between two conditions; index: anchoring index; ratio: 1 = none; gap: points from people. */
+export interface TfsStudyInfo {
+  label: string;
+  chapter: string;
+  kind: 'effect' | 'index' | 'ratio' | 'gap';
+  null: number | null;
+  measure: string;
+  people: string;
+  source: string;
+}
+
+export interface TfsStudyRow extends R {
+  study: TfsStudyKey;
+  variant: TfsVersion;
+  human: number | null;
+}
+
+export interface TfsShare {
+  value: number | null;
+  k: number;
+  n: number;
+  ci_low: number | null;
+  ci_high: number | null;
+}
+
+export interface TfsModel {
+  slug: string;
+  label: string;
+  model_id: string;
+  studies: TfsStudyRow[];
+  diffs: (R & { study: TfsStudyKey; diff: string })[];
+  probe: Partial<Record<TfsVersion, { value: number; n: number; ci_low: number; ci_high: number }>>;
+  probe_sources: { id: string; study: TfsStudyKey; variant: TfsVersion; recognized: boolean | null; source: string }[];
+  /** Share of answers whose text names a study or effect: non-disguised items vs disguised items. */
+  awareness: { first: TfsShare; deep: TfsShare };
+  first_position_rate: number | null;
+  invalid_rate: number | null;
+}
+
+export interface TfsWording {
+  stem: string;
+  option_a: string;
+  option_b: string;
+}
+
+export interface TfsBundle {
+  eval: 'tfs';
+  exported_utc: string;
+  prompt_version: string;
+  cost_usd: number;
+  questions: number;
+  settings: string;
+  versions: Record<TfsVersion, string>;
+  studies: Record<TfsStudyKey, TfsStudyInfo>;
+  models: TfsModel[];
+  examples: { study: TfsStudyKey; condition: string; canonical: TfsWording; deep: TfsWording }[];
+  caveats: string[];
+}
+
 export interface BundleFiles {
   summary: Summary;
   pairs: PairsBundle;
@@ -248,4 +322,5 @@ export interface BundleFiles {
   manifest: Manifest;
   proofs: ProofsBundle;
   gambles: GamblesBundle;
+  tfs: TfsBundle;
 }

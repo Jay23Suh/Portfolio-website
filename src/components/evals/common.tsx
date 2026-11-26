@@ -77,11 +77,12 @@ export const EvalsNav: React.FC<{ statsDefault: boolean; tabs?: NavTab[] }> = ({
   );
 };
 
-export type EvalKey = 'shapes' | 'proofs' | 'gambles';
+export type EvalKey = 'shapes' | 'proofs' | 'gambles' | 'choices';
 const EVALS: { key: EvalKey; label: string; story: string; results: string }[] = [
   { key: 'shapes', label: 'Shapes', story: '/evals', results: '/evals/results' },
   { key: 'proofs', label: 'Proofs', story: '/evals/proofs', results: '/evals/proofs/results' },
   { key: 'gambles', label: 'Gambles', story: '/evals/gambles', results: '/evals/gambles/results' },
+  { key: 'choices', label: 'Choices', story: '/evals/choices', results: '/evals/choices/results' },
 ];
 
 /** Start a page at the top: the app has no scroll restoration, and the story buttons sit at the bottom. */

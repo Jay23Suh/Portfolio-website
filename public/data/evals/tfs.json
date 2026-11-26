@@ -1,0 +1,2447 @@
+{
+  "eval": "tfs",
+  "exported_utc": "2026-11-26T07:21:16Z",
+  "prompt_version": "t1",
+  "cost_usd": 4.17,
+  "questions": 93,
+  "settings": "Each prompt is a fresh call with a short survey-style system prompt; 3 runs, both option orders; reasoning effort low, max 2,000 tokens, via OpenRouter, November 2026.",
+  "versions": {
+    "canonical": "Original wording",
+    "isomorph": "Reworded",
+    "new_numbers": "New numbers",
+    "deep": "Disguised"
+  },
+  "studies": {
+    "asian_disease": {
+      "label": "Lives saved vs. lives lost",
+      "chapter": "34",
+      "kind": "effect",
+      "null": 0,
+      "measure": "Extra share picking the sure option when it's described as lives saved (points)",
+      "people": "72% picked the sure option when it was described as lives saved, 22% when described as lives lost.",
+      "source": "Tversky & Kahneman 1981"
+    },
+    "lost_ticket": {
+      "label": "Lost cash vs. lost ticket",
+      "chapter": "32",
+      "kind": "effect",
+      "null": 0,
+      "measure": "Extra share buying a ticket after losing cash than after losing the ticket (points)",
+      "people": "88% would still buy a ticket after losing $10 cash; 46% after losing the $10 ticket.",
+      "source": "Tversky & Kahneman 1981"
+    },
+    "jacket_calculator": {
+      "label": "Saving $5 on a cheap vs. an expensive item",
+      "chapter": "32",
+      "kind": "effect",
+      "null": 0,
+      "measure": "Extra share making the trip when the saving is on the cheap item (points)",
+      "people": "68% would drive 20 minutes to save $5 on a $15 item; 29% to save $5 on a $125 item.",
+      "source": "Tversky & Kahneman 1981"
+    },
+    "organ_default": {
+      "label": "Defaults",
+      "chapter": "34",
+      "kind": "effect",
+      "null": 0,
+      "measure": "Extra share choosing the option when it's pre-selected (points)",
+      "people": "About 82% stayed organ donors when that was the default; about 42% opted in when it wasn't.",
+      "source": "Johnson & Goldstein 2003"
+    },
+    "anchoring": {
+      "label": "Anchoring on a random number",
+      "chapter": "11",
+      "kind": "index",
+      "null": 0,
+      "measure": "Anchoring index: how far the estimate moves, as a share of the gap between the two anchors",
+      "people": "After a wheel stopped at 10 or 65, median guesses were 25% and 45% (index 0.36).",
+      "source": "Tversky & Kahneman 1974"
+    },
+    "endowment": {
+      "label": "Owning something makes it worth more",
+      "chapter": "27",
+      "kind": "ratio",
+      "null": 1,
+      "measure": "Selling price ÷ buying price (1 = no gap)",
+      "people": "Mug owners asked a median $7.12; non-owners offered $2.87 (ratio 2.48).",
+      "source": "Kahneman, Knetsch & Thaler 1990"
+    },
+    "loss_aversion": {
+      "label": "Losses loom larger",
+      "chapter": "26",
+      "kind": "ratio",
+      "null": 1,
+      "measure": "Smallest acceptable win ÷ the loss, on a 50-50 bet (1 = no loss aversion)",
+      "people": "Most people want to win about twice what they could lose (ratio about 2).",
+      "source": "Kahneman 2011; Tversky & Kahneman 1992"
+    },
+    "prospect": {
+      "label": "Choosing between gambles",
+      "chapter": "26, 29",
+      "kind": "gap",
+      "null": null,
+      "measure": "Average gap to the share of people picking each option (points; 0 = matches people)",
+      "people": "Kahneman & Tversky's 1979 problems: the certainty effect, the reflection effect and the fourfold pattern.",
+      "source": "Kahneman & Tversky 1979"
+    },
+    "regret_action": {
+      "label": "Regret: acting vs. not acting",
+      "chapter": "32",
+      "kind": "gap",
+      "null": null,
+      "measure": "Gap to the share of people picking each person (points; 0 = matches people)",
+      "people": "92% said the person who acted (switched stocks) feels worse.",
+      "source": "Kahneman & Tversky 1982"
+    },
+    "regret_exception": {
+      "label": "Regret: breaking a routine",
+      "chapter": "32",
+      "kind": "gap",
+      "null": null,
+      "measure": "Gap to the share of people picking each person (points; 0 = matches people)",
+      "people": "88% said the person who broke their routine feels worse.",
+      "source": "Kahneman & Miller 1986"
+    }
+  },
+  "models": [
+    {
+      "slug": "claude-haiku-5.5",
+      "label": "Claude Haiku 5.5",
+      "model_id": "openrouter/anthropic/claude-haiku-5.5",
+      "studies": [
+        {
+          "study": "anchoring",
+          "variant": "canonical",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "variant": "deep",
+          "human": 0.3636,
+          "value": -0.3289,
+          "ci_low": -1.3158,
+          "ci_high": 0.6579
+        },
+        {
+          "study": "anchoring",
+          "variant": "isomorph",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": -0.0455,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "variant": "new_numbers",
+          "human": 0.3636,
+          "value": -0.1667,
+          "ci_low": -0.25,
+          "ci_high": 0.3125
+        },
+        {
+          "study": "asian_disease",
+          "variant": "canonical",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "deep",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "new_numbers",
+          "human": 50.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "endowment",
+          "variant": "canonical",
+          "human": 2.4808,
+          "value": 1.1111,
+          "ci_low": 0.9091,
+          "ci_high": 1.6923
+        },
+        {
+          "study": "endowment",
+          "variant": "deep",
+          "human": 2.4808,
+          "value": 3.0769,
+          "ci_low": 1.25,
+          "ci_high": 5.0
+        },
+        {
+          "study": "endowment",
+          "variant": "isomorph",
+          "human": 2.4808,
+          "value": 0.6667,
+          "ci_low": 0.5333,
+          "ci_high": 0.9167
+        },
+        {
+          "study": "endowment",
+          "variant": "new_numbers",
+          "human": 2.4808,
+          "value": 1.25,
+          "ci_low": 1.1667,
+          "ci_high": 1.4545
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "human": 39.0,
+          "value": 50.0,
+          "ci_low": 0.0,
+          "ci_high": 100.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "human": 39.0,
+          "value": -16.6667,
+          "ci_low": -66.6667,
+          "ci_high": 33.3333
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "human": 39.0,
+          "value": 66.6667,
+          "ci_low": 16.6667,
+          "ci_high": 100.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "new_numbers",
+          "human": 39.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "human": 2.0,
+          "value": 1.2,
+          "ci_low": 1.2,
+          "ci_high": 1.5
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "deep",
+          "human": 2.0,
+          "value": 1.8333,
+          "ci_low": 1.4167,
+          "ci_high": 2.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "human": 2.0,
+          "value": 1.0,
+          "ci_low": 1.0,
+          "ci_high": 1.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "new_numbers",
+          "human": 2.0,
+          "value": 1.2,
+          "ci_low": 1.2,
+          "ci_high": 2.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "deep",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "new_numbers",
+          "human": 42.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "canonical",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "deep",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "isomorph",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "prospect",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 39.3095,
+          "ci_low": 35.7381,
+          "ci_high": 44.0714
+        },
+        {
+          "study": "prospect",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 86.0,
+          "ci_low": 86.0,
+          "ci_high": 86.0
+        },
+        {
+          "study": "prospect",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 42.4583,
+          "ci_low": 38.2917,
+          "ci_high": 46.625
+        },
+        {
+          "study": "prospect",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 54.875,
+          "ci_low": 54.875,
+          "ci_high": 54.875
+        },
+        {
+          "study": "regret_action",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 42.0,
+          "ci_low": 8.6667,
+          "ci_high": 75.3333
+        },
+        {
+          "study": "regret_action",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 15.0,
+          "ci_low": 15.0,
+          "ci_high": 15.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        }
+      ],
+      "diffs": [
+        {
+          "study": "asian_disease",
+          "diff": "canonical - deep",
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "jacket_calculator",
+          "diff": "canonical - deep",
+          "value": 66.6667,
+          "ci_low": 0.0,
+          "ci_high": 133.3333
+        },
+        {
+          "study": "anchoring",
+          "diff": "canonical - deep",
+          "value": 0.3289,
+          "ci_low": -0.6579,
+          "ci_high": 1.3158
+        },
+        {
+          "study": "endowment",
+          "diff": "canonical - deep",
+          "value": -1.9658,
+          "ci_low": -3.75,
+          "ci_high": 0.0
+        },
+        {
+          "study": "loss_aversion",
+          "diff": "canonical - deep",
+          "value": -0.6333,
+          "ci_low": -0.8,
+          "ci_high": -0.1667
+        }
+      ],
+      "probe": {
+        "canonical": {
+          "value": 0.75,
+          "n": 24,
+          "ci_low": 0.551,
+          "ci_high": 0.88
+        },
+        "isomorph": {
+          "value": 0.5882,
+          "n": 17,
+          "ci_low": 0.3601,
+          "ci_high": 0.7839
+        },
+        "deep": {
+          "value": 0.5455,
+          "n": 11,
+          "ci_low": 0.2801,
+          "ci_high": 0.7873
+        }
+      },
+      "probe_sources": [
+        {
+          "id": "probe:anchoring:wheel:canonical",
+          "study": "anchoring",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1974), \"Judgment under Uncertainty: Heuristics and Biases\" (anchoring-and-adjustment heuristic)"
+        },
+        {
+          "id": "probe:anchoring:wheel:deep",
+          "study": "anchoring",
+          "variant": "deep",
+          "recognized": false,
+          "source": "Closest match is the anchoring effect (Tversky & Kahneman, 1974; Jacowitz & Kahneman, 1995), not this specific item."
+        },
+        {
+          "id": "probe:anchoring:wheel:isomorph",
+          "study": "anchoring",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "The format is a version of the anchoring-and-adjustment paradigm from Tversky and Kahneman (1974, \"Judgment under Uncertainty: Heuristics and Biases,\" *Science*), which used a rigged wheel of fortune and a question about the percentage of African nations in the UN. I don't recognize this specific stamp question from published work."
+        },
+        {
+          "id": "probe:asian_disease:disease:canonical",
+          "study": "asian_disease",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (the Asian disease problem; framing effect)"
+        },
+        {
+          "id": "probe:asian_disease:disease:deep",
+          "study": "asian_disease",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the Asian disease problem; framing effect / certainty effect"
+        },
+        {
+          "id": "probe:asian_disease:disease:isomorph",
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the \"Asian disease\" framing problem, in its gain-frame \"rescue plan\" variant. It is discussed as a framing effect in Kahneman's *Thinking, Fast and Slow* (2011)."
+        },
+        {
+          "id": "probe:endowment:mug:canonical",
+          "study": "endowment",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman, Knetsch & Thaler (1990); the endowment effect"
+        },
+        {
+          "id": "probe:endowment:mug:deep",
+          "study": "endowment",
+          "variant": "deep",
+          "recognized": false,
+          "source": "Closest match is the endowment effect, as in Kahneman, Knetsch & Thaler (1990) and Knetsch & Sinden (1984); this exact poster wording is not from any source I can identify."
+        },
+        {
+          "id": "probe:endowment:mug:isomorph",
+          "study": "endowment",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman, Knetsch & Thaler (1990), \"Experimental Tests of the Endowment Effect and the Coase Theorem\"; Thaler (1980) on the endowment effect; Knetsch & Sinden (1984) for the related lottery-ticket study."
+        },
+        {
+          "id": "probe:jacket_calculator:trip:canonical",
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The framing of decisions and the psychology of choice,\" Science; also the relative-savings effect discussed in Kahneman (2011)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:deep",
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky and Kahneman (1981), \"The framing of decisions and the psychology of choice,\" *Science*, which uses a $15 calculator versus $125 jacket, both $5 savings at a store 10 minutes away. Thaler's (1980, 1985) work on mental accounting and transaction utility also covers this effect. I don't recognize this exact laptop-and-case wording, only the structure."
+        },
+        {
+          "id": "probe:jacket_calculator:trip:isomorph",
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The framing of decisions and the psychology of choice\" (calculator/jacket problem); related to Thaler's mental accounting"
+        },
+        {
+          "id": "probe:loss_aversion:coin:canonical",
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "None for this exact wording. It belongs to a family of coin-toss gambles used to study risk and loss aversion, such as Tversky and Kahneman (1979, 1992) on prospect theory and loss aversion, and Rabin (2000) on calibration and small-stakes risk aversion."
+        },
+        {
+          "id": "probe:loss_aversion:coin:deep",
+          "study": "loss_aversion",
+          "variant": "deep",
+          "recognized": false,
+          "source": "Loss aversion, after Tversky & Kahneman (1992), cumulative prospect theory, with λ ≈ 2.25"
+        },
+        {
+          "id": "probe:loss_aversion:coin:isomorph",
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "none"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:canonical",
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The framing of decisions and the psychology of choice\"; also discussed as mental accounting (Thaler, 1985)"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:deep",
+          "study": "lost_ticket",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The framing of decisions and the psychology of choice\" (the lost ticket/lost cash problem); related to mental accounting (Thaler) and the sunk cost effect"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:isomorph",
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky and Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice,\" which used a theater-ticket version (lost ticket vs. lost $10 bill) to show mental accounting effects. This museum version is a close variant. Related: Thaler (1980) on mental accounting and sunk costs."
+        },
+        {
+          "id": "probe:organ_default:donor:canonical",
+          "study": "organ_default",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\", Science; also the default effect discussed in Thaler & Sunstein, *Nudge* (2008)"
+        },
+        {
+          "id": "probe:organ_default:donor:deep",
+          "study": "organ_default",
+          "variant": "deep",
+          "recognized": false,
+          "source": "Not this exact problem. Closest related work is the default effect and status quo bias, e.g., Madrian & Shea (2001) on 401(k) default enrollment and Johnson & Goldstein (2003) on organ donation defaults."
+        },
+        {
+          "id": "probe:organ_default:donor:isomorph",
+          "study": "organ_default",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\"; the default effect (status quo bias), also discussed in Thaler & Sunstein (2008), *Nudge*"
+        },
+        {
+          "id": "probe:prospect:P11:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" Econometrica (the certainty effect / risk aversion over gains; also discussed in Kahneman's *Thinking, Fast and Slow*)"
+        },
+        {
+          "id": "probe:prospect:P12:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory; the reflection effect (risk-seeking in losses)"
+        },
+        {
+          "id": "probe:prospect:P14:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "none (structurally similar to Kahneman & Tversky 1979 gamble items; no exact match identified)"
+        },
+        {
+          "id": "probe:prospect:P14:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "none (closest related work: Kahneman & Tversky 1979, the possibility effect in prospect theory)"
+        },
+        {
+          "id": "probe:prospect:P14neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "none (closest related: Kahneman & Tversky's 1979 prospect theory work on certainty effects and loss framing; the expected-value-equal gamble-vs-sure-loss format is a general pattern, not a named effect I can attribute to this exact item)"
+        },
+        {
+          "id": "probe:prospect:P14neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "Not this exact problem. Closely related to Kahneman & Tversky (1979), \"Prospect Theory,\" on the certainty effect and loss aversion."
+        },
+        {
+          "id": "probe:prospect:P1:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" Econometrica; the Allais paradox (Allais, 1953)"
+        },
+        {
+          "id": "probe:prospect:P1:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman and Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" *Econometrica*, a close variant of their certainty-effect problem, which is itself a version of Allais's common-consequence paradox (Allais, 1953). The radio-station framing is my reconstruction, not a wording I can confirm from the original."
+        },
+        {
+          "id": "probe:prospect:P2:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk\" (Allais-type common-ratio effect; also the certainty effect)"
+        },
+        {
+          "id": "probe:prospect:P2:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "none. It resembles the Allais-type lottery pairs in Kahneman and Tversky (1979), but I don't recognize this specific wording or numbers."
+        },
+        {
+          "id": "probe:prospect:P3:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" Econometrica; the certainty effect"
+        },
+        {
+          "id": "probe:prospect:P3:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (structurally similar to the certainty effect in Kahneman & Tversky, 1979, but not the same problem)"
+        },
+        {
+          "id": "probe:prospect:P3:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman and Tversky (1979), prospect theory / certainty effect"
+        },
+        {
+          "id": "probe:prospect:P3neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory; reflection effect (certainty effect)"
+        },
+        {
+          "id": "probe:prospect:P3neg:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory and the reflection effect; this is a close structural analogue, not a verified exact match."
+        },
+        {
+          "id": "probe:prospect:P3neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman and Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" *Econometrica*, on the certainty effect and reflection effect in the loss domain. The numbers match their 80%-chance-of-losing-$4,000 versus sure-loss-of-$3,000 problem, though the landlord and plumbing framing is different from what I recall of theirs."
+        },
+        {
+          "id": "probe:prospect:P4:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman and Tversky (1979), prospect theory; the common ratio effect"
+        },
+        {
+          "id": "probe:prospect:P4:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "none. It resembles the standard risky-choice items from prospect theory research (e.g., Kahneman & Tversky 1979), but I can't match this exact pair of gambles to a specific published source."
+        },
+        {
+          "id": "probe:prospect:P4neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory (common-ratio and reflection effects); exact numbers not confirmed"
+        },
+        {
+          "id": "probe:prospect:P4neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": false,
+          "source": "none (structurally similar to prospect theory loss-domain problems, e.g., Kahneman & Tversky 1979; Tversky & Kahneman 1992, but not an exact match)"
+        },
+        {
+          "id": "probe:prospect:P7:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1979/1992), prospect theory and the certainty effect"
+        },
+        {
+          "id": "probe:prospect:P7neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "Closest related work is Kahneman & Tversky (1979, prospect theory) and Tversky & Kahneman (1992), on the certainty effect and reflection effect in the loss domain; the exact problem is not recognized."
+        },
+        {
+          "id": "probe:prospect:P8:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "None for this exact problem. Closest related work: Kahneman & Tversky (1979), prospect theory and probability weighting; Tversky & Kahneman (1992), cumulative prospect theory."
+        },
+        {
+          "id": "probe:prospect:P8neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": false,
+          "source": "none (general resemblance to expected-value-matched lottery pairs in prospect theory research, e.g., Kahneman & Tversky, 1979)"
+        },
+        {
+          "id": "probe:regret_action:paul_george:canonical",
+          "study": "regret_action",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "This resembles the Paul and George problem used in research on regret and the action-inaction (omission-commission) asymmetry, often attributed to Kahneman and Miller (1986) and related work by Kahneman and Tversky. I'm not certain of the exact original citation, so please verify it before relying on it."
+        },
+        {
+          "id": "probe:regret_action:paul_george:deep",
+          "study": "regret_action",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"Mr. Crane and Mr. Tees\" problem, and related action-versus-inaction regret work such as Gilovich & Medvec (1995). I recognize the structure, not this exact wording."
+        },
+        {
+          "id": "probe:regret_action:paul_george:isomorph",
+          "study": "regret_action",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Gilovich & Medvec (1995), action vs. inaction regret (close variant; exact wording not recognized)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman and Miller (1986), \"Norm theory: Comparing reality to its alternatives,\" and related work by Kahneman and Tversky (1982) on the simulation heuristic. I'm fairly confident the Mr. Jones/Mr. Smith hitchhiker vignette and its regret-as-exception-to-the-norm finding come from this literature, but I can't verify the exact wording of the vignette from memory."
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:deep",
+          "study": "regret_exception",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The simulation heuristic\"; Kahneman & Miller (1986), norm theory (counterfactual/regret asymmetry for deviations from routine)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:isomorph",
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982) and Kahneman & Miller (1986), the \"norm theory\" / action-deviation effect in counterfactual regret"
+        },
+        {
+          "id": "probe:regret_exception:route:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The simulation heuristic\"; Kahneman & Miller (1986), norm theory (the abnormality/counterfactual effect). I can't confirm the exact vignette wording from memory."
+        }
+      ],
+      "awareness": {
+        "first": {
+          "value": 0.2895,
+          "k": 132,
+          "n": 456,
+          "ci_low": 0.2497,
+          "ci_high": 0.3327
+        },
+        "deep": {
+          "value": 0.098,
+          "k": 10,
+          "n": 102,
+          "ci_low": 0.0541,
+          "ci_high": 0.1711
+        }
+      },
+      "first_position_rate": 0.4977,
+      "invalid_rate": 0.0
+    },
+    {
+      "slug": "claude-sonnet-5.5",
+      "label": "Claude Sonnet 5.5",
+      "model_id": "openrouter/anthropic/claude-sonnet-5.5",
+      "studies": [
+        {
+          "study": "anchoring",
+          "variant": "canonical",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "variant": "deep",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": -1.9737,
+          "ci_high": 0.6579
+        },
+        {
+          "study": "anchoring",
+          "variant": "isomorph",
+          "human": 0.3636,
+          "value": -0.0273,
+          "ci_low": -0.0545,
+          "ci_high": 0.0545
+        },
+        {
+          "study": "anchoring",
+          "variant": "new_numbers",
+          "human": 0.3636,
+          "value": 0.25,
+          "ci_low": -0.1667,
+          "ci_high": 0.4167
+        },
+        {
+          "study": "asian_disease",
+          "variant": "canonical",
+          "human": 50.0,
+          "value": 33.3333,
+          "ci_low": 0.0,
+          "ci_high": 66.6667
+        },
+        {
+          "study": "asian_disease",
+          "variant": "deep",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "new_numbers",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "endowment",
+          "variant": "canonical",
+          "human": 2.4808,
+          "value": 1.5,
+          "ci_low": 1.25,
+          "ci_high": 1.7143
+        },
+        {
+          "study": "endowment",
+          "variant": "deep",
+          "human": 2.4808,
+          "value": 1.2963,
+          "ci_low": 1.0,
+          "ci_high": 1.8182
+        },
+        {
+          "study": "endowment",
+          "variant": "isomorph",
+          "human": 2.4808,
+          "value": 0.8,
+          "ci_low": 0.6667,
+          "ci_high": 0.9
+        },
+        {
+          "study": "endowment",
+          "variant": "new_numbers",
+          "human": 2.4808,
+          "value": 2.0833,
+          "ci_low": 1.7143,
+          "ci_high": 2.1667
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "human": 39.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "human": 39.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "human": 39.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "new_numbers",
+          "human": 39.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "human": 2.0,
+          "value": 1.375,
+          "ci_low": 1.2,
+          "ci_high": 1.5
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "deep",
+          "human": 2.0,
+          "value": 1.25,
+          "ci_low": 1.2083,
+          "ci_high": 1.4167
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "human": 2.0,
+          "value": 1.1,
+          "ci_low": 1.05,
+          "ci_high": 1.1
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "new_numbers",
+          "human": 2.0,
+          "value": 1.6,
+          "ci_low": 1.45,
+          "ci_high": 1.6
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "deep",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "new_numbers",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "canonical",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "deep",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "isomorph",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "prospect",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 32.6429,
+          "ci_low": 29.0238,
+          "ci_high": 37.4048
+        },
+        {
+          "study": "prospect",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 52.6667,
+          "ci_low": 47.6667,
+          "ci_high": 69.3333
+        },
+        {
+          "study": "prospect",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 32.875,
+          "ci_low": 30.7917,
+          "ci_high": 37.0417
+        },
+        {
+          "study": "prospect",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 41.125,
+          "ci_low": 34.875,
+          "ci_high": 47.375
+        },
+        {
+          "study": "regret_action",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 15.0,
+          "ci_low": 15.0,
+          "ci_high": 15.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        }
+      ],
+      "diffs": [
+        {
+          "study": "asian_disease",
+          "diff": "canonical - deep",
+          "value": 33.3333,
+          "ci_low": 0.0,
+          "ci_high": 66.6667
+        },
+        {
+          "study": "jacket_calculator",
+          "diff": "canonical - deep",
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "diff": "canonical - deep",
+          "value": 0.0,
+          "ci_low": -0.6579,
+          "ci_high": 1.9737
+        },
+        {
+          "study": "endowment",
+          "diff": "canonical - deep",
+          "value": 0.2037,
+          "ci_low": -0.4167,
+          "ci_high": 0.5
+        },
+        {
+          "study": "loss_aversion",
+          "diff": "canonical - deep",
+          "value": 0.125,
+          "ci_low": -0.125,
+          "ci_high": 0.25
+        }
+      ],
+      "probe": {
+        "canonical": {
+          "value": 1.0,
+          "n": 24,
+          "ci_low": 0.862,
+          "ci_high": 1.0
+        },
+        "isomorph": {
+          "value": 1.0,
+          "n": 17,
+          "ci_low": 0.8157,
+          "ci_high": 1.0
+        },
+        "deep": {
+          "value": 0.6364,
+          "n": 11,
+          "ci_low": 0.3538,
+          "ci_high": 0.8483
+        }
+      },
+      "probe_sources": [
+        {
+          "id": "probe:anchoring:wheel:canonical",
+          "study": "anchoring",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1974), anchoring-and-adjustment effect (wheel of fortune, African countries in the UN)"
+        },
+        {
+          "id": "probe:anchoring:wheel:deep",
+          "study": "anchoring",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (the exact problem is unfamiliar, but it resembles the anchoring effect from Tversky & Kahneman, 1974)"
+        },
+        {
+          "id": "probe:anchoring:wheel:isomorph",
+          "study": "anchoring",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1974), anchoring and adjustment (wheel of fortune, UN African countries study); the stamp question itself is a variant I don't recognize specifically."
+        },
+        {
+          "id": "probe:asian_disease:disease:canonical",
+          "study": "asian_disease",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the \"Asian disease problem\" (framing effect, prospect theory)"
+        },
+        {
+          "id": "probe:asian_disease:disease:deep",
+          "study": "asian_disease",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the Asian disease problem, which demonstrates the framing effect."
+        },
+        {
+          "id": "probe:asian_disease:disease:isomorph",
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), Asian disease problem / framing effect (job-loss adaptation)"
+        },
+        {
+          "id": "probe:endowment:mug:canonical",
+          "study": "endowment",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Endowment effect mug experiments (Kahneman, Knetsch & Thaler, 1990; also Knetsch, 1989)"
+        },
+        {
+          "id": "probe:endowment:mug:deep",
+          "study": "endowment",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Endowment effect (Kahneman, Knetsch & Thaler, 1990/1991; Thaler, 1980)"
+        },
+        {
+          "id": "probe:endowment:mug:isomorph",
+          "study": "endowment",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Endowment effect, Kahneman, Knetsch & Thaler (1990) coffee mug experiments"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:canonical",
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), jacket/calculator problem (mental accounting, framing effect)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:deep",
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the jacket/calculator problem (mental accounting; Thaler's transaction utility)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:isomorph",
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), the jacket/calculator problem (relative vs. absolute savings, mental accounting/framing)"
+        },
+        {
+          "id": "probe:loss_aversion:coin:canonical",
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory / loss aversion; Kahneman (2011), *Thinking, Fast and Slow*"
+        },
+        {
+          "id": "probe:loss_aversion:coin:deep",
+          "study": "loss_aversion",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979) prospect theory, loss aversion, mixed 50/50 gambles"
+        },
+        {
+          "id": "probe:loss_aversion:coin:isomorph",
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Loss aversion in the 50/50 gamble, Kahneman & Tversky (1979) prospect theory; Samuelson (1963) \"Risk and uncertainty: a fallacy of large numbers\""
+        },
+        {
+          "id": "probe:lost_ticket:ticket:canonical",
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981, 1984) lost ticket vs. lost cash problem; mental accounting (Thaler)"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:deep",
+          "study": "lost_ticket",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981) lost ticket/lost cash problem; mental accounting (Thaler), sunk cost effect"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:isomorph",
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), lost ticket vs. lost cash problem (mental accounting/framing); Kahneman & Tversky (1984)"
+        },
+        {
+          "id": "probe:organ_default:donor:canonical",
+          "study": "organ_default",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\"; the default effect, as discussed in Thaler & Sunstein's *Nudge* (2008)"
+        },
+        {
+          "id": "probe:organ_default:donor:deep",
+          "study": "organ_default",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (the general default effect / status quo bias, Johnson & Goldstein 2003; Thaler & Sunstein 2008)"
+        },
+        {
+          "id": "probe:organ_default:donor:isomorph",
+          "study": "organ_default",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\"; the default effect / Thaler & Sunstein, Nudge (2008)"
+        },
+        {
+          "id": "probe:prospect:P11:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory: An Analysis of Decision under Risk (reflection effect / framing)"
+        },
+        {
+          "id": "probe:prospect:P12:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory. This is the framing and reflection effect, and also appears in Tversky & Kahneman (1981)."
+        },
+        {
+          "id": "probe:prospect:P14:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory, small-probability gain item (0.001 chance of 5,000 vs. 5 for sure)"
+        },
+        {
+          "id": "probe:prospect:P14:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky 1979, prospect theory (overweighting of small probabilities; the $5 sure vs. 0.001 chance of $5,000 item)"
+        },
+        {
+          "id": "probe:prospect:P14neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory: An Analysis of Decision under Risk (the probabilistic insurance / overweighting of small probabilities problem)"
+        },
+        {
+          "id": "probe:prospect:P14neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory; the small-probability insurance example (overweighting of small probabilities)"
+        },
+        {
+          "id": "probe:prospect:P1:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 1; Allais paradox / certainty effect (Allais, 1953)"
+        },
+        {
+          "id": "probe:prospect:P1:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory (certainty effect); Allais paradox (Allais 1953)"
+        },
+        {
+          "id": "probe:prospect:P2:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory (certainty effect / Allais paradox variant)"
+        },
+        {
+          "id": "probe:prospect:P2:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory, a variant of the Allais paradox (1953), certainty effect"
+        },
+        {
+          "id": "probe:prospect:P3:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory; certainty effect"
+        },
+        {
+          "id": "probe:prospect:P3:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (resembles the certainty effect in Kahneman & Tversky, 1979, prospect theory, but not this exact problem)"
+        },
+        {
+          "id": "probe:prospect:P3:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory: An Analysis of Decision under Risk (certainty effect; related to the Allais paradox)"
+        },
+        {
+          "id": "probe:prospect:P3neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory; reflection effect"
+        },
+        {
+          "id": "probe:prospect:P3neg:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (similar in format to the prospect theory loss-domain gambles, Kahneman & Tversky 1979, but not a specific item I can identify)"
+        },
+        {
+          "id": "probe:prospect:P3neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky 1979, prospect theory (reflection effect / risk seeking for losses)"
+        },
+        {
+          "id": "probe:prospect:P4:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory; certainty effect / common ratio effect (Allais-type paradox)"
+        },
+        {
+          "id": "probe:prospect:P4:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky 1979, prospect theory (common ratio effect, Allais paradox family)"
+        },
+        {
+          "id": "probe:prospect:P4neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory; common ratio effect and reflection effect"
+        },
+        {
+          "id": "probe:prospect:P4neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory (common ratio effect and reflection effect)"
+        },
+        {
+          "id": "probe:prospect:P7:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky 1979, Prospect Theory (common ratio effect)"
+        },
+        {
+          "id": "probe:prospect:P7neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory; common ratio effect and reflection effect"
+        },
+        {
+          "id": "probe:prospect:P8:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory: common ratio effect (the $6,000 at 0.001 vs $3,000 at 0.002 problem)"
+        },
+        {
+          "id": "probe:prospect:P8neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), prospect theory (probabilistic insurance and small-probability problems)"
+        },
+        {
+          "id": "probe:regret_action:paul_george:canonical",
+          "study": "regret_action",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The Psychology of Preferences\"; Kahneman & Miller (1986) norm theory; action/inaction effect in regret"
+        },
+        {
+          "id": "probe:regret_action:paul_george:deep",
+          "study": "regret_action",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982) and Kahneman & Miller (1986) on regret and the action effect, the stock-switching scenario. The ramen version is a close variant, not an exact match."
+        },
+        {
+          "id": "probe:regret_action:paul_george:isomorph",
+          "study": "regret_action",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The psychology of preferences\" (George and Paul stock example); Kahneman & Miller (1986) norm theory; the action effect in regret research"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986), norm theory; exceptionality/routine effect in regret research (Kahneman & Tversky 1982)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:deep",
+          "study": "regret_exception",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986), norm theory; Kahneman & Tversky (1982) on counterfactual regret and exceptional behavior. This exact wording is not one I recall."
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:isomorph",
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986) norm theory; Kahneman & Tversky (1982) on the exceptionality effect in regret. The bike wording itself is a close variant, not an exact match."
+        },
+        {
+          "id": "probe:regret_exception:route:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986) norm theory; Kahneman & Tversky (1982) simulation heuristic, the counterfactual \"exceptional vs. routine\" effect"
+        }
+      ],
+      "awareness": {
+        "first": {
+          "value": 0.5088,
+          "k": 232,
+          "n": 456,
+          "ci_low": 0.463,
+          "ci_high": 0.5544
+        },
+        "deep": {
+          "value": 0.3137,
+          "k": 32,
+          "n": 102,
+          "ci_low": 0.2318,
+          "ci_high": 0.4091
+        }
+      },
+      "first_position_rate": 0.5274,
+      "invalid_rate": 0.0
+    },
+    {
+      "slug": "claude-opus-5.5",
+      "label": "Claude Opus 5.5",
+      "model_id": "openrouter/anthropic/claude-opus-5.5",
+      "studies": [
+        {
+          "study": "anchoring",
+          "variant": "canonical",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "variant": "deep",
+          "human": 0.3636,
+          "value": 0.6579,
+          "ci_low": 0.0,
+          "ci_high": 1.3158
+        },
+        {
+          "study": "anchoring",
+          "variant": "isomorph",
+          "human": 0.3636,
+          "value": -0.0909,
+          "ci_low": -0.0909,
+          "ci_high": 0.0
+        },
+        {
+          "study": "anchoring",
+          "variant": "new_numbers",
+          "human": 0.3636,
+          "value": 0.0,
+          "ci_low": -0.125,
+          "ci_high": 0.125
+        },
+        {
+          "study": "asian_disease",
+          "variant": "canonical",
+          "human": 50.0,
+          "value": 100.0,
+          "ci_low": 100.0,
+          "ci_high": 100.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "deep",
+          "human": 50.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "human": 50.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "asian_disease",
+          "variant": "new_numbers",
+          "human": 50.0,
+          "value": 100.0,
+          "ci_low": 100.0,
+          "ci_high": 100.0
+        },
+        {
+          "study": "endowment",
+          "variant": "canonical",
+          "human": 2.4808,
+          "value": 2.3333,
+          "ci_low": 2.0,
+          "ci_high": 2.3333
+        },
+        {
+          "study": "endowment",
+          "variant": "deep",
+          "human": 2.4808,
+          "value": 2.0,
+          "ci_low": 1.3333,
+          "ci_high": 2.25
+        },
+        {
+          "study": "endowment",
+          "variant": "isomorph",
+          "human": 2.4808,
+          "value": 1.5,
+          "ci_low": 1.3636,
+          "ci_high": 1.75
+        },
+        {
+          "study": "endowment",
+          "variant": "new_numbers",
+          "human": 2.4808,
+          "value": 2.3333,
+          "ci_low": 2.0,
+          "ci_high": 2.3333
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "human": 39.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "human": 39.0,
+          "value": 100.0,
+          "ci_low": 100.0,
+          "ci_high": 100.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "human": 39.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "jacket_calculator",
+          "variant": "new_numbers",
+          "human": 39.0,
+          "value": 16.6667,
+          "ci_low": 0.0,
+          "ci_high": 50.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "human": 2.0,
+          "value": 1.5,
+          "ci_low": 1.25,
+          "ci_high": 1.5
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "deep",
+          "human": 2.0,
+          "value": 1.8333,
+          "ci_low": 1.6667,
+          "ci_high": 2.0
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "human": 2.0,
+          "value": 1.2,
+          "ci_low": 1.1,
+          "ci_high": 1.2
+        },
+        {
+          "study": "loss_aversion",
+          "variant": "new_numbers",
+          "human": 2.0,
+          "value": 1.5,
+          "ci_low": 1.2,
+          "ci_high": 1.8
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "deep",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "lost_ticket",
+          "variant": "new_numbers",
+          "human": 42.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "canonical",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "deep",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "organ_default",
+          "variant": "isomorph",
+          "human": 40.0,
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0
+        },
+        {
+          "study": "prospect",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 29.7381,
+          "ci_low": 29.7381,
+          "ci_high": 31.6429
+        },
+        {
+          "study": "prospect",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 86.0,
+          "ci_low": 86.0,
+          "ci_high": 86.0
+        },
+        {
+          "study": "prospect",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 33.625,
+          "ci_low": 33.625,
+          "ci_high": 33.625
+        },
+        {
+          "study": "prospect",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 43.125,
+          "ci_low": 38.2083,
+          "ci_high": 49.375
+        },
+        {
+          "study": "regret_action",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_action",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 8.0,
+          "ci_low": 8.0,
+          "ci_high": 8.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "canonical",
+          "human": 0.0,
+          "value": 15.0,
+          "ci_low": 15.0,
+          "ci_high": 15.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "deep",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        },
+        {
+          "study": "regret_exception",
+          "variant": "new_numbers",
+          "human": 0.0,
+          "value": 12.0,
+          "ci_low": 12.0,
+          "ci_high": 12.0
+        }
+      ],
+      "diffs": [
+        {
+          "study": "asian_disease",
+          "diff": "canonical - deep",
+          "value": 100.0,
+          "ci_low": 100.0,
+          "ci_high": 100.0
+        },
+        {
+          "study": "jacket_calculator",
+          "diff": "canonical - deep",
+          "value": -83.3333,
+          "ci_low": -100.0,
+          "ci_high": -50.0
+        },
+        {
+          "study": "anchoring",
+          "diff": "canonical - deep",
+          "value": -0.6579,
+          "ci_low": -1.3158,
+          "ci_high": 0.0
+        },
+        {
+          "study": "endowment",
+          "diff": "canonical - deep",
+          "value": 0.3333,
+          "ci_low": 0.0,
+          "ci_high": 1.0
+        },
+        {
+          "study": "loss_aversion",
+          "diff": "canonical - deep",
+          "value": -0.3333,
+          "ci_low": -0.7,
+          "ci_high": -0.1667
+        },
+        {
+          "study": "asian_disease",
+          "diff": "canonical - isomorph",
+          "value": 83.3333,
+          "ci_low": 50.0,
+          "ci_high": 100.0
+        }
+      ],
+      "probe": {
+        "canonical": {
+          "value": 1.0,
+          "n": 24,
+          "ci_low": 0.862,
+          "ci_high": 1.0
+        },
+        "isomorph": {
+          "value": 1.0,
+          "n": 17,
+          "ci_low": 0.8157,
+          "ci_high": 1.0
+        },
+        "deep": {
+          "value": 0.7273,
+          "n": 11,
+          "ci_low": 0.4343,
+          "ci_high": 0.9025
+        }
+      },
+      "probe_sources": [
+        {
+          "id": "probe:anchoring:wheel:canonical",
+          "study": "anchoring",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1974), \"Judgment under Uncertainty: Heuristics and Biases\" (anchoring effect)"
+        },
+        {
+          "id": "probe:anchoring:wheel:deep",
+          "study": "anchoring",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Anchoring effect (Tversky & Kahneman 1974; Ariely, Loewenstein & Prelec 2003). This is a close structural variant, not the exact item."
+        },
+        {
+          "id": "probe:anchoring:wheel:isomorph",
+          "study": "anchoring",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1974), anchoring effect (wheel-of-fortune paradigm); the stamp item itself is unfamiliar"
+        },
+        {
+          "id": "probe:asian_disease:disease:canonical",
+          "study": "asian_disease",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice,\" Science; the Asian Disease Problem / framing effect"
+        },
+        {
+          "id": "probe:asian_disease:disease:deep",
+          "study": "asian_disease",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"Asian disease problem\" (framing effect)"
+        },
+        {
+          "id": "probe:asian_disease:disease:isomorph",
+          "study": "asian_disease",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"Asian disease problem\" framing effect; plant/jobs variant from Bazerman (1984)"
+        },
+        {
+          "id": "probe:endowment:mug:canonical",
+          "study": "endowment",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman, Knetsch & Thaler (1990), \"Experimental Tests of the Endowment Effect and the Coase Theorem,\" Journal of Political Economy (the endowment effect mug experiment; also described in Thaler's *Misbehaving* and Kahneman's *Thinking, Fast and Slow*)"
+        },
+        {
+          "id": "probe:endowment:mug:deep",
+          "study": "endowment",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Endowment effect, WTA elicitation (Kahneman, Knetsch & Thaler 1990; Knetsch 1989; Thaler 1980). This exact poster scenario is not recognized."
+        },
+        {
+          "id": "probe:endowment:mug:isomorph",
+          "study": "endowment",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman, Knetsch & Thaler (1990), the endowment effect (mug experiments)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:canonical",
+          "study": "jacket_calculator",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (mental accounting / jacket-calculator problem)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:deep",
+          "study": "jacket_calculator",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"jacket and calculator\" problem (mental accounting / relative thinking)"
+        },
+        {
+          "id": "probe:jacket_calculator:trip:isomorph",
+          "study": "jacket_calculator",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (jacket/calculator problem; mental accounting / topical account framing)"
+        },
+        {
+          "id": "probe:loss_aversion:coin:canonical",
+          "study": "loss_aversion",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman 2011, *Thinking, Fast and Slow* (loss aversion; Kahneman & Tversky prospect theory)"
+        },
+        {
+          "id": "probe:loss_aversion:coin:deep",
+          "study": "loss_aversion",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Loss aversion mixed-gamble elicitation, from Kahneman & Tversky 1979 and Tversky & Kahneman 1992; popularized in Kahneman 2011, *Thinking, Fast and Slow*"
+        },
+        {
+          "id": "probe:loss_aversion:coin:isomorph",
+          "study": "loss_aversion",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman 2011 (*Thinking, Fast and Slow*); loss aversion, Kahneman & Tversky 1979 / Tversky & Kahneman 1992"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:canonical",
+          "study": "lost_ticket",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (mental accounting / framing effect)"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:deep",
+          "study": "lost_ticket",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (lost ticket / lost cash theater problem; mental accounting, Thaler 1985)"
+        },
+        {
+          "id": "probe:lost_ticket:ticket:isomorph",
+          "study": "lost_ticket",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Tversky & Kahneman (1981), \"The Framing of Decisions and the Psychology of Choice\" (lost ticket/lost $10 bill problem; mental accounting, Thaler 1985/1999)"
+        },
+        {
+          "id": "probe:organ_default:donor:canonical",
+          "study": "organ_default",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\" Science; the default effect / status quo bias"
+        },
+        {
+          "id": "probe:organ_default:donor:deep",
+          "study": "organ_default",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (closest paradigm: default effect / status quo bias, e.g., Johnson, Bellman & Lohse 2002; Johnson & Goldstein 2003)"
+        },
+        {
+          "id": "probe:organ_default:donor:isomorph",
+          "study": "organ_default",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Johnson & Goldstein (2003), \"Do Defaults Save Lives?\" *Science*; the default effect in organ donation"
+        },
+        {
+          "id": "probe:prospect:P11:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory,\" Econometrica, Problem 11 (isolation effect / reference dependence / framing)"
+        },
+        {
+          "id": "probe:prospect:P12:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory,\" Problems 11–12 (isolation/reflection effect, framing)"
+        },
+        {
+          "id": "probe:prospect:P14:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory,\" Problem 14 (overweighting of small probabilities / fourfold pattern)"
+        },
+        {
+          "id": "probe:prospect:P14:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 14 (overweighting of small probabilities / fourfold pattern)"
+        },
+        {
+          "id": "probe:prospect:P14neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 14′ (overweighting of small probabilities / fourfold pattern, insurance)"
+        },
+        {
+          "id": "probe:prospect:P14neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 14′ (overweighting of small probabilities / fourfold pattern of risk attitudes)"
+        },
+        {
+          "id": "probe:prospect:P1:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 1; certainty effect / Allais paradox (Allais, 1953)"
+        },
+        {
+          "id": "probe:prospect:P1:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 1; Allais paradox / certainty effect (Allais, 1953)"
+        },
+        {
+          "id": "probe:prospect:P2:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory,\" Problems 3–4 (Allais paradox / certainty effect / common-consequence effect)"
+        },
+        {
+          "id": "probe:prospect:P2:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 2; Allais paradox / certainty effect"
+        },
+        {
+          "id": "probe:prospect:P3:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, the certainty effect (related to the Allais paradox)"
+        },
+        {
+          "id": "probe:prospect:P3:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (structurally similar to the certainty effect, Kahneman & Tversky 1979)"
+        },
+        {
+          "id": "probe:prospect:P3:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory: An Analysis of Decision under Risk,\" Econometrica (Problem 3; the certainty effect, related to the Allais paradox)"
+        },
+        {
+          "id": "probe:prospect:P3neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, the reflection effect"
+        },
+        {
+          "id": "probe:prospect:P3neg:deep",
+          "study": "prospect",
+          "variant": "deep",
+          "recognized": false,
+          "source": "none (closest are Kahneman & Tversky 1979, the reflection effect, and Tversky & Kahneman 1992, the fourfold pattern)"
+        },
+        {
+          "id": "probe:prospect:P3neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), \"Prospect Theory,\" Problem 3′ (reflection effect)"
+        },
+        {
+          "id": "probe:prospect:P4:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 4; common ratio effect / certainty effect (related to the Allais paradox)"
+        },
+        {
+          "id": "probe:prospect:P4:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 4 (common ratio effect / certainty effect)"
+        },
+        {
+          "id": "probe:prospect:P4neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, reflection effect (negative version of the $4,000/0.20 vs $3,000/0.25 problem)"
+        },
+        {
+          "id": "probe:prospect:P4neg:isomorph",
+          "study": "prospect",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, reflection effect (negative version of Problem 4)"
+        },
+        {
+          "id": "probe:prospect:P7:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 7 (common ratio effect)"
+        },
+        {
+          "id": "probe:prospect:P7neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 7′ (reflection effect)"
+        },
+        {
+          "id": "probe:prospect:P8:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory, Problem 8 (common-ratio effect / possibility effect)"
+        },
+        {
+          "id": "probe:prospect:P8neg:canonical",
+          "study": "prospect",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1979), Prospect Theory (Problem 8′, reflection effect)"
+        },
+        {
+          "id": "probe:regret_action:paul_george:canonical",
+          "study": "regret_action",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The Psychology of Preferences,\" Scientific American (also discussed in \"The Simulation Heuristic\"); the action effect / omission bias in regret."
+        },
+        {
+          "id": "probe:regret_action:paul_george:deep",
+          "study": "regret_action",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The psychology of preferences\" (Paul/George stock problem); the action effect in regret, also known as the action–inaction asymmetry"
+        },
+        {
+          "id": "probe:regret_action:paul_george:isomorph",
+          "study": "regret_action",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The Psychology of Preferences,\" Scientific American (action/inaction effect in regret; Mr. Paul and Mr. George example)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986), Norm Theory: exceptionality effect in counterfactual thinking (related to Kahneman & Tversky, 1982, simulation heuristic)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:deep",
+          "study": "regret_exception",
+          "variant": "deep",
+          "recognized": true,
+          "source": "Kahneman & Tversky 1982; Kahneman & Miller 1986 (norm theory / exceptionality effect in regret)"
+        },
+        {
+          "id": "probe:regret_exception:hitchhiker:isomorph",
+          "study": "regret_exception",
+          "variant": "isomorph",
+          "recognized": true,
+          "source": "Kahneman & Tversky (1982), \"The psychology of preferences,\" Scientific American; Kahneman & Miller (1986), norm theory (exceptionality effect in regret)"
+        },
+        {
+          "id": "probe:regret_exception:route:canonical",
+          "study": "regret_exception",
+          "variant": "canonical",
+          "recognized": true,
+          "source": "Kahneman & Miller (1986), Norm Theory (exceptionality effect / counterfactual thinking); related to Kahneman & Tversky (1982), the simulation heuristic"
+        }
+      ],
+      "awareness": {
+        "first": {
+          "value": 0.1601,
+          "k": 73,
+          "n": 456,
+          "ci_low": 0.1293,
+          "ci_high": 0.1966
+        },
+        "deep": {
+          "value": 0.049,
+          "k": 5,
+          "n": 102,
+          "ci_low": 0.0211,
+          "ci_high": 0.1097
+        }
+      },
+      "first_position_rate": 0.4977,
+      "invalid_rate": 0.0
+    }
+  ],
+  "examples": [
+    {
+      "study": "asian_disease",
+      "condition": "gain",
+      "canonical": {
+        "stem": "Imagine that the U.S. is preparing for the outbreak of an unusual Asian disease, which is expected to kill 600 people. Two alternative programs to combat the disease have been proposed. Assume that the exact scientific estimates of the consequences of the programs are as follows. Which program would you favor?",
+        "option_a": "If this one is adopted, 200 people will be saved.",
+        "option_b": "If this one is adopted, there is a one-third probability that all 600 people will be saved and a two-thirds probability that no people will be saved."
+      },
+      "deep": {
+        "stem": "Your neighborhood's community orchard has 120 apple trees, and a fungal blight has reached it. Without treatment every tree will die this season. An arborist offers two treatments and says her estimates are reliable. As a member of the orchard committee, which do you vote for?",
+        "option_a": "Treatment Q: 45 of the 120 trees will be saved.",
+        "option_b": "Treatment R: a 37.5% chance that all 120 trees will be saved, and a 62.5% chance that none will be saved."
+      }
+    },
+    {
+      "study": "anchoring",
+      "condition": "high",
+      "canonical": {
+        "stem": "A wheel of fortune with numbers from 0 to 100 was just spun in front of you and stopped at 65. First: is the percentage of African nations among the members of the United Nations higher or lower than 65? Then give your best estimate of the percentage of African nations among the members of the United Nations.",
+        "option_a": "",
+        "option_b": ""
+      },
+      "deep": {
+        "stem": "You are filling in a volunteer form at your local library. The first box asks for your locker number, and you write 88. The next box asks: \"Roughly how many books do you think this branch lends out on a typical day?\" What number do you write?",
+        "option_a": "",
+        "option_b": ""
+      }
+    },
+    {
+      "study": "jacket_calculator",
+      "condition": "cheap",
+      "canonical": {
+        "stem": "Imagine that you are about to buy a jacket for $125 and a calculator for $15. The salesperson tells you that the calculator you wish to buy is on sale for $10 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+        "option_a": "Yes",
+        "option_b": "No"
+      },
+      "deep": {
+        "stem": "You are at an electronics store buying a laptop for $1,200 and a protective case for $30. A friend texts that the exact same case is $20 at a shop a 15-minute walk away. Do you walk over to buy the case there?",
+        "option_a": "Yes",
+        "option_b": "No"
+      }
+    }
+  ],
+  "caveats": [
+    "6 answers per question (3 repeats × both option orders). One answer either way moves a rate by about 17 points. Repeated calls to one model measure how much its answers vary, not a population of people.",
+    "Zero-width intervals mean the model answered the same way every time, not that the value is exact: 0 out of 6 is still compatible with a true rate up to about 39%.",
+    "Only the original wordings have measured human data; the other versions assume people would answer the same way. The organ-default rates were read from a figure, and Paul and George has no published sample size.",
+    "One disguise per effect, one system prompt and one reasoning effort (low). Any single story could have its own quirks.",
+    "Claude only: three sizes of one family, so the patterns may not hold for other labs' models.",
+    "\"Names the study\" is a keyword search of the answer text, so it's approximate."
+  ]
+}
