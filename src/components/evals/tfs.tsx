@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
+import { ChevronDown } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
+import { cn } from '../../lib/utils';
 import { Button } from './button';
 import {
   ChapterBreak,
@@ -48,6 +50,7 @@ const AXIS: Record<TfsStudyInfo['kind'], { domain: [number, number]; ticks: numb
 };
 
 const short = (m: TfsModel) => m.label.replace(/^Claude /, '');
+const family = (m: TfsModel) => short(m).replace(/ [\d.]+$/, '');
 const row = (m: TfsModel, s: TfsStudyKey, v: TfsVersion) => m.studies.find((r) => r.study === s && r.variant === v);
 const human = (d: TfsBundle, s: TfsStudyKey) => d.models.map((m) => row(m, s, 'canonical')?.human).find((h) => h != null) ?? null;
 const clamp = (x: number | null | undefined, [a, b]: [number, number]) => (x == null ? x : Math.min(b, Math.max(a, x)));
@@ -168,33 +171,193 @@ const DumbbellLegend: React.FC<{ from: string; to: string }> = ({ from, to }) =>
   />
 );
 
-/** The original wording next to the disguised version. */
-const WordingCompare: React.FC<{ d: TfsBundle; study: TfsStudyKey }> = ({ d, study }) => {
-  const ex = d.examples.find((e) => e.study === study);
-  if (!ex) return null;
-  const box = (title: string, w: typeof ex.canonical) => (
-    <Card className="bg-white/70">
-      <CardContent className="p-4 font-beezee text-sm leading-relaxed">
-        <div className="mb-2 text-base font-semibold">{title}</div>
-        <p className="mb-2">{w.stem}</p>
-        {w.option_a && (
-          <ul className="space-y-1 text-muted-foreground">
-            <li>
-              <span className="font-semibold text-[#001d36]">A:</span> {w.option_a}
-            </li>
-            <li>
-              <span className="font-semibold text-[#001d36]">B:</span> {w.option_b}
-            </li>
-          </ul>
-        )}
-      </CardContent>
-    </Card>
+// ── The cases and their wording ───────────────────────────────────────────────
+
+const CONDITION_LABEL: Record<string, string> = {
+  gain: 'Described as lives saved',
+  loss: 'Described as lives lost',
+  cash: 'Lost the cash',
+  ticket: 'Lost the ticket',
+  cheap: 'Saving on the cheap item',
+  expensive: 'Saving on the expensive item',
+  opt_in: 'Not pre-selected',
+  opt_out: 'Pre-selected',
+  seller: 'Owner, selling',
+  buyer: 'Non-owner, buying',
+  low: 'Low number',
+  high: 'High number',
+};
+
+/** "Haiku 0 · Sonnet 0 · Opus 0" for one study and version. */
+function modelLine(d: TfsBundle, s: TfsStudyKey, v: TfsVersion): string {
+  const f = AXIS[d.studies[s].kind].fmt;
+  return d.models
+    .map((m) => {
+      const r = row(m, s, v);
+      return r && r.value != null ? `${family(m)} ${f(r.value)}` : null;
+    })
+    .filter(Boolean)
+    .join(' · ');
+}
+
+/** One collapsible card per study: the question, the effect, what people and models did. */
+const CaseCards: React.FC<{ d: TfsBundle }> = ({ d }) => (
+  <div className="grid gap-3 sm:grid-cols-2">
+    {ALL.map((s) => {
+      const info = d.studies[s];
+      const h = human(d, s);
+      return (
+        <details key={s} className="group rounded-xl border border-border bg-white/70 px-4 py-3 font-beezee">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-2">
+            <span>
+              <span className="block text-base font-semibold">{info.label}</span>
+              <span className="block text-sm text-muted-foreground">{info.effect}</span>
+            </span>
+            <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-navy transition-transform group-open:rotate-180" aria-hidden />
+          </summary>
+          <dl className="mt-3 space-y-2 text-sm leading-relaxed">
+            <div>
+              <dt className="font-semibold text-navy">The question</dt>
+              <dd>{info.asked}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-navy">What people did</dt>
+              <dd>
+                {info.people} <span className="text-muted-foreground">({info.source})</span>
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-navy">What the models did</dt>
+              <dd>
+                <span className="block text-muted-foreground">{info.measure}{info.kind !== 'gap' && h != null ? `; people ${AXIS[info.kind].fmt(h)}` : ''}.</span>
+                {(['canonical', 'deep'] as TfsVersion[]).map((v) => (
+                  <span key={v} className="block">
+                    <span className="font-semibold">{d.versions[v]}:</span> {modelLine(d, s, v)}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          </dl>
+        </details>
+      );
+    })}
+  </div>
+);
+
+/** Words of `text` that aren't in `base` (longest common subsequence over words), for highlighting. */
+function changedWords(base: string, text: string): { w: string; changed: boolean }[] {
+  const a = base.split(/\s+/);
+  const b = text.split(/\s+/);
+  const L = Array.from({ length: a.length + 1 }, () => new Array<number>(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--)
+    for (let j = b.length - 1; j >= 0; j--) L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const out: { w: string; changed: boolean }[] = [];
+  let i = 0;
+  let j = 0;
+  while (j < b.length) {
+    if (i < a.length && a[i] === b[j]) {
+      out.push({ w: b[j], changed: false });
+      i++;
+      j++;
+    } else if (i < a.length && L[i + 1][j] >= L[i][j + 1]) i++;
+    else out.push({ w: b[j++], changed: true });
+  }
+  return out;
+}
+
+const Diffed: React.FC<{ base?: string; text: string }> = ({ base, text }) =>
+  base === undefined || base === text ? (
+    <>{text}</>
+  ) : (
+    <>
+      {changedWords(base, text)
+        .reduce<{ w: string; changed: boolean }[]>((runs, t) => {
+          const last = runs[runs.length - 1];
+          if (last && last.changed === t.changed) last.w += ` ${t.w}`;
+          else runs.push({ ...t });
+          return runs;
+        }, [])
+        .map((t, k) => (
+          <React.Fragment key={k}>
+            {k > 0 && ' '}
+            {t.changed ? <mark className="rounded bg-amber-100 px-0.5 text-[#001d36]">{t.w}</mark> : t.w}
+          </React.Fragment>
+        ))}
+    </>
   );
+
+const EXAMPLE_STUDIES: TfsStudyKey[] = ['asian_disease', 'lost_ticket', 'organ_default', 'prospect'];
+
+/** The actual prompts for one study in every version; words that differ from the original are highlighted. */
+const PromptExplorer: React.FC<{ d: TfsBundle }> = ({ d }) => {
+  const [study, setStudy] = React.useState<TfsStudyKey>('asian_disease');
+  const [version, setVersion] = React.useState<TfsVersion>('canonical');
+  const byVersion = d.wording[study] ?? {};
+  const versions = VERSIONS.filter((v) => byVersion[v]);
+  const v = byVersion[version] ? version : 'canonical';
+  const prompts = byVersion[v] ?? [];
+  const original = byVersion.canonical ?? [];
+  const change = d.studies[study].changes[v];
   return (
-    <div className="grid gap-3 sm:grid-cols-2 mb-6">
-      {box('The original (1981)', ex.canonical)}
-      {box('My disguised version', ex.deep)}
-    </div>
+    <ChartCard title="The actual questions" subtitle="Pick a study and a version. Highlighted words differ from the original wording.">
+      <div className="mb-2 overflow-x-auto">
+        <Tabs value={study} onValueChange={(x) => setStudy(x as TfsStudyKey)}>
+          <TabsList aria-label="Study" className="flex-wrap h-auto">
+            {EXAMPLE_STUDIES.map((s) => (
+              <TabsTrigger key={s} value={s}>
+                {d.studies[s].label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
+      <div className="mb-4 overflow-x-auto">
+        <Tabs value={v} onValueChange={(x) => setVersion(x as TfsVersion)}>
+          <TabsList aria-label="Version" className="flex-wrap h-auto">
+            {versions.map((x) => (
+              <TabsTrigger key={x} value={x}>
+                {d.versions[x]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+      </div>
+      <p className="mb-3 font-beezee text-sm">
+        <span className="font-semibold">{v === 'canonical' ? 'The original wording.' : 'What changed:'}</span>{' '}
+        {v === 'canonical' ? `${d.studies[study].source}.` : change}
+      </p>
+      <div className={cn('grid gap-3', prompts.length > 1 && 'sm:grid-cols-2')}>
+        {prompts.map((w, k) => {
+          const base = v === 'canonical' ? undefined : original.find((o) => o.condition === w.condition) ?? original[0];
+          return (
+            <Card key={k} className="bg-white/70">
+              <CardContent className="p-4 font-beezee text-sm leading-relaxed">
+                {w.condition && <div className="mb-2 text-base font-semibold">{CONDITION_LABEL[w.condition] ?? w.condition}</div>}
+                <p className="mb-2">
+                  <Diffed base={base?.stem} text={w.stem} />
+                </p>
+                {w.option_a && (
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>
+                      <span className="font-semibold text-[#001d36]">A:</span> <Diffed base={base?.option_a} text={w.option_a} />
+                    </li>
+                    <li>
+                      <span className="font-semibold text-[#001d36]">B:</span> <Diffed base={base?.option_b} text={w.option_b} />
+                    </li>
+                  </ul>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+      <WhatAmI>
+        <p>
+          Each card is one prompt, sent on its own in a fresh conversation. Where a study compares two conditions, each model saw
+          only one of them per call, and the options were shown in both orders.
+        </p>
+      </WhatAmI>
+    </ChartCard>
   );
 };
 
@@ -224,8 +387,7 @@ export const TfsStoryBody: React.FC = () => {
         </P>
         {d && (
           <P>
-            This is an exploratory pilot: Claude Haiku, Sonnet and Opus 5.5, {d.questions} questions, 6 answers per question, and
-            ${d.cost_usd.toFixed(2)} in API cost.
+            This is an exploratory pilot: Claude Haiku, Sonnet and Opus 5.5, {d.questions} questions and 6 answers per question.
           </P>
         )}
       </div>
@@ -257,12 +419,29 @@ export const TfsStoryBody: React.FC = () => {
                 </Card>
               ))}
             </div>
-            <P>Here's the best-known one, the "Asian disease" problem, next to its disguise:</P>
-            <WordingCompare d={d} study="asian_disease" />
             <P className="text-base text-muted-foreground">
               Only the original wordings have measured human data. The other versions assume people would answer the same way.
             </P>
           </Section>
+          <Section title="The cases">
+            <P>
+              Each study puts people in a small, everyday situation where most of them lean the same way. Open a card to see the
+              question, what the effect is, what people did and what the models did.
+            </P>
+          </Section>
+          <Wide>
+            <CaseCards d={d} />
+          </Wide>
+          <Section title="What the models actually read">
+            <P>
+              Here are the real prompts for four of the studies, in all four versions. The reworded and new-number versions keep
+              most of the original's telltale details, such as 600 lives split into thirds. The disguised version changes the
+              setting, the numbers and the probabilities but keeps the choice the same.
+            </P>
+          </Section>
+          <Wide>
+            <PromptExplorer d={d} />
+          </Wide>
         </>
       )}
       {d && <ChapterBreak id="findings" label="The results" />}
@@ -333,6 +512,10 @@ const TfsFindings: React.FC<{ d: TfsBundle; stats: boolean }> = ({ d, stats }) =
               hollow circle is the original wording; the filled circle is the disguised version.
             </p>
             <p>Opus cited most of the gamble problems by their number in the 1979 paper, and traced the factory-jobs version back to the Asian disease problem.</p>
+            <p>
+              For example, all three models named the Asian disease problem as the source of the orchard-blight question, even
+              though it has no disease, no 600 and no thirds.
+            </p>
           </WhatAmI>
           <Takeaway>
             The models recognize {range(orig, p0)} of the original questions. Disguising them brings that down to {range(deep, p0)},
@@ -381,7 +564,9 @@ const TfsFindings: React.FC<{ d: TfsBundle; stats: boolean }> = ({ d, stats }) =
           </ChartCard>
         ))}
         <Takeaway>
-          This held for the gym towel box, which no model recognized as a known study, and in answers that never mentioned a
+          In the gym-form version, the $4-a-month towel box was already checked in one set of calls and unchecked in another,
+          and every model made the same choice either way. In the climbing-gym version, losing $45 in cash and booking the $45
+          pass for the wrong day led to the same answer. This held for the gym towel box, which no model recognized as a known study, and in answers that never mentioned a
           study. So it doesn't look like test-dodging: the models treat money as money, whatever account it came from, and aren't
           moved by which option is pre-selected.
         </Takeaway>
@@ -403,6 +588,11 @@ const TfsFindings: React.FC<{ d: TfsBundle; stats: boolean }> = ({ d, stats }) =
             <p>
               For each problem I compare the share of a model's answers that picked option A with the share of people who did,
               then average the gaps. Zero would mean the model splits exactly like people.
+            </p>
+            <p>
+              The original problem offered an 80% chance of $4,000 or $3,000 for sure; 80% of people took the sure $3,000. The
+              disguised one offers a hotel store credit: a 90% chance of $560 or $480 for sure. The gamble is worth slightly more
+              on average in both.
             </p>
           </WhatAmI>
           <Takeaway>

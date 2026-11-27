@@ -1,8 +1,7 @@
 {
   "eval": "tfs",
-  "exported_utc": "2026-11-26T07:21:16Z",
+  "exported_utc": "2026-11-27T01:37:31Z",
   "prompt_version": "t1",
-  "cost_usd": 4.17,
   "questions": 93,
   "settings": "Each prompt is a fresh call with a short survey-style system prompt; 3 runs, both option orders; reasoning effort low, max 2,000 tokens, via OpenRouter, November 2026.",
   "versions": {
@@ -19,7 +18,14 @@
       "null": 0,
       "measure": "Extra share picking the sure option when it's described as lives saved (points)",
       "people": "72% picked the sure option when it was described as lives saved, 22% when described as lives lost.",
-      "source": "Tversky & Kahneman 1981"
+      "source": "Tversky & Kahneman 1981",
+      "asked": "A disease will kill 600 people. Pick a sure plan or a gamble. Half the participants hear the plans described as lives saved, half as lives lost.",
+      "effect": "Framing: the same options feel safer when described as gains and riskier when described as losses.",
+      "changes": {
+        "isomorph": "Same numbers and thirds, but factory jobs instead of a disease.",
+        "new_numbers": "Same disease story, with 900 people instead of 600.",
+        "deep": "An orchard of 120 trees, a 37.5% chance instead of one third, and \"treatments\" instead of programs."
+      }
     },
     "lost_ticket": {
       "label": "Lost cash vs. lost ticket",
@@ -28,7 +34,14 @@
       "null": 0,
       "measure": "Extra share buying a ticket after losing cash than after losing the ticket (points)",
       "people": "88% would still buy a ticket after losing $10 cash; 46% after losing the $10 ticket.",
-      "source": "Tversky & Kahneman 1981"
+      "source": "Tversky & Kahneman 1981",
+      "asked": "You arrive at a play and find you've lost $10. Do you still buy a $10 ticket? Others are told they lost the $10 ticket they had already bought.",
+      "effect": "Mental accounting: losing a ticket feels like paying twice; losing cash doesn't.",
+      "changes": {
+        "isomorph": "A museum exhibition instead of a play; still $10.",
+        "new_numbers": "An $80 concert instead of a $10 play.",
+        "deep": "A $45 climbing-gym day pass, booked for the wrong day instead of lost."
+      }
     },
     "jacket_calculator": {
       "label": "Saving $5 on a cheap vs. an expensive item",
@@ -37,7 +50,10 @@
       "null": 0,
       "measure": "Extra share making the trip when the saving is on the cheap item (points)",
       "people": "68% would drive 20 minutes to save $5 on a $15 item; 29% to save $5 on a $125 item.",
-      "source": "Tversky & Kahneman 1981"
+      "source": "Tversky & Kahneman 1981",
+      "asked": "A $15 calculator is $5 cheaper at a store 20 minutes away. Do you go? Others hear the same $5 saving on a $125 calculator.",
+      "effect": "Relative thinking: $5 feels like more when it's a big share of the price.",
+      "changes": {}
     },
     "organ_default": {
       "label": "Defaults",
@@ -46,7 +62,13 @@
       "null": 0,
       "measure": "Extra share choosing the option when it's pre-selected (points)",
       "people": "About 82% stayed organ donors when that was the default; about 42% opted in when it wasn't.",
-      "source": "Johnson & Goldstein 2003"
+      "source": "Johnson & Goldstein 2003",
+      "asked": "You've moved to a new state. Being an organ donor is either already selected or not, and you can change it with one click. What do you choose?",
+      "effect": "Defaults: people tend to keep whatever is pre-selected.",
+      "changes": {
+        "isomorph": "Renewing a driver's license online instead of moving; still organ donation.",
+        "deep": "A $4-a-month towel service on a gym sign-up form instead of organ donation."
+      }
     },
     "anchoring": {
       "label": "Anchoring on a random number",
@@ -55,7 +77,10 @@
       "null": 0,
       "measure": "Anchoring index: how far the estimate moves, as a share of the gap between the two anchors",
       "people": "After a wheel stopped at 10 or 65, median guesses were 25% and 45% (index 0.36).",
-      "source": "Tversky & Kahneman 1974"
+      "source": "Tversky & Kahneman 1974",
+      "asked": "A wheel of fortune lands on 10 (or 65). Is the share of African countries in the UN higher or lower than that number? Then give your best estimate.",
+      "effect": "Anchoring: an irrelevant number pulls the estimate toward it.",
+      "changes": {}
     },
     "endowment": {
       "label": "Owning something makes it worth more",
@@ -64,7 +89,10 @@
       "null": 1,
       "measure": "Selling price ÷ buying price (1 = no gap)",
       "people": "Mug owners asked a median $7.12; non-owners offered $2.87 (ratio 2.48).",
-      "source": "Kahneman, Knetsch & Thaler 1990"
+      "source": "Kahneman, Knetsch & Thaler 1990",
+      "asked": "You've just been given a mug: what's the least you'd sell it for? Others, without a mug, say the most they'd pay for one.",
+      "effect": "Endowment: owning something makes it feel worth more.",
+      "changes": {}
     },
     "loss_aversion": {
       "label": "Losses loom larger",
@@ -73,7 +101,10 @@
       "null": 1,
       "measure": "Smallest acceptable win ÷ the loss, on a 50-50 bet (1 = no loss aversion)",
       "people": "Most people want to win about twice what they could lose (ratio about 2).",
-      "source": "Kahneman 2011; Tversky & Kahneman 1992"
+      "source": "Kahneman 2011; Tversky & Kahneman 1992",
+      "asked": "A coin flip: tails you lose $100, heads you win $X. What's the smallest X that makes you take the bet?",
+      "effect": "Loss aversion: a loss hurts about twice as much as an equal gain feels good.",
+      "changes": {}
     },
     "prospect": {
       "label": "Choosing between gambles",
@@ -82,7 +113,14 @@
       "null": null,
       "measure": "Average gap to the share of people picking each option (points; 0 = matches people)",
       "people": "Kahneman & Tversky's 1979 problems: the certainty effect, the reflection effect and the fourfold pattern.",
-      "source": "Kahneman & Tversky 1979"
+      "source": "Kahneman & Tversky 1979",
+      "asked": "Pairs of gambles, such as an 80% chance of $4,000 or $3,000 for sure, and the same as losses.",
+      "effect": "Certainty and reflection: people play safe with gains and gamble to avoid a sure loss.",
+      "changes": {
+        "isomorph": "The same gamble as sealed envelopes in a radio prize draw.",
+        "new_numbers": "Amounts scaled by 1.4: $5,600 and $4,200.",
+        "deep": "A hotel store credit: 90% of $560 or $480 for sure."
+      }
     },
     "regret_action": {
       "label": "Regret: acting vs. not acting",
@@ -91,7 +129,10 @@
       "null": null,
       "measure": "Gap to the share of people picking each person (points; 0 = matches people)",
       "people": "92% said the person who acted (switched stocks) feels worse.",
-      "source": "Kahneman & Tversky 1982"
+      "source": "Kahneman & Tversky 1982",
+      "asked": "Paul kept his stock and George switched; both ended up $1,200 worse off. Who feels worse?",
+      "effect": "Regret for actions: a bad result you caused by acting stings more than one you let happen.",
+      "changes": {}
     },
     "regret_exception": {
       "label": "Regret: breaking a routine",
@@ -100,7 +141,482 @@
       "null": null,
       "measure": "Gap to the share of people picking each person (points; 0 = matches people)",
       "people": "88% said the person who broke their routine feels worse.",
-      "source": "Kahneman & Miller 1986"
+      "source": "Kahneman & Miller 1986",
+      "asked": "Mr. Jones rarely picks up hitchhikers and Mr. Smith often does. Both gave a ride and were robbed. Who regrets it more?",
+      "effect": "Regret for exceptions: a bad result after breaking your routine stings more.",
+      "changes": {}
+    }
+  },
+  "wording": {
+    "prospect": {
+      "canonical": [
+        {
+          "condition": "",
+          "stem": "Choose between the following two options.",
+          "option_a": "win $4,000 with probability 0.8; nothing with probability 0.2",
+          "option_b": "win $3,000 for sure"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "",
+          "stem": "A radio station calls you at home: you have been picked for its prize draw, and you must pick one of two sealed envelopes. Each envelope's terms are printed on the front. Which envelope do you take?",
+          "option_a": "win $4,000 with probability 0.8; nothing with probability 0.2",
+          "option_b": "win $3,000 for sure"
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "",
+          "stem": "Choose between the following two options.",
+          "option_a": "win $5,600 with probability 0.8; nothing with probability 0.2",
+          "option_b": "win $4,200 for sure"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "",
+          "stem": "Your hotel loyalty program is ending this year, and it lets you cash out your account in one of two ways. Which do you pick?",
+          "option_a": "a store credit of $560 with probability 0.9; nothing with probability 0.1",
+          "option_b": "a store credit of $480 for sure"
+        }
+      ]
+    },
+    "loss_aversion": {
+      "canonical": [
+        {
+          "condition": "",
+          "stem": "You are offered a gamble on the toss of a coin. If the coin shows tails, you lose $100. If the coin shows heads, you win $X. What is the smallest X that would make this gamble attractive enough for you to accept?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "",
+          "stem": "A friend proposes a one-off bet on whether a fair die lands even or odd. If it lands odd, you pay your friend $100. If it lands even, your friend pays you $X. What is the smallest X at which you would take the bet?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "",
+          "stem": "You are offered a gamble on the toss of a coin. If the coin shows tails, you lose $250. If the coin shows heads, you win $X. What is the smallest X that would make this gamble attractive enough for you to accept?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "deep": [
+        {
+          "condition": "",
+          "stem": "At your office party there is a spinner divided into two equal halves. If you play and it lands on red, $60 is taken off this month's bonus. If it lands on blue, $X is added. You can also skip it. What is the smallest X at which you would play?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ]
+    },
+    "endowment": {
+      "canonical": [
+        {
+          "condition": "seller",
+          "stem": "You are in a class. You have just been given a university coffee mug, which you now own and can keep and take home. Later today you may be able to sell it. What is the lowest price, in dollars, at which you would be willing to sell it?",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "buyer",
+          "stem": "You are in a class. Some of your classmates have just been given a university coffee mug; you were not. Later today you may be able to buy one. What is the highest price, in dollars, you would be willing to pay for it?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "seller",
+          "stem": "You are in a class. You have just been given a stainless-steel water bottle printed with the city museum's logo, which you now own and can keep and take home. Later today you may be able to sell it. What is the lowest price, in dollars, at which you would be willing to sell it?",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "buyer",
+          "stem": "You are in a class. Some of your classmates have just been given a stainless-steel water bottle printed with the city museum's logo; you were not. Later today you may be able to buy one. What is the highest price, in dollars, you would be willing to pay for it?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "seller",
+          "stem": "You are in a class. You have just been given a university coffee mug, which you now own and can keep and take home. The mug sells for $6.00 at the campus bookstore. Later today you may be able to sell it. What is the lowest price, in dollars, at which you would be willing to sell it?",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "buyer",
+          "stem": "You are in a class. Some of your classmates have just been given a university coffee mug; you were not. The mug sells for $6.00 at the campus bookstore. Later today you may be able to buy one. What is the highest price, in dollars, you would be willing to pay for it?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "deep": [
+        {
+          "condition": "seller",
+          "stem": "At a street fair you were just handed a free limited-edition print of the fair's poster; it is yours to keep. Later a stranger asks if you would sell it. What is the lowest price, in dollars, you would accept?",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "buyer",
+          "stem": "At a street fair, the people ahead of you were handed a free limited-edition print of the fair's poster; the prints ran out before your turn. Later a stranger offers to sell you one. What is the highest price, in dollars, you would pay?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ]
+    },
+    "regret_action": {
+      "canonical": [
+        {
+          "condition": "",
+          "stem": "Paul owns shares in company A. During the past year he considered switching to stock in company B, but he decided against it. He now learns that he would have been better off by $1,200 if he had switched to the stock of company B. George owned shares in company B. During the past year he switched to stock in company A. He now learns that he would have been better off by $1,200 if he had kept his stock in company B. Who feels greater regret?",
+          "option_a": "Paul",
+          "option_b": "George"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "",
+          "stem": "Maya has been with the same phone carrier for years. Last spring she thought about switching to a rival carrier, but decided to stay. She now learns she would have saved $300 if she had switched. Leo was with that rival carrier. Last spring he switched to Maya's carrier. He now learns he would have saved $300 if he had stayed. Who feels greater regret?",
+          "option_a": "Maya",
+          "option_b": "Leo"
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "",
+          "stem": "Priya was enrolled in Statistics. Before the deadline she considered switching to Economics, but she stayed. She now learns her grade would have been a full letter higher in Economics. Sam was enrolled in Economics. Before the deadline he switched to Statistics. He now learns his grade would have been a full letter higher if he had stayed in Economics. Who feels greater regret?",
+          "option_a": "Priya",
+          "option_b": "Sam"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "",
+          "stem": "Ana and Ben were both at a ramen shop. Ana had planned to order the miso ramen, thought about the chef's special instead, but kept the miso. Ben had planned to order the chef's special, then changed his mind at the counter and ordered the miso. Both bowls of miso were disappointing, and the special turned out to be excellent. Who feels worse about their order?",
+          "option_a": "Ana",
+          "option_b": "Ben"
+        }
+      ]
+    },
+    "regret_exception": {
+      "canonical": [
+        {
+          "condition": "",
+          "stem": "Mr. Jones almost never takes hitch-hikers in his car. Yesterday he gave a man a ride and was robbed. Mr. Smith frequently takes hitch-hikers in his car. Yesterday he gave a man a ride and was robbed. Who do you expect to experience greater regret over the episode?",
+          "option_a": "Mr. Jones",
+          "option_b": "Mr. Smith"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "",
+          "stem": "Ms. Rivera almost never leaves her bike unlocked outside the library. Yesterday she did, and it was stolen. Ms. Chen often leaves her bike unlocked outside the library. Yesterday she did, and it was stolen. Who do you expect to experience greater regret over the episode?",
+          "option_a": "Ms. Rivera",
+          "option_b": "Ms. Chen"
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "",
+          "stem": "Mr. Okafor lends his car to neighbors about once every few years. Last week he lent it and it came back with a cracked windshield. Mr. Dunn lends his car to neighbors most weekends. Last week he lent it and it came back with a cracked windshield. Who do you expect to experience greater regret over the episode?",
+          "option_a": "Mr. Okafor",
+          "option_b": "Mr. Dunn"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "",
+          "stem": "Nora takes the stairs at her office every day. Lia almost always takes the elevator, but today she took the stairs. Both slipped on a wet step and sprained an ankle. Who do you think is more upset with herself?",
+          "option_a": "Lia",
+          "option_b": "Nora"
+        }
+      ]
+    },
+    "asian_disease": {
+      "canonical": [
+        {
+          "condition": "gain",
+          "stem": "Imagine that the U.S. is preparing for the outbreak of an unusual Asian disease, which is expected to kill 600 people. Two alternative programs to combat the disease have been proposed. Assume that the exact scientific estimates of the consequences of the programs are as follows. Which program would you favor?",
+          "option_a": "If this one is adopted, 200 people will be saved.",
+          "option_b": "If this one is adopted, there is a one-third probability that all 600 people will be saved and a two-thirds probability that no people will be saved."
+        },
+        {
+          "condition": "loss",
+          "stem": "Imagine that the U.S. is preparing for the outbreak of an unusual Asian disease, which is expected to kill 600 people. Two alternative programs to combat the disease have been proposed. Assume that the exact scientific estimates of the consequences of the programs are as follows. Which program would you favor?",
+          "option_a": "If this one is adopted, 400 people will die.",
+          "option_b": "If this one is adopted, there is a one-third probability that nobody will die and a two-thirds probability that 600 people will die."
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "gain",
+          "stem": "A regional manufacturer is about to close a plant, which is expected to eliminate 600 jobs. Two alternative rescue plans have been proposed. Assume that the exact estimates of the consequences of the plans are as follows. Which plan would you favor?",
+          "option_a": "If this one is adopted, 200 jobs will be saved.",
+          "option_b": "If this one is adopted, there is a one-third probability that all 600 jobs will be saved and a two-thirds probability that no jobs will be saved."
+        },
+        {
+          "condition": "loss",
+          "stem": "A regional manufacturer is about to close a plant, which is expected to eliminate 600 jobs. Two alternative rescue plans have been proposed. Assume that the exact estimates of the consequences of the plans are as follows. Which plan would you favor?",
+          "option_a": "If this one is adopted, 400 jobs will be lost.",
+          "option_b": "If this one is adopted, there is a one-third probability that no jobs will be lost and a two-thirds probability that all 600 jobs will be lost."
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "gain",
+          "stem": "Imagine that your country is preparing for the outbreak of an unusual new flu, which is expected to kill 900 people. Two alternative programs to combat it have been proposed. Assume that the exact scientific estimates of the consequences of the programs are as follows. Which program would you favor?",
+          "option_a": "If this one is adopted, 300 people will be saved.",
+          "option_b": "If this one is adopted, there is a one-third probability that all 900 people will be saved and a two-thirds probability that no people will be saved."
+        },
+        {
+          "condition": "loss",
+          "stem": "Imagine that your country is preparing for the outbreak of an unusual new flu, which is expected to kill 900 people. Two alternative programs to combat it have been proposed. Assume that the exact scientific estimates of the consequences of the programs are as follows. Which program would you favor?",
+          "option_a": "If this one is adopted, 600 people will die.",
+          "option_b": "If this one is adopted, there is a one-third probability that nobody will die and a two-thirds probability that 900 people will die."
+        }
+      ],
+      "deep": [
+        {
+          "condition": "gain",
+          "stem": "Your neighborhood's community orchard has 120 apple trees, and a fungal blight has reached it. Without treatment every tree will die this season. An arborist offers two treatments and says her estimates are reliable. As a member of the orchard committee, which do you vote for?",
+          "option_a": "Treatment Q: 45 of the 120 trees will be saved.",
+          "option_b": "Treatment R: a 37.5% chance that all 120 trees will be saved, and a 62.5% chance that none will be saved."
+        },
+        {
+          "condition": "loss",
+          "stem": "Your neighborhood's community orchard has 120 apple trees, and a fungal blight has reached it. Without treatment every tree will die this season. An arborist offers two treatments and says her estimates are reliable. As a member of the orchard committee, which do you vote for?",
+          "option_a": "Treatment Q: 75 of the 120 trees will die.",
+          "option_b": "Treatment R: a 37.5% chance that no trees will die, and a 62.5% chance that all 120 trees will die."
+        }
+      ]
+    },
+    "lost_ticket": {
+      "canonical": [
+        {
+          "condition": "cash",
+          "stem": "Imagine that you have decided to see a play where admission is $10 per ticket. As you arrive, you discover that you have lost a $10 bill. Would you still pay $10 for a ticket to the play?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "ticket",
+          "stem": "Imagine that you have decided to see a play where admission is $10 per ticket and have already paid $10 for a ticket. As you arrive, you discover that you have lost the ticket. It cannot be recovered. Would you pay $10 for another ticket?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "cash",
+          "stem": "Imagine that you have decided to see a museum's special exhibition where entry is $10 per person. As you arrive, you discover that you have lost a $10 bill. Would you still pay $10 for a ticket to the exhibition?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "ticket",
+          "stem": "Imagine that you have decided to see a museum's special exhibition where entry is $10 per person and have already paid $10 for a ticket. As you arrive, you discover that you have lost the ticket. It cannot be recovered. Would you pay $10 for another ticket?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "cash",
+          "stem": "Imagine that you have decided to go to a concert where tickets cost $80. As you arrive, you discover that you have lost $80 in cash from your wallet. Would you still pay $80 for a ticket to the concert?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "ticket",
+          "stem": "Imagine that you have decided to see a concert where tickets cost $80 and have already paid $80 for a ticket. As you arrive, you discover that you have lost the ticket. It cannot be recovered. Would you pay $80 for another ticket?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "cash",
+          "stem": "You planned to spend Saturday at a climbing gym, where a day pass costs $45. At the front desk you realize that $45 in cash you had set aside has fallen out of your jacket. Do you still buy a day pass?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "ticket",
+          "stem": "You planned to spend Saturday at a climbing gym and bought a $45 day pass online in advance. At the front desk you realize the pass was for yesterday's date by mistake, and the gym cannot transfer it. Do you buy another $45 day pass?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ]
+    },
+    "jacket_calculator": {
+      "canonical": [
+        {
+          "condition": "cheap",
+          "stem": "Imagine that you are about to buy a jacket for $125 and a calculator for $15. The salesperson tells you that the calculator you wish to buy is on sale for $10 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "expensive",
+          "stem": "Imagine that you are about to buy a jacket for $15 and a calculator for $125. The salesperson tells you that the calculator you wish to buy is on sale for $120 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "cheap",
+          "stem": "Imagine that you are about to buy a winter coat for $125 and a pair of headphones for $15. The salesperson tells you that the pair of headphones you wish to buy is on sale for $10 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "expensive",
+          "stem": "Imagine that you are about to buy a winter coat for $15 and a pair of headphones for $125. The salesperson tells you that the pair of headphones you wish to buy is on sale for $120 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "cheap",
+          "stem": "Imagine that you are about to buy a sofa for $400 and a lamp for $40. The salesperson tells you that the lamp you wish to buy is on sale for $25 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "expensive",
+          "stem": "Imagine that you are about to buy a sofa for $40 and a lamp for $400. The salesperson tells you that the lamp you wish to buy is on sale for $385 at the other branch of the store, a 20-minute drive away. Would you make the trip to the other store?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "cheap",
+          "stem": "You are at an electronics store buying a laptop for $1,200 and a protective case for $30. A friend texts that the exact same case is $20 at a shop a 15-minute walk away. Do you walk over to buy the case there?",
+          "option_a": "Yes",
+          "option_b": "No"
+        },
+        {
+          "condition": "expensive",
+          "stem": "You are at an electronics store buying a protective case for $30 and a laptop for $1,200. A friend texts that the exact same laptop is $1,190 at a shop a 15-minute walk away. Do you walk over to buy the laptop there?",
+          "option_a": "Yes",
+          "option_b": "No"
+        }
+      ]
+    },
+    "organ_default": {
+      "canonical": [
+        {
+          "condition": "opt_in",
+          "stem": "Imagine you have just moved to a new state. In this state, the default is that you are NOT an organ donor. You are given the choice to confirm or change this status with one click. What do you choose?",
+          "option_a": "Be an organ donor",
+          "option_b": "Not be an organ donor"
+        },
+        {
+          "condition": "opt_out",
+          "stem": "Imagine you have just moved to a new state. In this state, the default is that you ARE an organ donor. You are given the choice to confirm or change this status with one click. What do you choose?",
+          "option_a": "Be an organ donor",
+          "option_b": "Not be an organ donor"
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "opt_in",
+          "stem": "Imagine you are renewing your driver's license online after moving to a new state. In this state, the default is that you are NOT an organ donor. You are given the choice to confirm or change this status with one click. What do you choose?",
+          "option_a": "Be an organ donor",
+          "option_b": "Not be an organ donor"
+        },
+        {
+          "condition": "opt_out",
+          "stem": "Imagine you are renewing your driver's license online after moving to a new state. In this state, the default is that you ARE an organ donor. You are given the choice to confirm or change this status with one click. What do you choose?",
+          "option_a": "Be an organ donor",
+          "option_b": "Not be an organ donor"
+        }
+      ],
+      "deep": [
+        {
+          "condition": "opt_in",
+          "stem": "You are finishing an online sign-up form for a new gym membership. The box \"Add towel service ($4 per month)\" is unchecked. You can change it with one click before you submit. What do you submit?",
+          "option_a": "With towel service",
+          "option_b": "Without towel service"
+        },
+        {
+          "condition": "opt_out",
+          "stem": "You are finishing an online sign-up form for a new gym membership. The box \"Add towel service ($4 per month)\" is already checked. You can change it with one click before you submit. What do you submit?",
+          "option_a": "With towel service",
+          "option_b": "Without towel service"
+        }
+      ]
+    },
+    "anchoring": {
+      "canonical": [
+        {
+          "condition": "low",
+          "stem": "A wheel of fortune with numbers from 0 to 100 was just spun in front of you and stopped at 10. First: is the percentage of African nations among the members of the United Nations higher or lower than 10? Then give your best estimate of the percentage of African nations among the members of the United Nations.",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "high",
+          "stem": "A wheel of fortune with numbers from 0 to 100 was just spun in front of you and stopped at 65. First: is the percentage of African nations among the members of the United Nations higher or lower than 65? Then give your best estimate of the percentage of African nations among the members of the United Nations.",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "isomorph": [
+        {
+          "condition": "low",
+          "stem": "A wheel of fortune with numbers from 0 to 100 was just spun in front of you and stopped at 10. First: is the percentage of the world's postage stamps ever issued that featured an animal higher or lower than 10? Then give your best estimate of the percentage of the world's postage stamps ever issued that featured an animal.",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "high",
+          "stem": "A wheel of fortune with numbers from 0 to 100 was just spun in front of you and stopped at 65. First: is the percentage of the world's postage stamps ever issued that featured an animal higher or lower than 65? Then give your best estimate of the percentage of the world's postage stamps ever issued that featured an animal.",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "new_numbers": [
+        {
+          "condition": "low",
+          "stem": "A wheel of fortune with numbers from 0 to 200 was just spun in front of you and stopped at 40. First: is the average age, in years, of the oldest tree in a typical European city park higher or lower than 40? Then give your best estimate of the average age, in years, of the oldest tree in a typical European city park.",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "high",
+          "stem": "A wheel of fortune with numbers from 0 to 200 was just spun in front of you and stopped at 160. First: is the average age, in years, of the oldest tree in a typical European city park higher or lower than 160? Then give your best estimate of the average age, in years, of the oldest tree in a typical European city park.",
+          "option_a": "",
+          "option_b": ""
+        }
+      ],
+      "deep": [
+        {
+          "condition": "low",
+          "stem": "You are filling in a volunteer form at your local library. The first box asks for your locker number, and you write 12. The next box asks: \"Roughly how many books do you think this branch lends out on a typical day?\" What number do you write?",
+          "option_a": "",
+          "option_b": ""
+        },
+        {
+          "condition": "high",
+          "stem": "You are filling in a volunteer form at your local library. The first box asks for your locker number, and you write 88. The next box asks: \"Roughly how many books do you think this branch lends out on a typical day?\" What number do you write?",
+          "option_a": "",
+          "option_b": ""
+        }
+      ]
     }
   },
   "models": [

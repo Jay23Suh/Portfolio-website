@@ -264,6 +264,11 @@ export interface TfsStudyInfo {
   measure: string;
   people: string;
   source: string;
+  /** The question in plain words, and the effect in everyday words. */
+  asked: string;
+  effect: string;
+  /** Version -> what changed from the original wording. */
+  changes: Partial<Record<TfsVersion, string>>;
 }
 
 export interface TfsStudyRow extends R {
@@ -304,13 +309,14 @@ export interface TfsBundle {
   eval: 'tfs';
   exported_utc: string;
   prompt_version: string;
-  cost_usd: number;
   questions: number;
   settings: string;
   versions: Record<TfsVersion, string>;
   studies: Record<TfsStudyKey, TfsStudyInfo>;
   models: TfsModel[];
   examples: { study: TfsStudyKey; condition: string; canonical: TfsWording; deep: TfsWording }[];
+  /** Study -> version -> the prompt for each condition. */
+  wording: Partial<Record<TfsStudyKey, Partial<Record<TfsVersion, (TfsWording & { condition: string })[]>>>>;
   caveats: string[];
 }
 
