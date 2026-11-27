@@ -1,8 +1,7 @@
 {
   "eval": "tfs",
-  "exported_utc": "2026-11-27T01:14:30Z",
+  "exported_utc": "2026-11-27T01:37:31Z",
   "prompt_version": "t1",
-  "cost_usd": 4.17,
   "questions": 93,
   "settings": "Each prompt is a fresh call with a short survey-style system prompt; 3 runs, both option orders; reasoning effort low, max 2,000 tokens, via OpenRouter, November 2026.",
   "versions": {

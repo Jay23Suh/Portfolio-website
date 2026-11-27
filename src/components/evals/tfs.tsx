@@ -387,8 +387,7 @@ export const TfsStoryBody: React.FC = () => {
         </P>
         {d && (
           <P>
-            This is an exploratory pilot: Claude Haiku, Sonnet and Opus 5.5, {d.questions} questions, 6 answers per question, and
-            ${d.cost_usd.toFixed(2)} in API cost.
+            This is an exploratory pilot: Claude Haiku, Sonnet and Opus 5.5, {d.questions} questions and 6 answers per question.
           </P>
         )}
       </div>

@@ -309,7 +309,6 @@ export interface TfsBundle {
   eval: 'tfs';
   exported_utc: string;
   prompt_version: string;
-  cost_usd: number;
   questions: number;
   settings: string;
   versions: Record<TfsVersion, string>;
